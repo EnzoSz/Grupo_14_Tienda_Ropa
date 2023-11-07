@@ -11,7 +11,7 @@ La tienda de ropa "Nombre de la Tienda" está orientada a un público diverso qu
 - **Jóvenes urbanos**: Ofrecemos una variedad de ropa moderna y trendy.
 - **Profesionales de todas las edades**: Nuestro catálogo incluye opciones de moda para el trabajo.
 - **Amantes de la moda**: Artículos para quienes buscan prendas de moda actual y accesorios vanguardistas.
-- **Personas preocupadas por el presupuesto**: Ofrecemos opciones de buena calidad a precios razonables.
+
 
 ## Equipo
 
@@ -19,7 +19,24 @@ La tienda de ropa "Nombre de la Tienda" está orientada a un público diverso qu
 Además de mi dedicación al mundo de la tecnología, disfruto del fútbol y soy un apasionado del cine. Estoy entusiasmado por contribuir al proyecto y llevar mis habilidades en back-end al próximo nivel.
 
 👨‍💻 Integrante 2:
+
 👨‍💻 Integrante 3:
+
 👨‍💻 Integrante 4:
+
 👨‍💻 Integrante 5:
+
 👨‍💻 Integrante 6:
+
+## Páginas Referentes
+Las siguientes páginas fueron tomadas de referencia ya que estan relacionado con el tipo de producto de deseamos ofrecer. Exploramos cada una de ella para poder sacar la mayor informacion posible para la creacion del e-commerce.
+
+https://www.levi.com.ar/
+
+https://essentialsspain.com/
+
+https://freres.ar/
+
+https://www.nike.com/
+
+https://nude-project.com/es 
