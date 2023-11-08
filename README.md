@@ -26,7 +26,7 @@ Estoy con muchas ganas de iniciar este proyecto, trabajar en equipo y solidariza
 Soy una persona en aprendizaje continuo, me encanta todo el tiempo estar aprendiendo algo nuevo, soy  muy curioso, empatíco y servicial. Considero que lo más importante para el éxito de un proyecto son las personas y el trabajo en equipo. 
 Dejo una frase que me identifica: El éxito es la suma de pequeños esfuerzos, repetidos días tras día.
 
-👨‍💻 Integrante 4:
+👨‍💻 Integrante 4: me llamo nestor 
 
 👨‍💻 Integrante 5:
 
