@@ -26,7 +26,7 @@ Estoy con muchas ganas de iniciar este proyecto, trabajar en equipo y solidariza
 Soy una persona en aprendizaje continuo, me encanta todo el tiempo estar aprendiendo algo nuevo, soy  muy curioso, empatíco y servicial. Considero que lo más importante para el éxito de un proyecto son las personas y el trabajo en equipo. 
 Dejo una frase que me identifica: El éxito es la suma de pequeños esfuerzos, repetidos días tras día.
 
-👨‍💻 Integrante 4: me llamo nestor 
+👨‍💻 Nestor Garcia: Tengo 22 años, soy venezolano y vivo en Argentina. Desde siempre me ha interesado mucho la programacion y busco aprender y mejorar cada dia mas en este mundo. En un futuro me encantaria poder ir por el lado del desarrollo de videojuegos, ya que es de mis pasatiempos favoritos, ademas de programar y el basket. No puedo esperar por ir mas adentro en este proyecto para contribuir con mi equipo y mejorar mis conocimientos de desarrollo web cada vez mas.
 
 👨‍💻 Integrante 5:
 
