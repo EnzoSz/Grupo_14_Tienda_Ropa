@@ -18,7 +18,9 @@ La tienda de ropa "Nombre de la Tienda" está orientada a un público diverso qu
 👨‍💻Enzo Soliz: Tengo 28 años, me encuentro actualmente inmerso en mis estudios de Ingeniería en Sistemas en la Universidad Tecnológica Nacional (UTN). Me apasiona el desarrollo web, con un enfoque especial en la creación de sólidas estructuras back-end. Mi experiencia se ha centrado en el desarrollo front-end, pero mi verdadero interés y deseo de aprendizaje está en profundizar mis conocimientos en el ámbito del back-end.
 Además de mi dedicación al mundo de la tecnología, disfruto del fútbol y soy un apasionado del cine. Estoy entusiasmado por contribuir al proyecto y llevar mis habilidades en back-end al próximo nivel.
 
-👨‍💻 Integrante 2:
+👨‍💻 Valentin Barberis: Tengo 19 años y vivo en la ciudad de Rafaela ubicada en la provincia de Santa Fe, soy un apasionado del Desarrollo Web y me gusta estar aprendiendo nuevas tecnologias para poder utilizarlas en mi futuro laboral.
+Ademas de mi pasion por el Desarrollo Web, me gusta mucho el futbol siendo fanatico del Club Atletico de Rafaela que actualmente milita en el Nacional B, ademas juego al basquet y disfruto de las noches de NBA en donde mi franquicia favorita son los Boston Celtics.
+Estoy con muchas ganas de iniciar este proyecto, trabajar en equipo y solidarizarme para con los demas integrantes de este maravilloso grupo de programadores.
 
 👨‍💻 Integrante 3:
 
