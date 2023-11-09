@@ -1,12 +1,12 @@
-# 🛍️ Tienda de Ropa "Nombre de la Tienda" 
+# 🛍️ Tienda de Ropa "Hommies" 
 
 ## Descripción del Sitio
 
-La tienda de ropa "Nombre de la Tienda" es un e-commerce especializado en ofrecer una amplia gama de prendas de vestir para todas las edades, géneros y estilos. Ofrecemos desde ropa casual y deportiva hasta prendas de moda formal y accesorios de temporada. Nuestro catálogo se actualiza constantemente para reflejar las últimas tendencias y satisfacer las necesidades de nuestros clientes.
+La tienda de ropa "Hommies" es un e-commerce especializado en ofrecer una amplia gama de prendas de vestir para todas las edades, géneros y estilos. Ofrecemos desde ropa casual y deportiva hasta prendas de moda formal y accesorios de temporada. Nuestro catálogo se actualiza constantemente para reflejar las últimas tendencias y satisfacer las necesidades de nuestros clientes.
 
 ## Público Objetivo
 
-La tienda de ropa "Nombre de la Tienda" está orientada a un público diverso que busca prendas de calidad y últimas tendencias a precios accesibles. Nos dirigimos a una amplia gama de clientes que incluyen:
+La tienda de ropa "Hommies" está orientada a un público diverso que busca prendas de calidad y últimas tendencias a precios accesibles. Nos dirigimos a una amplia gama de clientes que incluyen:
 
 - **Jóvenes urbanos**: Ofrecemos una variedad de ropa moderna y trendy.
 - **Profesionales de todas las edades**: Nuestro catálogo incluye opciones de moda para el trabajo.
