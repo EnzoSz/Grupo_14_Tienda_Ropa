@@ -28,7 +28,7 @@ Dejo una frase que me identifica: El éxito es la suma de pequeños esfuerzos, r
 
 👨‍💻 Nestor Garcia: Tengo 22 años, soy venezolano y vivo en Argentina. Desde siempre me ha interesado mucho la programacion y busco aprender y mejorar cada dia mas en este mundo. En un futuro me encantaria poder ir por el lado del desarrollo de videojuegos, ya que es de mis pasatiempos favoritos, ademas de programar y el basket. No puedo esperar por ir mas adentro en este proyecto para contribuir con mi equipo y mejorar mis conocimientos de desarrollo web cada vez mas.
 
-👨‍💻 Integrante 5:
+👨‍💻 Francisco Vargas: Tengo 19 años, soy un chileno que vive en la Provincia de Buenos Aires, desde hace años estoy interesado en las habilidades digitales, certificado en Community Manager & Publicidad. Me pague el curso con mi primer sueldo, estoy en busca de un trabajo dentro del mundo tech y seguir avanzando en mis estudios. Me gusta el cine, los videojuegos y la filosofia.
 
 👨‍💻 Integrante 6:
 ## Wireframes del Proyecto
