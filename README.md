@@ -31,6 +31,14 @@ Dejo una frase que me identifica: El éxito es la suma de pequeños esfuerzos, r
 👨‍💻 Integrante 5:
 
 👨‍💻 Integrante 6:
+## Wireframes del Proyecto
+
+Este repositorio contiene los enlaces a los wireframes asociados con el proyecto. Los wireframes son representaciones visuales que muestran la estructura y el diseño de las diferentes pantallas o secciones del proyecto.
+
+- [Wireframes Dispositivo Desktop] (https://www.figma.com/file/hiNIwgfayu5CjAyjgR5Ugn/Linari-Milagros----E-commerce?type=design&node-id=0-1&mode=design&t=HQBROp2rOr3JSAsp-0)
+
+
+Estos wireframes pueden servir como referencia visual para comprender la disposición y el flujo general del diseño del proyecto.
 
 ## Páginas Referentes
 Las siguientes páginas fueron tomadas de referencia ya que estan relacionado con el tipo de producto de deseamos ofrecer. Exploramos cada una de ella para poder sacar la mayor informacion posible para la creacion del e-commerce.
