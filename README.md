@@ -20,7 +20,7 @@ Además de mi dedicación al mundo de la tecnología, disfruto del fútbol y soy
 
 👨‍💻 Valentin Barberis: Tengo 19 años y vivo en la ciudad de Rafaela ubicada en la provincia de Santa Fe, soy un apasionado del Desarrollo Web y me gusta estar aprendiendo nuevas tecnologias para poder utilizarlas en mi futuro laboral.
 Ademas de mi pasion por el Desarrollo Web, me gusta mucho el futbol siendo fanatico del Club Atletico de Rafaela que actualmente milita en el Nacional B, ademas juego al basquet y disfruto de las noches de NBA en donde mi franquicia favorita son los Boston Celtics.
-Estoy con muchas ganas de iniciar este proyecto, trabajar en equipo y solidarizarme para con los demas integrantes de este maravilloso grupo de programadores.
+Estoy con muchas ganas de iniciar este proyecto, trabajar en equipo y solidarizarme para con los demas integrantes de este maravilloso grupo de programadores.............................................
 
 👨‍💻 Matías Maresca: Tengo 35 años, soy Scrum Master con 3 años de experiencia y Lic en Marketing. Soy un apasionado de lo marcos de trabajo agile y de las innovaciones técnologicas. Me he certificado en varios marcos de trabajo obteniendo varias certificaciones en lo que es agilidad. Actualmente estoy fortaleciendo mis skills técnicos en desarrollo fullstack para poder complementar con mi experiencia en gestión de proyectos IT y seguir creciendo como profesional.
 Soy una persona en aprendizaje continuo, me encanta todo el tiempo estar aprendiendo algo nuevo, soy  muy curioso, empatíco y servicial. Considero que lo más importante para el éxito de un proyecto son las personas y el trabajo en equipo. 
