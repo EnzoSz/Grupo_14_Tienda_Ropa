@@ -1,0 +1,26 @@
+{
+  "name": "proyectotiendaropa",
+  "version": "1.0.0",
+  "description": "Proyecto Integrador para el curso de Full Stack, en Digital House",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon src/app.js"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnzoSz/Grupo_14_Repuestos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnzoSz/Grupo_14_Repuestos/issues"
+  },
+  "homepage": "https://github.com/EnzoSz/Grupo_14_Repuestos#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
