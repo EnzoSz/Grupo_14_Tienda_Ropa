@@ -30,7 +30,9 @@ Dejo una frase que me identifica: El éxito es la suma de pequeños esfuerzos, r
 
 👨‍💻 Francisco Vargas: Tengo 19 años, soy un chileno que vive en la Provincia de Buenos Aires, desde hace años estoy interesado en las habilidades digitales, certificado en Community Manager & Publicidad. Me pague el curso con mi primer sueldo, estoy en busca de un trabajo dentro del mundo tech y seguir avanzando en mis estudios. Me gusta el cine, los videojuegos y la filosofia.
 
-👨‍💻 Integrante 6:
+## Link tablero en jira
+https://grupo14.atlassian.net/jira/software/projects/G1/boards/1
+
 ## Wireframes del Proyecto
 
 Este repositorio contiene los enlaces a los wireframes asociados con el proyecto. Los wireframes son representaciones visuales que muestran la estructura y el diseño de las diferentes pantallas o secciones del proyecto.
