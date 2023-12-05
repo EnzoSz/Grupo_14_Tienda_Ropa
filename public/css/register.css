@@ -1,0 +1,44 @@
+.title-register {
+    font-family: Interstate;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500 !important;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: #000;
+    line-height: 20px;
+    text-align: center;
+}
+
+.options-container {
+    font-family: Interstate;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 17px;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.button-options {
+    background-color: black;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
