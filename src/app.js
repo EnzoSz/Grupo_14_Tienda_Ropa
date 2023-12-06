@@ -7,6 +7,12 @@ const path = require('path');
 // Creamos una instancia de express
 const app = express();
 
+// declaramos el motor de plantillas ejs
+app.set('view engine', 'ejs');
+
+// configuramos el directorio de vistas
+app.set('views', path.resolve(__dirname, './views'));
+
 // Importamos el módulo rutas
 const homeRouter = require('./routes/homeRouter');
 
