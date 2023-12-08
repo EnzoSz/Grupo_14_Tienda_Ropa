@@ -15,6 +15,8 @@ app.set('views', path.resolve(__dirname, './views'));
 
 // Importamos el módulo rutas
 const homeRouter = require('./routes/homeRouter');
+const loginRouter = require('./routes/loginRouter');
+const registerRouter = require('./routes/registerRouter');
 
 // Obtenemos la ruta absoluta del directorio public
 const publicPath = path.resolve(__dirname, '../public');
@@ -24,6 +26,8 @@ app.use(express.static(publicPath));
 
 // Usamos los enrutadores importados
 app.use('/', homeRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
 
 // Levantamos el servidor en el puerto 3050
 app.listen(3050, () => console.log('Servidor corriendo en http://localhost:3050'));
