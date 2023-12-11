@@ -1,11 +1,11 @@
 .main-header {
     width: 100%;
     background-color: var(--primaryColor);
-    border-bottom: 1px solid var(--colorgray);
+    /* border-bottom: 1px solid var(--colorgray); */
     box-shadow: 0 0 7px rgb(100, 100, 100);
     position: fixed;
     top: 0;
-    height: 10rem;
+    height: auto;
 
 }
 
@@ -21,7 +21,63 @@
     justify-content: space-between;
     align-items: center;
 }
+.top-container-categories {
+    /* display: none; */
+    position: absolute;
+    
+    top: 0;
+    left: -100%;
+    padding: 1rem;
+    
+    overflow: hidden;
+    background-color: var(--primaryColor);
+    width: 60%;
+    height: 100vh;
+    box-shadow: 0 0 7px rgb(100, 100, 100);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    transition: all 0.5s ease-in-out;
+}
+.top-container-categories .bars-categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+.bars-categories li {
+    list-style: none;
+    margin: 1rem 1rem;
+    border-bottom: solid 1px #d7d3d3;
+    padding: 1rem;
+}
+.bars-categories li a {
+    text-decoration: none;
+    color: var(--secondaryColor);
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.top-bars-left input {
+    display: none;
+}
+.icon-close {
+    background-color: var(--primaryColor);
+    color: var(--secondaryColor);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: .5rem;
+    border: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+/* #menu-close:checked + .icon-close{
+    display: none;
+}
 
+#menu-close:checked ~ .top-container-categories {
+    display: none;
+} */
 .menu-bars {
     background-color: var(--primaryColor);
     color: var(--secondaryColor);
@@ -40,6 +96,7 @@
 .container-logo img {
     width: 100%;
     border-radius: 50%;
+    max-width: 12rem;
 }
 
 .top-bars-right {
@@ -61,3 +118,39 @@
     padding: .5rem;
     border: none;
 }
+
+.main-header-bottom-bars {
+    align-items: center;
+    padding: 0.5rem;
+    margin: auto;
+}
+ .form-search {
+    width: 100%;
+    max-width: 35rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+ }
+
+ .form-search input {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--colorgray);
+    padding: .5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.4rem;
+ }
+ .form-search input:focus {
+    outline: none;
+ }
+ .form-search button {
+    background-color: var(--primaryColor);
+    color: var(--secondaryColor);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: .5rem;
+    border: none;
+    border-radius: 5px;
+ }

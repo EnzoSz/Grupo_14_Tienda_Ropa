@@ -1,7 +1,30 @@
 <header class="main-header">
   <section class="main-header-top-bars">
     <section class="top-bars-left">
-      <button class="menu-bars">
+      <div class="top-container-categories">
+        <button class="icon-close" onclick="toggleMenu()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <ul class="bars-categories">
+          <li>
+            <a href="/">HOMBRE</a>
+          </li>
+          <li>
+            <a href="/">MUJER</a>
+          </li>
+          <li>
+            <a href="/">KIDS</a>
+          </li>
+          <li>
+            <a href="/">SALE</a>
+          </li>
+          <li>
+            <a href="/">STORIES</a>
+          </li>
+        </ul>
+      </div>
+      <button class="menu-bars" onclick="toggleMenu()">
         <i class="fas fa-bars"></i>
       </button>
       <div class="container-logo">
@@ -28,10 +51,21 @@
   </section>
   <section class="main-header-bottom-bars">
     <form class="form-search" action="/" method="get">
-        <input type="text" name="search" id="search" placeholder="Buscar" />
-        <button type="submit">
-            <i class="fas fa-search"></i>
-        </button>
+      <input type="text" name="search" id="search" placeholder="Buscar" />
+      <button type="submit">
+        <i class="fas fa-search"></i>
+      </button>
     </form>
   </section>
 </header>
+<script>
+  function toggleMenu() {
+    const menu = document.querySelector(".top-container-categories");
+    const closeMenu = document.querySelector(".icon-close");
+    if (menu.style.left === "-100%" || menu.style.left === "") {
+      menu.style.left = "0";
+    } else {
+      menu.style.left = "-100%";
+    }
+  }
+</script>
