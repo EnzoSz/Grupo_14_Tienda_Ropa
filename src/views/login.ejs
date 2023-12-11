@@ -7,64 +7,68 @@
         <title>Homies</title>
         <link rel="stylesheet" href="/css/login.css">
     </head>
+    <%- include("./partials/head.ejs") %>
     <body>
-        <div class="container-login">
-            <h3 class="title-login">Escoja una opcion para entrar</h3>
-            <ul class="options-container">
-                <li class="option-1"> 
-                    <div>
-                        <button class="button-options" type="button">
-                            <div class="text-option-1">
-                                <span>Recibir codigo de acceso por e-mail</span>
-                            </div>
-                        </button>
-                    </div>
-                </li>
-                <li class="option-2">
-                    <div>
-                        <button class="button-options" type="button">
-                            <div class="text-option-2">
-                                <i class="fa-brands fa-google"></i>
-                                <span>Entrar con GOOGLE</span>
-                            </div>
-                        </button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="data-account">
-            <h3 class="title-login">Entrar con E-mail y contraseña</h3>
-            <form>
-                <div class="input-container-email">
-                    <label class="input-1">
+        <%- include("./partials/header.ejs") %>
+        <main>
+            <div class="container-login">
+                <h3 class="title-login">Escoja una opcion para entrar</h3>
+                <ul class="options-container">
+                    <li class="option-1"> 
                         <div>
-                            <input class="input-email" name="email" placeholder="Ej: ejemplo@mail.com" type="email" value>
+                            <button class="button-options" type="button">
+                                <div class="text-option-1">
+                                    <span>Recibir codigo de acceso por e-mail</span>
+                                </div>
+                            </button>
                         </div>
-                    </label>
-                </div>
-                <div class="input-container-email">
-                    <label class="input-2">
+                    </li>
+                    <li class="option-2">
                         <div>
-                            <input class="input-password" name="password" placeholder="Ingrese su contraseña" type="password" value>
+                            <button class="button-options" type="button">
+                                <div class="text-option-2">
+                                    <i class="fa-brands fa-google"></i>
+                                    <span>Entrar con GOOGLE</span>
+                                </div>
+                            </button>
                         </div>
-                    </label>
-                </div>
-                <div class="olvide-contraseña">
-                    <a href class="password-reset">Olvide mi contraseña</a>
-                </div>
-                <div class="form-footer">
-                    <div class="send-button">
-                        <button class="button-ingressed" type="submit">
-                            <div class="text-button">
-                                <span class="ingreso">Entrar</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="data-account">
+                <h3 class="title-login">Entrar con E-mail y contraseña</h3>
+                <form>
+                    <div class="input-container-email">
+                        <label class="input-1">
+                            <div>
+                                <input class="input-email" name="email" placeholder="Ej: ejemplo@mail.com" type="email" value>
                             </div>
-                        </button>
+                        </label>
                     </div>
-                </div>
-                <div class="formLinkContainer-register">
-                    <a href class="register-account">¿No tienes una cuenta? Registrese</a>
-                </div>
-            </form>
-        </div>
+                    <div class="input-container-email">
+                        <label class="input-2">
+                            <div>
+                                <input class="input-password" name="password" placeholder="Ingrese su contraseña" type="password" value>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="olvide-contraseña">
+                        <a href class="password-reset">Olvide mi contraseña</a>
+                    </div>
+                    <div class="form-footer">
+                        <div class="send-button">
+                            <button class="button-ingressed" type="submit">
+                                <div class="text-button">
+                                    <span class="ingreso">Entrar</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="formLinkContainer-register">
+                        <a href class="register-account">¿No tienes una cuenta? Registrese</a>
+                    </div>
+                </form>
+            </div>
+        </main>
     </body>
 </html>
