@@ -42,3 +42,21 @@
     display: block;
     margin-bottom: 8px;
 }
+
+.h3 {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    box-sizing: border-box;
+}
+
+.body {
+    background-color: #fff;
+    font-family: "Roboto";
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    box-sizing: border-box;
+    display: block;
+}
