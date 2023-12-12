@@ -4,6 +4,7 @@
   "description": "Proyecto Integrador para el curso de Full Stack, en Digital House",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon src/app.js",
     "test": "nodemon src/app.js"
   },
   "repository": {
