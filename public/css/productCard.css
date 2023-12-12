@@ -1,0 +1,45 @@
+.card-product {
+    position: relative;
+    z-index: -1;
+    scroll-snap-align: center;
+    width: 70%;
+    min-width: 23rem;
+    max-width: 30rem;
+    height: auto;
+    margin: 2rem 1rem 0;
+    border: .1rem solid #eee;
+    border-radius: 5px;
+    box-shadow: 0 0 .5rem #eee;
+}
+.card-product img {
+    width: 100%;
+    object-fit: contain;
+}
+.card-product .card-body {
+    padding: 1rem;
+}
+.card-body .card-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+.card-body .card-precio {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.card-product .icon-fav {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: var(--secondaryColor);
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.5) ;
+    padding: 1rem;
+    border-radius: 50%;
+    text-align: center;
+}
+.fa-heart {
+    color: var(--secondaryColor);
+}

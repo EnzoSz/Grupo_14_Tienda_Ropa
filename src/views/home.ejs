@@ -4,7 +4,35 @@
   <body>
     <%- include('./partials/header.ejs') %>
     <main>
-      <h1>hola mundo</h1>
+      <!-- seccion carrousel con html y css que se deslicen las imagenes de manera horizontal -->
+      <section class="container-carrousel">
+        <article class="card-carrousel">
+          <img
+            src="https://levisarg.vtexassets.com/assets/vtex.file-manager-graphql/images/199a47d4-f708-4011-94ca-5366b9728e31___913dd2422e18e167e6151ae430cde8d9.png"
+            alt="1"
+          />
+        </article>
+        <article class="card-carrousel">
+          <img
+            src="https://levisarg.vtexassets.com/assets/vtex.file-manager-graphql/images/c356967f-f93a-40af-950f-16031a849c4f___580afba0316f4f818c7d888f0ad28d8c.png"
+            alt="1"
+          />
+        </article>
+        <article class="card-carrousel">
+          <img
+            src="https://levisarg.vtexassets.com/assets/vtex.file-manager-graphql/images/067282d7-e2f9-423e-97de-df83f65c59dc___465714384a1d2f81b915d9d254988c69.png"
+            alt="1"
+          />
+        </article>
+      </section>
+      <!-- seccion de productos destacados -->
+      <section class="container-destacados">
+        <h2>Productos Destacados</h2>
+        <!-- traer 3 productos de products.jon y mostrarlos con tags ejs -->
+        <section class="container-productCard">
+          <%- include('./partials/productCard.ejs') %>
+        </section>
     </main>
+    <%- include('./partials/footer.ejs') %>
   </body>
 </html>

@@ -1,0 +1,16 @@
+<!-- articles con los productos mostrando las propiedades desde el products.json -->
+
+<% products.forEach((product) => { %>
+<article class="card-product">
+  <div class="icon-fav">
+    <a href="/">
+      <i class="far fa-heart"></i>
+    </a>
+  </div>
+  <img src="<%= product.imagen %>" alt="<%= product.nombre %>" />
+  <div class="card-body">
+    <h3 class="card-title"><%= product.nombre %></h3>
+    <p class="card-precio">$<%= product.precio %></p>
+  </div>
+</article>
+<% }); %>
