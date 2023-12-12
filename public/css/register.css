@@ -29,7 +29,7 @@
     cursor: pointer;
 }
 
-form {
+/* form {
     max-width: 600px;
     margin: 50px auto;
     background-color: #fff;
@@ -37,12 +37,12 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
+} */
 
-label {
+/* label {
     display: block;
     margin-bottom: 8px;
-}
+} */
 
 .h3 {
     margin-block-start: 1em;
@@ -52,7 +52,7 @@ label {
     box-sizing: border-box;
 }
 
-.body {
+/* body {
     background-color: #fff;
     font-family: "Roboto";
     font-weight: 400;
@@ -60,4 +60,4 @@ label {
     letter-spacing: 0;
     box-sizing: border-box;
     display: block;
-}
+} */
