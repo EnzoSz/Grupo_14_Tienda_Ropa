@@ -4,54 +4,37 @@
     <body>
         <%- include('./partials/header.ejs') %>
         <main>
-            <div class="container-register">
-                <h3 class="title-register">Escoja una opcion para entrar</h3>
-                <ul class="options-container">
-                    <li class="option-1">
-                        <div>
-                            <button class="button-options" type="button">
-                                <div class="text-option-1">
-                                    <span>Recibir codigo de acceso por e-mail</span>
-                                </div>
-                            </button>
-                        </div>
-                    </li>
-                    <li class="option-2">
-                        <div>
-                            <button class="button-options" type="button">
-                                <div class="text-option-2">
-                                    <span>Entrar con e-mail y contraseña</span>
-                                </div>
-                            </button>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <button class="button-options" type="button">
-                                <div class="text-option-3">
-                                    <span>Entrar con GOOGLE</span>
-                                </div>
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="data-account-register">
-                <h3 class="title-register">Recibir codigo de acceso por e-mail</h3>
-                <form>
-                    <div class="input-container-register">
-                        <label class="email-register">
-                            <div class="input-email-register">
-                                <input class="button-register" name="email" placeholder="Ej: ejemplo@mail.com" type="email" value>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="send-button-register">
-                        <button class="button-register-ingressed" type="text">
-                            <span>Enviar</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
+            <form action="/register" method="POST">
+                <div>
+                    <label for="name">Nombre y Apellido</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div>
+                    <label for="nickname">Nombre de usuario</label>
+                    <input type="text" name="nickname" id="nickname">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+                </div>
+                <div>
+                    <label for="birthdate">Fecha de nacimiento</label>
+                    <input type="date" min="2000-01-01" max="2022-04-06" name="birthdate" id="birthdate">
+                </div>
+                <div>
+                    <label for="domicilio">Domicilio</label>
+                    <input type="text" name="domicilio" id="domicilio">
+                </div>
+                <div>
+                    <label for="contraseña">Contraseña</label>
+                    <input text="password" name="password" id="password">
+                </div>
+                <div>
+                    <label for="confirmar">Confirmar contraseña</label>
+                    <input text="password" name="password" id="password">
+                </div>
+                <button type="submit" value="enviar">Enviar</button>
+                <button type="reset" value="borrar">Borrar</button>
+            </form>
         </main>
     </body>
