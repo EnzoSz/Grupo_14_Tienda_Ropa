@@ -5,15 +5,20 @@ body {
     padding: 0;
     box-sizing: border-box;
     background-color: #f4f4f4;
+} 
+main {
+    display: flex;
+    justify-content: center;
 }
 
-form {
+.form-register {
     max-width: 600px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
 }
 
 label {
