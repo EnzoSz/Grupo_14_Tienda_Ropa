@@ -5,7 +5,7 @@ main {
 }
 
 .form-register {
-    max-width: 600px;
+    width: 500px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
