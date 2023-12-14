@@ -5,7 +5,7 @@ main {
 }
 
 .form-login {
-    max-width: 300px;
+    width: 300px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
