@@ -55,3 +55,16 @@
     text-decoration: none;
     font-size: 1.5rem;
 }
+
+/* media query */
+
+@media (min-width: 430px) {
+    .main-footer-links ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    .main-footer-links ul li {
+        margin: 1rem 1rem;
+    }
+}

@@ -28,7 +28,7 @@
         <i class="fas fa-bars"></i>
       </button>
       <div class="container-logo">
-        <img src="/assets/images/logo.jpeg" alt="" />
+        <img src="/assets/images/rsz_logo.jpg" alt="" />
       </div>
     </section>
     <ul class="top-bars-right">
@@ -62,6 +62,11 @@
   function toggleMenu() {
     const menu = document.querySelector(".top-container-categories");
     const closeMenu = document.querySelector(".icon-close");
+    const mediaQuery = window.matchMedia("(min-width: 430px)");
+    if (mediaQuery.matches) {
+      // si la media query esta aplicada no se ejecuta el toggle
+      return;
+    }
     if (menu.style.left === "-100%" || menu.style.left === "") {
       menu.style.left = "0";
     } else {
