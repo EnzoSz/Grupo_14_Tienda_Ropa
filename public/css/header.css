@@ -224,7 +224,8 @@
 
  @media (min-width: 1024px) {
     .main-header {
-        height: auto;
+        height: 8.4rem;
+
     }
     .container-header {
         display: flex;
@@ -239,8 +240,6 @@
     }
     .main-header-bottom-bars {
         width: 15rem;
-    }
-    .form-search input {
         border-bottom: 1px solid var(--colorgray);
     }
 
