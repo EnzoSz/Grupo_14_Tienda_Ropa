@@ -1,62 +1,64 @@
 <header class="main-header">
-  <section class="main-header-top-bars">
-    <section class="top-bars-left">
-      <div class="top-container-categories">
-        <button class="icon-close" onclick="toggleMenu()">
-          <i class="fa-solid fa-xmark"></i>
+  <div class="container-header">
+    <section class="main-header-top-bars">
+      <section class="top-bars-left">
+        <div class="top-container-categories">
+          <button class="icon-close" onclick="toggleMenu()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+    
+          <ul class="bars-categories">
+            <li>
+              <a href="/">HOMBRE</a>
+            </li>
+            <li>
+              <a href="/">MUJER</a>
+            </li>
+            <li>
+              <a href="/">KIDS</a>
+            </li>
+            <li>
+              <a href="/">SALE</a>
+            </li>
+            <li>
+              <a href="/">STORIES</a>
+            </li>
+          </ul>
+        </div>
+        <button class="menu-bars" onclick="toggleMenu()">
+          <i class="fas fa-bars"></i>
         </button>
-
-        <ul class="bars-categories">
-          <li>
-            <a href="/">HOMBRE</a>
-          </li>
-          <li>
-            <a href="/">MUJER</a>
-          </li>
-          <li>
-            <a href="/">KIDS</a>
-          </li>
-          <li>
-            <a href="/">SALE</a>
-          </li>
-          <li>
-            <a href="/">STORIES</a>
-          </li>
-        </ul>
-      </div>
-      <button class="menu-bars" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="container-logo">
-        <img src="/assets/images/rsz_logo.jpg" alt="" />
-      </div>
+        <div class="container-logo">
+          <img src="/assets/images/rsz_logo.jpg" alt="" />
+        </div>
+      </section>
+      <ul class="top-bars-right">
+        <li>
+          <button class="btn-bars">
+            <i class="fas fa-user"></i>
+          </button>
+        </li>
+        <li>
+          <span class="btn-bars">
+            <i class="fas fa-heart"></i>
+          </span>
+        </li>
+        <li>
+          <button class="btn-bars">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+        </li>
+      </ul>
     </section>
-    <ul class="top-bars-right">
-      <li>
-        <button class="btn-bars">
-          <i class="fas fa-user"></i>
+    <section class="main-header-bottom-bars">
+      <form class="form-search" action="/" method="get">
+        <input type="text" name="search" id="search" placeholder="Buscar" />
+        <button type="submit">
+          <i class="fas fa-search"></i>
         </button>
-      </li>
-      <li>
-        <span class="btn-bars">
-          <i class="fas fa-heart"></i>
-        </span>
-      </li>
-      <li>
-        <button class="btn-bars">
-          <i class="fas fa-shopping-cart"></i>
-        </button>
-      </li>
-    </ul>
-  </section>
-  <section class="main-header-bottom-bars">
-    <form class="form-search" action="/" method="get">
-      <input type="text" name="search" id="search" placeholder="Buscar" />
-      <button type="submit">
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
-  </section>
+      </form>
+    </section>
+  </div>
 </header>
 <script>
   function toggleMenu() {

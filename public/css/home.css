@@ -1,5 +1,7 @@
 main {
-    margin-top: 11.5rem;
+    margin: auto;
+    max-width: 1024px;
+    margin-top: 12.5rem;
 }
 .container-carrousel {
     /* acomodar los articles de manera horizontal con scroll */
@@ -72,5 +74,12 @@ main {
     }
     75.01%, 100% {
         transform: translateX(0%);
+    }
+}
+
+/* media query */
+@media (min-width: 1024px) {
+    main {
+        margin-top: 8.4rem;
     }
 }

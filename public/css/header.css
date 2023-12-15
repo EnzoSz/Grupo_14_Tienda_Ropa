@@ -1,13 +1,13 @@
 .main-header {
     width: 100%;
     background-color: var(--primaryColor);
-    /* border-bottom: 1px solid var(--colorgray); */
     box-shadow: 0 0 7px rgb(100, 100, 100);
     position: fixed;
     top: 0;
-    height: 11.5rem;
-
+    height: 12.5rem;
+    
 }
+
 
 .main-header-top-bars {
     display: flex;
@@ -211,10 +211,36 @@
     .main-header-bottom-bars {
         padding: 0.5rem;
     }
-    .form-search button {
+    .main-header-top-bars {
+        gap: 10rem;
+    }
+    /* .form-search button {
         padding: 0;
     }
     .form-search input {
         padding: 0;
+    } */
+ }
+
+ @media (min-width: 1024px) {
+    .main-header {
+        height: 8.4rem;
+
     }
+    .container-header {
+        display: flex;
+        max-width: 1024px;
+        margin: auto;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem;
+    }
+    .main-header-top-bars {
+        gap: 15rem;
+    }
+    .main-header-bottom-bars {
+        width: 15rem;
+        border-bottom: 1px solid var(--colorgray);
+    }
+
  }
