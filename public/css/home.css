@@ -1,5 +1,7 @@
 main {
-    margin-top: 11.5rem;
+    margin-top: 12.5rem;
+    max-width: 1024px;
+    margin: auto;
 }
 .container-carrousel {
     /* acomodar los articles de manera horizontal con scroll */
