@@ -55,10 +55,15 @@ main {
     display: flex;
     /* flex-wrap: wrap; */
     /* height: 40rem; */
-    overflow-x: scroll;
+    overflow-x: auto;
     scroll-snap-type: x proximity;
+    white-space: nowrap;
     margin-top: 2rem;
     margin-bottom: 2rem;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 /* para que se deslicen automaticamente  */
@@ -81,5 +86,11 @@ main {
 @media (min-width: 1024px) {
     main {
         margin-top: 8.4rem;
+    }
+    .container-productCard {
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        justify-content: space-around;
     }
 }
