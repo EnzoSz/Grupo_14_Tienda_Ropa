@@ -1,8 +1,4 @@
 
-main {
-    display: flex;
-    justify-content: center;
-}
 
 .form-register {
     width: 500px;
@@ -14,12 +10,12 @@ main {
     align-items: center;
 }
 
-label {
+.form-register label {
     display: block;
     margin-bottom: 8px;
 }
 
-input, select {
+.form-register input, select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -28,7 +24,7 @@ input, select {
     box-sizing: border-box;
 }
 
-button {
+.form-register button {
     background-color: black;
     color: #fff;
     padding: 10px 15px;
@@ -37,6 +33,6 @@ button {
     cursor: pointer;
 }
 
-button[type="reset"] {
+.form-register button[type="reset"] {
     background-color: crimson;
 }
