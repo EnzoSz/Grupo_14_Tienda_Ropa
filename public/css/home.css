@@ -15,7 +15,7 @@ main {
    
 }
 
-.container-carrousel article {
+.container-carrousel .card-carrousel {
     width: 100%;
     /* para que se deslicen automaticamente  */
     scroll-snap-align: start;
