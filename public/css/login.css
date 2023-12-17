@@ -1,14 +1,15 @@
 .form-login {
-    width: 300px;
-    margin: 50px auto;
+    width: 100%;
+    max-width: 50rem;
+    margin: 20rem auto;
     background-color: #fff;
-    padding: 20px;
+    padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    align-items: center;
+    text-align: center;
 }
 
-.form-login  label {
+/* .form-login  label {
     display: block;
     margin-bottom: 8px;
 }
@@ -29,4 +30,28 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+} */
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+}
+.form-login button {
+    background-color: black;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.form-login button:hover {
+    background-color: crimson;
 }

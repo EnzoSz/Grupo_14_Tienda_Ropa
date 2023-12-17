@@ -1,44 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs') %>
-    <body>
-        <%- include('./partials/header.ejs') %>
-        <main>
-            <form class="form-register" action="/register" method="POST">
-                <div>
-                    <label for="name">Nombre y Apellido</label>
-                    <input type="text" name="name" id="name" placeholder="Ingrese su Nombre y Apellido">
-                </div>
-                <div>
-                    <label for="nickname">Nombre de usuario</label>
-                    <input type="text" name="nickname" id="nickname" placeholder="Ingrese un Nombre de usuario">
-                </div>
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Ingrese su e-mail">
-                </div>
-                <div>
-                    <label for="birthdate">Fecha de nacimiento</label>
-                    <input type="date" min="2000-01-01" max="2022-04-06" name="birthdate" id="birthdate">
-                </div>
-                <div>
-                    <label for="domicilio">Domicilio</label>
-                    <input type="text" name="domicilio" id="domicilio" placeholder="Ingrese su domicilio">
-                </div>
-                <div>
-                    <label for="contraseña">Contraseña</label>
-                    <input text="password" name="password" id="password" placeholder="Ingrese su contraseña">
-                </div>
-                <div>
-                    <label for="confirmar">Confirmar contraseña</label>
-                    <input text="password" name="password" id="password" placeholder="Confirme su contraseña">
-                </div>
-                <button type="submit" value="enviar">Enviar</button>
-                <button type="reset" value="borrar">Borrar</button>
-            </form>
-        </main>
-        <footer>
-            <%- include('./partials/footer.ejs') %>
-        </footer>
-    </body>
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <main>
+      <h1 class="title-register">REGISTRARME</h1>
+      <form class="form-register" action="/register" method="POST">
+        <fieldset class="personal-info">
+          <div class="container-input">
+            <label for="name">Nombre</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Ingrese su Nombre"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <label for="lastname">Apellido</label>
+            <input
+              type="text"
+              name="lastname"
+              id="lastname"
+              placeholder="Ingrese su Apellido"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <label for="nickname">Nombre de usuario</label>
+            <input
+              type="text"
+              name="nickname"
+              id="nickname"
+              placeholder="Ingrese un nombre de usuario"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Ingrese su e-mail"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <label for="birthdate">Fecha de nacimiento</label>
+            <input
+              type="date"
+              min="2000-01-01"
+              max="2022-04-06"
+              name="birthdate"
+              id="birthdate"
+            />
+          </div>
+          <div class="container-input">
+            <label for="domicilio">Domicilio</label>
+            <input
+              type="text"
+              name="domicilio"
+              id="domicilio"
+              placeholder="Ingrese su domicilio"
+              required
+            />
+          </div>
+        </fieldset>
+        <fieldset class="personal-info">
+          <div class="container-input">
+            <label for="contraseña">Contraseña</label>
+            <input
+              text="password"
+              name="password"
+              id="password"
+              placeholder="Ingrese su contraseña"
+              required
+            />
+          </div>
+          <div class="container-input">
+            <label for="confirmar">Confirmar contraseña</label>
+            <input
+              text="password"
+              name="password"
+              id="password"
+              placeholder="Confirme su contraseña"
+              required
+            />
+          </div>
+        </fieldset>
+        <button type="submit" value="enviar">Enviar</button>
+        <button type="reset" value="borrar">Borrar</button>
+      </form>
+    </main>
+    <%- include('./partials/footer.ejs') %>
+  </body>
 </html>
