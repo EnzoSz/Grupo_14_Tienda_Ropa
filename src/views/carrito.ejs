@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/header.ejs') %>
+        <main>
+    <div class="container">
+        <div class="products-container">
+            <div class="product">
+            <img src="assets/images/camiseta-levis-unisex.jpg" alt="imagen">
+                <div class="product-info">
+                    <h2>Producto 1</h2>
+                    <p class="price">$20.00</p>
+                </div>
+                <div class="quantity">
+                    <button class="minus">-</button>
+                    <span class="count">0</span>
+                    <button class="plus">+</button>
+                </div>
+            </div>
+            
+            <div class="product">
+                <img src="assets/images/camiseta-levis-unisex.jpg" alt="Producto 2">
+                <div class="product-info">
+                    <h2>Producto 2</h2>
+                    <p class="price">$30.00</p>
+                </div>
+                <div class="quantity">
+                    <button class="minus">-</button>
+                    <span class="count">0</span>
+                    <button class="plus">+</button>
+                </div>
+            </div>
+
+            <!-- Agrega más productos según sea necesario -->
+        </div>
+
+        <div class="summary">
+            <h2>Resumen de la Compra</h2>
+            <div class="info-products-container">
+                <p class="total-count">Cantidad de productos: <span id="total-count">0</span></p>
+                <p class="shipping-total">Envío: $<span id="shipping-cost">5.00</span></p>
+                <p class="discount-info">Ingrese código de descuento</p>
+                <p class="total-count">Total: $<span id="total-price">0.00</span></p>
+            </div>  
+            <button class="buy-button">Comprar ahora</button>
+        </div>
+    </div>
+    </main>
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

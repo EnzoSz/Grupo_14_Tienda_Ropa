@@ -4,8 +4,8 @@
   "description": "Proyecto Integrador para el curso de Full Stack, en Digital House",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon src/app.js",
     "test": "nodemon src/app.js"
-
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/EnzoSz/Grupo_14_Repuestos#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "method-override": "^3.0.0",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.2"
   }
 }
