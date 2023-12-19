@@ -60,6 +60,7 @@ main {
     white-space: nowrap;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    gap: 2rem;
 }
 
 ::-webkit-scrollbar {
@@ -92,5 +93,6 @@ main {
         margin-top: 2rem;
         margin-bottom: 2rem;
         justify-content: space-around;
+        padding: 2rem;
     }
 }

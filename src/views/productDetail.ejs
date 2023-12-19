@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/header') %>
+    <main>
+        <!-- Datalle del producto -->
+        <section class="product-detail">
+            <div class="container-product-detail">
+                <div class="container-img">
+                    <img src="<%= product.imagen %>" alt="<%= product.name %>">
+                </div>
+                <div class="container-info">
+                    <h2 class="product-name"><%= product.nombre %></h2>
+                    <p class="product-description"><%= product.descripcion %></p>
+                    <p class="product-price">$<%= product.precio %></p>
+                    <p class="product-talle">Selecciona tu talla</p>
+                    <div class="container-sizes">
+                        <% for (let i = 0; i < product.talles.length; i++) { %>
+                
+                            <div class="size">
+                                <input type="radio" name="size" id="size-s">
+                                <label for="size-s"><%= product.talles[i].talle %></label>
+                            </div>
+                            
+                        <% }  %>
+                        
+                    <form action="/cart" method="POST">
+                        <input type="hidden" name="id" value="<%= product.id %>">
+                        <input type="hidden" name="name" value="<%= product.nombre %>">
+                        <input type="hidden" name="price" value="<%= product.precio %>">
+                        <input type="hidden" name="image" value="<%= product.imagen %>">
+                        <button class="btn-primary" type="submit">Agregar al carrito</button>
+                    </form>
+                </div>
+            </div>
+    </main>
+</body>
+</html>

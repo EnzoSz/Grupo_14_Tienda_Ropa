@@ -4,47 +4,163 @@
     "nombre": "Pantalon",
     "imagen": "https://levisarg.vtexassets.com/arquivos/ids/452010-600-auto?v=637921330134600000&width=600&height=auto&aspect=true 600w,https://levisarg.vtexassets.com/arquivos/ids/452010-800-auto?v=637921330134600000&width=800&height=auto&aspect=true 800w,https://levisarg.vtexassets.com/arquivos/ids/452010-1200-auto?v=637921330134600000&width=1200&height=auto&aspect=true 1200w",
     "precio": 1000,
-    "stock": 10,
-    "categoria": "hombre"
+    "categoria": "hombre",
+    "descripcion": "Pantalon de hombre",
+    "talles": [
+      {
+        "talle": "S",
+        "stock": 5
+      },
+      {
+        "talle": "M",
+        "stock": 5
+      },
+      {
+        "talle": "L",
+        "stock": 5
+      },
+      {
+        "talle": "XL",
+        "stock": 5
+      }
+    ]
   },
   {
     "id": 2,
     "nombre": "Remera",
     "imagen": "https://levisarg.vtexassets.com/arquivos/ids/819954-800-auto?v=638315159937300000&width=800&height=auto&aspect=true",
     "precio": 500,
-    "stock": 10,
-    "categoria": "hombre"
+    "categoria": "hombre",
+    "descripcion": "Remera de hombre",
+    "talles": [
+      {
+        "talle": "S",
+        "stock": 5
+      },
+      {
+        "talle": "M",
+        "stock": 5
+      },
+      {
+        "talle": "L",
+        "stock": 5
+      },
+      {
+        "talle": "XL",
+        "stock": 5
+      }
+    ]
   },
   {
     "id": 3,
     "nombre": "Zapatillas",
     "imagen": "https://levisarg.vtexassets.com/arquivos/ids/819954-800-auto?v=638315159937300000&width=800&height=auto&aspect=true",
     "precio": 2000,
-    "stock": 10,
-    "categoria": "hombre"
+    "categoria": "hombre",
+    "descripcion": "Zapatillas de hombre",
+    "talles": [
+      {
+        "talle": "40",
+        "stock": 5
+      },
+      {
+        "talle": "41",
+        "stock": 5
+      },
+      {
+        "talle": "42",
+        "stock": 5
+      },
+      {
+        "talle": "43",
+        "stock": 5
+      },
+      {
+        "talle": "44",
+        "stock": 5
+      }
+    ]
   },
   {
     "id": 4,
     "nombre": "Pantalon",
     "imagen": "https://levisarg.vtexassets.com/arquivos/ids/819954-800-auto?v=638315159937300000&width=800&height=auto&aspect=true",
     "precio": 1000,
-    "stock": 10,
-    "categoria": "mujer"
+    "categoria": "mujer",
+    "descripcion": "Pantalon de mujer",
+    "talles": [
+      {
+        "talle": "S",
+        "stock": 5
+      },
+      {
+        "talle": "M",
+        "stock": 5
+      },
+      {
+        "talle": "L",
+        "stock": 5
+      },
+      {
+        "talle": "XL",
+        "stock": 5
+      }
+    ]
   },
   {
     "id": 5,
     "nombre": "Remera",
     "imagen": "https://levisarg.vtexassets.com/arquivos/ids/819954-800-auto?v=638315159937300000&width=800&height=auto&aspect=true",
     "precio": 500,
-    "stock": 10,
-    "categoria": "mujer"
+    "categoria": "mujer",
+    "descripcion": "Remera de mujer",
+    "talles": [
+      {
+        "talle": "S",
+        "stock": 5
+      },
+      {
+        "talle": "M",
+        "stock": 5
+      },
+      {
+        "talle": "L",
+        "stock": 5
+      },
+      {
+        "talle": "XL",
+        "stock": 5
+      }
+    ]
   },
   {
     "id": 6,
     "nombre": "Zapatillas",
     "imagen": "https://levisarg.vtexassets.com/arquivos/ids/819954-800-auto?v=638315159937300000&width=800&height=auto&aspect=true",
     "precio": 2000,
-    "stock": 10,
-    "categoria": "mujer"
+    "categoria": "mujer",
+    "descripcion": "Zapatillas de mujer",
+    "talles": [
+      {
+        "talle": "36",
+        "stock": 5
+      },
+      {
+        "talle": "37",
+        "stock": 5
+      },
+      {
+        "talle": "38",
+        "stock": 5
+      },
+      {
+        "talle": "39",
+        "stock": 5
+      },
+      {
+        "talle": "40",
+        "stock": 5
+      }
+    ]
   }
 ]
