@@ -5,7 +5,7 @@
     position: fixed;
     top: 0;
     height: 12.5rem;
-    
+    z-index: 1000;
 }
 
 
