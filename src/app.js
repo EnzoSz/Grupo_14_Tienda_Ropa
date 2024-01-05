@@ -26,6 +26,7 @@ const loginRouter = require('./routes/loginRouter');
 const registerRouter = require('./routes/registerRouter');
 const productsRouter = require('./routes/productsRouter');
 const carritoRouter = require('./routes/carritoRouter');
+const uploadFormRouter = require('./routes/uploadFormRouter');
 
 // Obtenemos la ruta absoluta del directorio public
 const publicPath = path.resolve(__dirname, '../public');
@@ -39,6 +40,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/products', productsRouter);
 app.use('/carrito', carritoRouter);
+app.use('/uploadForm', uploadFormRouter);
 
 // Levantamos el servidor en el puerto 3050
 app.listen(3050, () => console.log('Servidor corriendo en http://localhost:3050'));

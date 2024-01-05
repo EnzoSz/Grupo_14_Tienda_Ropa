@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs', {uploadFormCss: 'uploadForm' }) %>
+
+    <body>
+        <%- include('./partials/header.ejs') %>
+            <main>
+                <form class="form-login" action="" method="POST">
+                    <div class="input-group">
+                        <input type="text" id="nombre" name="nombre" required placeholder="Nombre" />
+                    </div>
+                    <div class="input-group">
+                        <input type="Number" id="cantidad" name="cantidad" required placeholder="Cantidad" />
+                    </div>
+                    <div class="input-container">
+                        <div class="input-group">
+                            <label for="color">Color</label>
+                            <select name="color" id="color">
+                                <option value="Negro">Negro</option>
+                                <option value="Blanco">Blanco</option>
+                                <option value="Azul">Azul</option>
+                                <option value="Rojo">Rojo</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="size">Size</label>
+                            <div class='radio-container'>
+                                <div>
+                                    <label for="small">S</label>
+                                    <input type="radio" name="radio" id="small" value="small" checked>
+                                </div>
+                                <div>
+                                    <label for="medium">M</label>
+                                    <input type="radio" name="radio" id="medium" value="medium">
+                                </div>
+                                <div>
+                                    <label for="large">L</label>
+                                    <input type="radio" name="radio" id="large" value="large">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </main>
+    </body>
+
+</html>

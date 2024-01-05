@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/head.ejs', {loginCss: 'login'}) %>
+<%- include('./partials/head.ejs', {loginCss: 'login' }) %>
+
   <body>
     <%- include('./partials/header.ejs') %>
-    <main>
-      <form class="form-login" action="/login" method="POST">
-        <div class="input-group">
-          <input
-          type="text"
-          id="usuario"
-          name="usuario"
-          required
-          placeholder="Usuario"
-          />
-          
-        </div>
+      <main>
+        <form class="form-login" action="/login" method="POST">
+          <div class="input-group">
+            <input type="text" id="usuario" name="usuario" required placeholder="Usuario" />
 
-        <div class="input-group">
-          <input
-          type="password"
-          id="contrasena"
-          name="contrasena"
-          required
-          placeholder="Contraseña"
-          />
-        
-        </div>
+          </div>
 
-        <button type="submit">Iniciar Sesión</button>
-      </form>
-    </main>
+          <div class="input-group">
+            <input type="password" id="contrasena" name="contrasena" required placeholder="Contraseña" />
+
+          </div>
+
+          <button type="submit">Iniciar Sesión</button>
+        </form>
+      </main>
   </body>
+
 </html>
