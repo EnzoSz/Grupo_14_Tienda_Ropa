@@ -19,7 +19,7 @@
                         <p>Pagá en 12 cuotas sin interes</p>
                     </div>
                     <div class="product-retiro">
-                        <i class="fa-regular fa-location-dot"></i>
+                        <i class="fa-solid fa-location-dot"></i>
                         <p>Retiro en tienda</p>
                     </div>
                     <p class="product-talle">Selecciona tu talla</p>
@@ -41,6 +41,13 @@
                         </div> 
                         <button class="btn-primary" type="submit">Agregar al carrito</button>
                     </form>
+
+                    <div class="container-btn-edit-product">
+                        <a class="btn-edit" href="/products/edit/<%= product.id %>">Editar</a>
+                        <form action="products/delete/<%= product.id %>?_method=DELETE" method="post">
+                            <button type="submit" class="btn-delete">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
     </main>
