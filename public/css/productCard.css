@@ -14,6 +14,7 @@
   border: 0.1rem solid #eee;
   border-radius: 5px;
   box-shadow: 0 0 0.5rem #eee;
+  margin: 1.5rem auto;
 }
 .card-product img {
   width: 100%;
