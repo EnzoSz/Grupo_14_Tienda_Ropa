@@ -7,6 +7,8 @@ const carritoController = require('../controllers/carritoController');
 
 // Definimos la ruta del carrito
 router.get('/', carritoController.index);
+router.post('/', carritoController.addCarrito);
+
 
 // Exportamos la ruta
 module.exports = router;

@@ -5,6 +5,9 @@ const path = require('path');
 const  carritoController = {
     index: (req, res) => {
         res.render('carrito');
+    },
+    addCarrito: (req, res) =>{
+        res.send(req.body)
     }
 }; 
 
