@@ -22,11 +22,10 @@ app.use(express.json());
 app.use(methodOverride("_method"));
 // Importamos el módulo rutas
 const homeRouter = require('./routes/homeRouter');
-const loginRouter = require('./routes/loginRouter');
-const registerRouter = require('./routes/registerRouter');
 const productsRouter = require('./routes/productsRouter');
 const carritoRouter = require('./routes/carritoRouter');
 const uploadFormRouter = require('./routes/uploadFormRouter');
+const userController = require("./routes/userRouter");
 
 
 // Obtenemos la ruta absoluta del directorio public
@@ -38,8 +37,7 @@ app.use(express.static(publicPath));
 // Usamos los enrutadores importados
 
 app.use('/', homeRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
+app.use('/user', userController);
 app.use('/products', productsRouter);
 app.use('/carrito', carritoRouter);
 app.use('/uploadForm', uploadFormRouter);
