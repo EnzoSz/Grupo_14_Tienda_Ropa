@@ -1,3 +1,4 @@
+const { json } = require("express");
 const fs = require("fs");
 const path = require("path");
 const productsFilePath = path.join(__dirname, "../database/products.json");
@@ -14,8 +15,33 @@ const productsController = {
     res.render("productDetail", { product: product });
   },
   //metodo get, mostramos formulario para crear un pructo
-  create: (req, res) =>{
+  create: (req, res) => {
     res.render("uploadProduct");
+  },
+  //metodo post, creamos un nuevo producto y lo guardamos
+  processCreate: (req, res) => {
+    //leemos el json
+    let products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    //creamos un objeto literal y guardamos dentro de el la info que viene del form
+    const newProduct = {
+      id: products[products.length - 1].id + 1,
+      nombre: req.body.nombre,
+      imagen: "default-image.png",
+      precio: req.body.precio,
+      categoria: req.body.categoria,
+      descripcion: req.body.descripcion,
+      talles: {
+        talle: req.body.radio,
+        stock: req.body.cantidad
+      }
+    };
+    //pusheamos el objeto literal al array
+    products.push(newProduct);
+
+    //sobreescribomos el archivo JSON
+    fs.writeFileSync(productsFilePath, JSON.stringify(products, null, " "));
+    //mostramos al usuario un vista 
+    res.redirect('/products/detail/' + newProduct.id);
   },
   //metodo get, mostramos formulario de edicion de un producto
   editProduct: (req, res) => {

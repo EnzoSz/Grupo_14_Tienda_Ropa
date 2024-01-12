@@ -8,7 +8,8 @@ router.get("/", productsController.index);
 router.get("/detail/:id", productsController.detail);
 
 //Cargar un producto
-router.get("/create", productsController.create)
+router.get("/create", productsController.create);
+router.post("/create", productsController.processCreate);
 
 //Editamos un producto
 router.get("/edit/:id", productsController.editProduct);

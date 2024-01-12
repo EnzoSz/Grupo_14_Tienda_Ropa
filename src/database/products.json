@@ -162,5 +162,27 @@
     "stock": 5
    }
   ]
+ },
+ {
+  "id": 7,
+  "nombre": "zaptillas ",
+  "imagen": "default-image.png",
+  "categoria": "hombre",
+  "descripcion": "zapatillas de prueba",
+  "talles": {
+   "talle": "medium",
+   "stock": "1"
+  }
+ },
+ {
+  "id": 8,
+  "nombre": "zaptillas ",
+  "imagen": "default-image.png",
+  "categoria": "hombre",
+  "descripcion": "zapatillas de prueba",
+  "talles": {
+   "talle": "medium",
+   "stock": "1"
+  }
  }
 ]
