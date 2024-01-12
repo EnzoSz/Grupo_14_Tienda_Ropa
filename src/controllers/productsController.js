@@ -32,16 +32,16 @@ const productsController = {
       descripcion: req.body.descripcion,
       talles: {
         talle: req.body.radio,
-        stock: req.body.cantidad
-      }
+        stock: req.body.cantidad,
+      },
     };
     //pusheamos el objeto literal al array
     products.push(newProduct);
 
     //sobreescribomos el archivo JSON
     fs.writeFileSync(productsFilePath, JSON.stringify(products, null, " "));
-    //mostramos al usuario un vista 
-    res.redirect('/products/detail/' + newProduct.id);
+    //mostramos al usuario un vista
+    res.redirect("/products/detail/" + newProduct.id);
   },
   //metodo get, mostramos formulario de edicion de un producto
   editProduct: (req, res) => {
@@ -75,6 +75,20 @@ const productsController = {
     products[indice] = productToEdit;
     //sobreescribimos el json con el producto editado
     fs.writeFileSync(productsFilePath, JSON.stringify(products, null, " "));
+    res.redirect("/");
+  },
+  detroy: (req, res) => {
+    //leemos el json
+    let products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+
+    //eliminamos
+    products = products.filter((product) => {
+      return product.id != req.params.id;
+    });
+    //sobreescribimos el json con el array sin el producto eliminado
+    fs.writeFileSync(productsFilePath, JSON.stringify(products, null, " "));
+
+    //redireccionamos al home
     res.redirect("/");
   },
 };

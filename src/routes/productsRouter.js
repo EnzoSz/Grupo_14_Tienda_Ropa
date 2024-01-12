@@ -14,4 +14,7 @@ router.post("/create", productsController.processCreate);
 //Editamos un producto
 router.get("/edit/:id", productsController.editProduct);
 router.put("/edit/:id", productsController.processEdit);
+
+//Eliminamos un producto
+router.delete("/delete/:id", productsController.detroy);
 module.exports = router;
