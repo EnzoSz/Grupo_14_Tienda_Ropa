@@ -7,6 +7,9 @@ router.get("/", productsController.index);
 //Mostramos un producto
 router.get("/detail/:id", productsController.detail);
 
+//Cargar un producto
+router.get("/create", productsController.create)
+
 //Editamos un producto
 router.get("/edit/:id", productsController.editProduct);
 router.put("/edit/:id", productsController.processEdit);

@@ -13,6 +13,10 @@ const productsController = {
     let product = products.find((product) => product.id == req.params.id);
     res.render("productDetail", { product: product });
   },
+  //metodo get, mostramos formulario para crear un pructo
+  create: (req, res) =>{
+    res.render("uploadProduct");
+  },
   //metodo get, mostramos formulario de edicion de un producto
   editProduct: (req, res) => {
     let products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
