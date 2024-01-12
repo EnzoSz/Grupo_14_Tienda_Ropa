@@ -24,7 +24,6 @@ app.use(methodOverride("_method"));
 const homeRouter = require('./routes/homeRouter');
 const productsRouter = require('./routes/productsRouter');
 const carritoRouter = require('./routes/carritoRouter');
-const uploadFormRouter = require('./routes/uploadFormRouter');
 const userController = require("./routes/userRouter");
 
 
@@ -40,7 +39,7 @@ app.use('/', homeRouter);
 app.use('/user', userController);
 app.use('/products', productsRouter);
 app.use('/carrito', carritoRouter);
-app.use('/uploadForm', uploadFormRouter);
+
 
 
 // Levantamos el servidor en el puerto 3050
