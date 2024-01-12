@@ -7,10 +7,16 @@
             <main>
                 <form class="form-login" action="" method="POST">
                     <div class="input-group">
-                        <input type="text" id="nombre" name="nombre" required placeholder="Nombre" />
+                        <label for="descripcion">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required />
                     </div>
                     <div class="input-group">
-                        <input type="Number" id="cantidad" name="cantidad" required placeholder="Cantidad" />
+                        <label for="descripcion">Descripcion</label>
+                        <textarea name="descripcion" id="descripcion" rows="5"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="descripcion">Cantidad</label>
+                        <input type="number" id="cantidad" name="cantidad" required />
                     </div>
                     <div class="input-container">
                         <div class="input-group">
@@ -37,10 +43,17 @@
                                     <label for="large">L</label>
                                     <input type="radio" name="radio" id="large" value="large">
                                 </div>
+                                <div>
+                                    <label for="xlarge">XL</label>
+                                    <input type="radio" name="radio" id="xlarge" value="xlarge">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit">Enviar</button>
+                    <div class="input-group">
+                        <input type="file">
+                    </div>
+                    <button type="submit" class="cargar">Cargar</button>
                 </form>
             </main>
     </body>

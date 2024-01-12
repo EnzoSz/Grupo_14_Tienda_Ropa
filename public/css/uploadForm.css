@@ -6,7 +6,6 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
 }
 
 .input-group {
@@ -16,10 +15,10 @@
 .input-group input {
   width: 100%;
   padding: 1rem;
-  margin-bottom: 1.5rem;
   border: 0.1rem solid #ccc;
   border-radius: 0.4rem;
 }
+
 .form-login button {
   background-color: black;
   color: #fff;
@@ -29,27 +28,21 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+
 .form-login button:hover {
   background-color: crimson;
 }
 
 .input-container {
   display: flex;
-  justify-content: space-around;
-}
-
-.input-container label {
-  font-size: 1.25rem;
-  color: gray;
 }
 
 .input-container .input-group:nth-child(2) {
-  display: flex;
+  margin-left: 5rem;
 }
 
 .input-container .input-group:nth-child(2) div {
-  display: flex;
-  margin: 0 0.5rem;
+  text-align: center;
 }
 
 .input-container .input-group:nth-child(2) div label {
@@ -57,11 +50,46 @@
 }
 
 .radio-container {
-  display: block !important;
+  display: flex;
 }
 
 .input-container .input-group select {
   border: 0.1rem solid #ccc;
   border-radius: 0.4rem;
   padding: 0.75rem;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  padding: 0.75rem;
+  margin-top: 1rem;
+}
+
+.input-group label {
+  font-size: 1.25rem;
+  display: block;
+}
+
+#cantidad,
+#nombre,
+#color,
+.radio-container {
+  margin-top: 1rem;
+}
+
+.radio-container div:nth-child(2) {
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+}
+
+.radio-container div:nth-child(3) {
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+}
+
+.cargar {
+  width: 100%;
 }
