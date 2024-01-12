@@ -8,19 +8,28 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
     rel="stylesheet"
   />
+  <% if (typeof uploadFormCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= uploadFormCss %>.css" />
+  <% } %> 
   <% if (typeof carritoCss !=='undefined' ) { %>
   <link rel="stylesheet" href="/css/<%= carritoCss %>.css" />
-  <% } %> <% if (typeof productDetailCss !=='undefined' ) { %>
+  <% } %> 
+  <% if (typeof productDetailCss !=='undefined' ) { %>
   <link rel="stylesheet" href="/css/<%= productDetailCss %>.css" />
-  <% } %> <% if (typeof loginCss !=='undefined' ) { %>
+  <% } %> 
+  <% if (typeof loginCss !=='undefined' ) { %>
   <link rel="stylesheet" href="/css/<%= loginCss %>.css" />
-  <% } %> <% if (typeof registerCss !=='undefined' ) { %>
+  <% } %> 
+  <% if (typeof registerCss !=='undefined' ) { %>
   <link rel="stylesheet" href="/css/<%= registerCss %>.css" />
-  <% } %> <% if (typeof productCardCss !=='undefined' ) { %>
+  <% } %> 
+  <% if (typeof productCardCss !=='undefined' ) { %>
   <link rel="stylesheet" href="/css/<%= productCardCss %>.css" />
-  <% } %> <% if (typeof uploadFormCss !=='undefined' ) { %>
+  <% } %> 
+  <% if (typeof uploadFormCss !=='undefined' ) { %>
   <link rel="stylesheet" href="/css/<%= uploadFormCss %>.css" />
-  <% } %> <% if (typeof homeCss !=='undefined' ) { %>
+  <% } %> 
+  <% if (typeof homeCss !=='undefined' ) { %>
   <link rel="stylesheet" href="/css/<%= homeCss %>.css" />
   <% } %>
   <link rel="stylesheet" href="/css/footer.css" />
