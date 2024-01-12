@@ -9,6 +9,9 @@ const productsController = {
     detail: (req, res) => {
         let product = products.find(product => product.id == req.params.id);
         res.render('productDetail', { product: product });
+    },
+    editProduct: (req, res) =>{
+        res.render('editProduct');
     }
 
 };
