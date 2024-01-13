@@ -6,24 +6,9 @@
   "precio": 1000,
   "categoria": "mujer",
   "descripcion": "Pantalon de hombre prueba",
-  "talles": [
-   {
-    "talle": "S",
-    "stock": 5
-   },
-   {
-    "talle": "M",
-    "stock": 5
-   },
-   {
-    "talle": "L",
-    "stock": 5
-   },
-   {
-    "talle": "XL",
-    "stock": 5
-   }
-  ]
+  "talles":  {
+    "Small": 5
+  }
  },
  {
   "id": 2,
