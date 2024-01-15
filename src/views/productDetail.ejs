@@ -8,7 +8,7 @@
         <section class="product-detail">
             <div class="container-product-detail">
                 <div class="container-img">
-                    <img src="<%= product.imagen %>" alt="<%= product.name %>">
+                    <img src="/assets/images/products/<%= product.imagen ? product.imagen : 'default-image.png' %>" alt="<%= product.nombre %>">
                 </div>
                 <div class="container-info">
                     <h2 class="product-name"><%= product.nombre %></h2>
@@ -19,7 +19,7 @@
                         <p>Pagá en 12 cuotas sin interes</p>
                     </div>
                     <div class="product-retiro">
-                        <i class="fa-regular fa-location-dot"></i>
+                        <i class="fa-solid fa-location-dot"></i>
                         <p>Retiro en tienda</p>
                     </div>
                     <p class="product-talle">Selecciona tu talla</p>
@@ -30,17 +30,24 @@
                         <input type="hidden" name="price" value="<%= product.precio %>">
                         <input type="hidden" name="image" value="<%= product.imagen %>">
                         <div class="container-sizes">
-                            <% for (let i = 0; i < product.talles.length; i++) { %>
+                            <% for (const propiedad in product.talles) { %>
                     
                                 <div class="size">
-                                    <input type="radio" name="size" id="size-<%= i %>" value="<%= product.talles[i].talle %>">
-                                    <label for="size-<%= i %>"><%= product.talles[i].talle %></label>
+                                    <input type="radio" name="size" id="size-<%= propiedad %>" value="<%= propiedad %>">
+                                    <label for="size-<%= propiedad %>"><%= propiedad %></label>
                                 </div>
                                 
                             <% }  %>
                         </div> 
                         <button class="btn-primary" type="submit">Agregar al carrito</button>
                     </form>
+
+                    <div class="container-btn-edit-product">
+                        <a class="btn-edit" href="/products/edit/<%= product.id %>">Editar</a>
+                        <form action="/products/delete/<%= product.id %>?_method=DELETE" method="post">
+                            <button type="submit" class="btn-delete">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
     </main>
