@@ -30,11 +30,11 @@
                         <input type="hidden" name="price" value="<%= product.precio %>">
                         <input type="hidden" name="image" value="<%= product.imagen %>">
                         <div class="container-sizes">
-                            <% for (let i = 0; i < product.talles.length; i++) { %>
+                            <% for (const propiedad in product.talles) { %>
                     
                                 <div class="size">
-                                    <input type="radio" name="size" id="size-<%= i %>" value="<%= product.talles[i].talle %>">
-                                    <label for="size-<%= i %>"><%= product.talles[i].talle %></label>
+                                    <input type="radio" name="size" id="size-<%= propiedad %>" value="<%= propiedad %>">
+                                    <label for="size-<%= propiedad %>"><%= propiedad %></label>
                                 </div>
                                 
                             <% }  %>

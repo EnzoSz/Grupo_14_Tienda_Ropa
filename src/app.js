@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 // configuramos el directorio de vistas
 app.set("views", path.resolve(__dirname, "./views"));
 // configuramos la app para capturar los datos del formulario
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // usar el método override
 app.use(methodOverride("_method"));
