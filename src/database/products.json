@@ -68,5 +68,29 @@
    "40": 3,
    "41": 2
   }
+ },
+ {
+  "id": 7,
+  "nombre": "remera",
+  "imagen": "product-1705330528531.jpg",
+  "precio": 1234,
+  "categoria": "hombre",
+  "descripcion": "remera hombre",
+  "talles": {
+   "talle": 2,
+   "stock": 3
+  }
+ },
+ {
+  "id": 8,
+  "nombre": "zaptillas ",
+  "imagen": "product-1705329036239.png",
+  "precio": 1123,
+  "categoria": "hombre",
+  "descripcion": "zapatillas de hombre",
+  "talles": {
+   "talle": 3,
+   "stock": 2
+  }
  }
 ]

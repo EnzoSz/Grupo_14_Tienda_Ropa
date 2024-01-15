@@ -8,6 +8,7 @@
         class="form-login"
         action="/products/edit/<%= product.id %>?_method=PUT"
         method="POST"
+        enctype="multipart/form-data"
       >
         <div class="input-group">
           <label for="nombre">Nombre</label>
@@ -62,7 +63,7 @@
           </div>
         </div>
         <div class="input-group">
-          <input type="file" />
+          <input type="file" name="imagenProducto" />
         </div>
         <button type="submit" class="cargar">Guardar</button>
       </form>

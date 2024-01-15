@@ -21,26 +21,31 @@ const productsController = {
   processCreate: (req, res) => {
     //leemos el json
     let products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    //creamos un objeto literal y guardamos dentro de el la info que viene del form
-    const newProduct = {
-      id: products[products.length - 1].id + 1,
-      nombre: req.body.nombre,
-      imagen: "default-image.png",
-      precio: req.body.precio,
-      categoria: req.body.categoria,
-      descripcion: req.body.descripcion,
-      talles: {
-        talle: req.body.radio,
-        stock: req.body.cantidad,
-      },
-    };
-    //pusheamos el objeto literal al array
-    products.push(newProduct);
+    //verificamos que la imagen del producto exista
+    if (req.file) {
+      //creamos un objeto literal y guardamos dentro de el la info que viene del form
+      const newProduct = {
+        id: products[products.length - 1].id + 1,
+        nombre: req.body.nombre,
+        imagen: req.file.filename,
+        precio: req.body.precio,
+        categoria: req.body.categoria,
+        descripcion: req.body.descripcion,
+        talles: {
+          talle: req.body.radio,
+          stock: req.body.cantidad,
+        },
+      };
+      //pusheamos el objeto literal al array
+      products.push(newProduct);
 
-    //sobreescribomos el archivo JSON
-    fs.writeFileSync(productsFilePath, JSON.stringify(products, null, " "));
-    //mostramos al usuario un vista
-    res.redirect("/products/detail/" + newProduct.id);
+      //sobreescribomos el archivo JSON
+      fs.writeFileSync(productsFilePath, JSON.stringify(products, null, " "));
+      //mostramos al usuario un vista
+      res.redirect("/products/detail/" + newProduct.id);
+    } else {
+      res.redirect("/products/create");
+    }
   },
   //metodo get, mostramos formulario de edicion de un producto
   editProduct: (req, res) => {
@@ -63,13 +68,14 @@ const productsController = {
     //obtengo las claves del objeto talles
     let tallesObj = Object.keys(productToEdit.talles);
     // Asigna los valores del array talles que viene en el formulario en el objeto a editar
-    tallesObj.forEach((talle, index) =>{
-      productToEdit.talles[talle] = parseInt(talles[index])
-    })
+    tallesObj.forEach((talle, index) => {
+      productToEdit.talles[talle] = parseInt(talles[index]);
+    });
     //ahora editamos las demas propiedades del producto
     productToEdit.id = productToEdit.id;
     productToEdit.nombre = req.body.nombre;
-    productToEdit.imagen = productToEdit.imagen;
+    productToEdit.imagen =
+      req.file != undefined ? req.file.filename : productToEdit.imagen;
     productToEdit.precio = parseInt(req.body.precio);
     productToEdit.categoria = req.body.categoria;
     productToEdit.descripcion = req.body.descripcion;
