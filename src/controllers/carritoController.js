@@ -2,11 +2,14 @@
 const path = require('path');
 
 //creamos el objeto controller
-const registerController = {
+const  carritoController = {
     index: (req, res) => {
-        res.render('register');
+        res.render('carrito');
+    },
+    addCarrito: (req, res) =>{
+        res.send(req.body)
     }
 }; 
 
 //exportamos el objeto controller
-module.exports = registerController;
+module.exports = carritoController;

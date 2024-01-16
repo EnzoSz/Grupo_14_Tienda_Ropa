@@ -1,0 +1,96 @@
+[
+ {
+  "id": 2,
+  "nombre": "Remera",
+  "imagen": "default-image.png",
+  "precio": 5000,
+  "categoria": "hombre",
+  "descripcion": "Remera de hombre",
+  "talles": {
+   "S": 2,
+   "M": 4,
+   "L": 3,
+   "XL": 2
+  }
+ },
+ {
+  "id": 3,
+  "nombre": "zapatillas nike",
+  "imagen": "default-image.png",
+  "precio": 1000,
+  "categoria": "mujer",
+  "descripcion": "Zapatillas de mujer",
+  "talles": {
+   "38": 3,
+   "40": 3,
+   "42": 4,
+   "44": 6
+  }
+ },
+ {
+  "id": 4,
+  "nombre": "Pantalon",
+  "imagen": "default-image.png",
+  "precio": 1000,
+  "categoria": "mujer",
+  "descripcion": "Pantalon de mujer",
+  "talles": {
+   "38": 5,
+   "40": 4,
+   "42": 3,
+   "44": 2
+  }
+ },
+ {
+  "id": 5,
+  "nombre": "Remera",
+  "imagen": "default-image.png",
+  "precio": 500,
+  "categoria": "mujer",
+  "descripcion": "Remera de mujer",
+  "talles": {
+   "S": 5,
+   "M": 4,
+   "L": 3,
+   "XL": 2
+  }
+ },
+ {
+  "id": 6,
+  "nombre": "Zapatillas",
+  "imagen": "default-image.png",
+  "precio": 2000,
+  "categoria": "mujer",
+  "descripcion": "Zapatillas de mujer",
+  "talles": {
+   "38": 5,
+   "39": 4,
+   "40": 3,
+   "41": 2
+  }
+ },
+ {
+  "id": 7,
+  "nombre": "remera",
+  "imagen": "product-1705330528531.jpg",
+  "precio": 1234,
+  "categoria": "hombre",
+  "descripcion": "remera hombre",
+  "talles": {
+   "talle": 2,
+   "stock": 3
+  }
+ },
+ {
+  "id": 8,
+  "nombre": "zaptillas ",
+  "imagen": "product-1705329036239.png",
+  "precio": 1123,
+  "categoria": "hombre",
+  "descripcion": "zapatillas de hombre",
+  "talles": {
+   "talle": 3,
+   "stock": 2
+  }
+ }
+]
