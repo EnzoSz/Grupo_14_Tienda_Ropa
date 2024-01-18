@@ -8,7 +8,6 @@
     width: 100%;
     padding: 1rem;
     margin: auto;
-    margin-top: 14rem;
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x proximity;
