@@ -5,8 +5,6 @@
 }
 
 .products-items {
-    width: 100%;
-    padding: 1rem;
     margin: auto;
     display: flex;
     overflow-x: auto;
