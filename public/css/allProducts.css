@@ -1,14 +1,9 @@
-
-
 .products-list {
     margin-top: 12.5rem;
 }
 
 .products-items {
-    width: 100%;
-    padding: 1rem;
     margin: auto;
-    margin-top: 14rem;
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x proximity;
@@ -17,7 +12,6 @@
     margin-bottom: 2rem;
     gap: 2rem;
 }
-
 /* media query */
 @media (min-width: 1024px) {
     .products-items {
