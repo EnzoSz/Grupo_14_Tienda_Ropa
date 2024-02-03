@@ -9,8 +9,14 @@ const userController = {
   register: (req, res) => {
     res.render("register");
   },
+  processRegister: (req, res) => {
+    res.send(req.body);
+  },
   login: (req, res) => {
     res.render("login");
+  },
+  processLogin: (req, res) => {
+    res.send(req.body);
   },
 };
 //exportamos el objeto controlador

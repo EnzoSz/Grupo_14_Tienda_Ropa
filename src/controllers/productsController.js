@@ -72,7 +72,7 @@ const productsController = {
       productToEdit.talles[talle] = parseInt(talles[index]);
     });
     //ahora editamos las demas propiedades del producto
-    productToEdit.id = productToEdit.id;
+    productToEdit.id = parseInt(productToEdit.id);
     productToEdit.nombre = req.body.nombre;
     productToEdit.imagen =
       req.file != undefined ? req.file.filename : productToEdit.imagen;

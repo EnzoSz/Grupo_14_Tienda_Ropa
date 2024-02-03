@@ -16,15 +16,15 @@
  {
   "id": 3,
   "nombre": "zapatillas nike",
-  "imagen": "default-image.png",
+  "imagen": "product-1705525865187.jpg",
   "precio": 1000,
   "categoria": "mujer",
   "descripcion": "Zapatillas de mujer",
   "talles": {
-   "38": 3,
+   "38": 2,
    "40": 3,
    "42": 4,
-   "44": 6
+   "44": 5
   }
  },
  {
@@ -91,6 +91,30 @@
   "talles": {
    "talle": 3,
    "stock": 2
+  }
+ },
+ {
+  "id": 9,
+  "nombre": "remera",
+  "imagen": "product-1705525912189.jpg",
+  "precio": "1234",
+  "categoria": "hombre",
+  "descripcion": "remera hombre",
+  "talles": {
+   "talle": "small",
+   "stock": "1"
+  }
+ },
+ {
+  "id": 10,
+  "nombre": "remera ",
+  "imagen": "product-1706911221333.png",
+  "precio": "123",
+  "categoria": "hombre",
+  "descripcion": "remera hombre",
+  "talles": {
+   "talle": "medium",
+   "stock": "1"
   }
  }
 ]
