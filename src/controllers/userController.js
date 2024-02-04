@@ -6,6 +6,8 @@ const fs = require("fs");
 const path = require("path");
 //obtenemos el archivo JSON
 const usersFilePath = path.join(__dirname, "../database/users.json");
+//requerimos express-validator
+const { validationResult } = require("express-validator");
 //creamos el objeto controller
 const userController = {
   index: (req, res) => {
@@ -15,33 +17,35 @@ const userController = {
     res.render("register");
   },
   processRegister: (req, res) => {
-    //leemos el json
-    let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
-    //creamos un objeto literal y guardamos dentro de el la info que viene del form
-    if (req.file) {
-      
-      const newUser = {
-        id: users[users.length - 1].id + 1,
-        nombre: req.body.name,
-        apellido: req.body.lastname,
-        nombreUsuario: req.body.nickname,
-        email: req.body.email,
-        fechaNacimiento: req.body.birthdate,
-        domicilio: req.body.domicilio,
-        password: bcrypt.hashSync(req.body.password, 10),
-        foto: req.file.filename,
-      };
-      //pusheamos el objeto literal al array
-      users.push(newUser);
-      //sobreescribomos el archivo JSON
-      fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
-      res.redirect('/');
-      console.log(newUser);
+    //creamos una varible error
+    let errors = validationResult(req);
+    //si no hay errores
+    if (errors.isEmpty()) {
+      //leemos el json
+      let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
+      //creamos un objeto literal y guardamos dentro de el la info que viene del form
+      if (req.file) {
+        const newUser = {
+          id: users[users.length - 1].id + 1,
+          nombre: req.body.name,
+          apellido: req.body.lastname,
+          nombreUsuario: req.body.nickname,
+          email: req.body.email,
+          fechaNacimiento: req.body.birthdate,
+          domicilio: req.body.domicilio,
+          password: bcrypt.hashSync(req.body.password, 10),
+          foto: req.file.filename,
+        };
+        //pusheamos el objeto literal al array
+        users.push(newUser);
+        //sobreescribomos el archivo JSON
+        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
+        res.redirect("/");
+        console.log(newUser);
+      }
     } else {
-      res.send("error");
+      res.render("register", { errors: errors.mapped(), old: req.body });
     }
-    //mostramos al usuario un vista
-    // res.redirect("/users");
   },
   logout: (req, res) => {
     res.render("logout");

@@ -1,24 +1,13 @@
 [
- {
-  "id": 1,
-  "nombre": "Enzo ",
-  "apellido": "Soliz",
-  "nombreUsuario": "enzosoliz",
-  "email": "enzosoliz95@gmail.com",
-  "fechaNacimiento": "1995-10-26",
-  "domicilio": "Belgrano 1104",
-  "password": "$2a$10$5vlhi3W.6zi/mRrjG0UmiOksL.8/lz4ZAHcLe8azWvm4BYj7uSlSW",
-  "foto": "user-1706978561634.png"
- },
- {
-  "id": 2,
-  "nombre": "Nicolas",
-  "apellido": "Soliz",
-  "nombreUsuario": "nicosoliz",
-  "email": "enzosoliz95@gmail.com",
-  "fechaNacimiento": "1998-04-02",
-  "domicilio": "Belgrano 1104",
-  "password": "$2a$10$gVlqbMgVud8rWLfXIOsnAukAL0sfYo9SSX2Xu7kzrda60nFFmX38K",
-  "foto": "user-1706981610540.png"
- }
+  {
+    "id": 1,
+    "nombre": "Nicolas",
+    "apellido": "Soliz",
+    "nombreUsuario": "nicosoliz",
+    "email": "enzosoliz95@gmail.com",
+    "fechaNacimiento": "1998-04-02",
+    "domicilio": "Belgrano 1104",
+    "password": "$2a$10$gVlqbMgVud8rWLfXIOsnAukAL0sfYo9SSX2Xu7kzrda60nFFmX38K",
+    "foto": "user-1706981610540.png"
+  }
 ]
