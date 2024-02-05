@@ -2,6 +2,8 @@
 const express = require("express");
 //requerimos el módulo session
 const session = require("express-session");
+//requerimos cookies
+const cookies = require("cookie-parser");
 
 // Importamos path
 const path = require("path");
@@ -26,6 +28,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+// configuramos el middleware cookies
+app.use(cookies());
 // configuramos el middleware userLoggedMiddleware
 app.use(userLoggedMiddleware);
 // configuramos la app para capturar los datos del formulario

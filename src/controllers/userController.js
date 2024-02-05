@@ -11,6 +11,7 @@ const { validationResult } = require("express-validator");
 //creamos el objeto controller
 const userController = {
   index: (req, res) => {
+    console.log(req.cookies.userEmail);
     res.render("profileUser");
   },
   register: (req, res) => {
@@ -85,6 +86,11 @@ const userController = {
     let errors = validationResult(req);
     //guardamos el usuario en la sesion
     req.session.userLogged = userToLogin;
+    //verificamos si vino rememberMe en el form
+    if (req.body.rememberMe) {
+      // Remember me logic here
+      res.cookie("userEmail", req.body.email, { maxAge: 1000 * 60 * 5 }); // Cookie expira en 5 minutos
+    }
     //si no hay errores
     if (errors.isEmpty()) {
       res.redirect("/");
@@ -94,6 +100,7 @@ const userController = {
     }
   },
   logout: (req, res) => {
+    res.clearCookie("userEmail");
     req.session.destroy();
     return res.redirect("/");
   },

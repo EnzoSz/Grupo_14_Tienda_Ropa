@@ -37,7 +37,7 @@
           <button class="btn-bars">
             <% if (locals.isLogged) { %>
 
-            <p class="user-name"><%= locals.userLogged.email %></p>
+            <p class="user-name"><%= locals.userLogged.nombre %> <%= locals.userLogged.apellido %></p>
             <% } else { %>
             <i class="fas fa-user"></i>
             <% } %>
