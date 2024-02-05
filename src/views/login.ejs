@@ -7,7 +7,17 @@
     <main>
       <form class="form-login" action="/user/login" method="POST">
         <div class="input-group">
-          <input type="text" id="user" name="user" placeholder="Usuario" />
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value="<%= locals.old && locals.old.email ? locals.old.email : '' %>"
+            class="<%= locals.errors && locals.errors.email ? 'is-invalid' : '' %>"
+          />
+          <% if (locals.errors && locals.errors.email) { %>
+          <div class="text-danger"><%= locals.errors.email.msg %></div>
+          <% } %>
         </div>
 
         <div class="input-group">
@@ -16,7 +26,11 @@
             id="password	"
             name="password"
             placeholder="Contraseña"
+            class="<%= locals.errors && locals.errors.password ? 'is-invalid' : '' %>"
           />
+          <% if (locals.errors && locals.errors.password) { %>
+          <div class="text-danger"><%= locals.errors.password.msg %></div>
+          <% } %>
         </div>
         <div class="input-group">
           <label for="rememberMe">Recordarme</label>
