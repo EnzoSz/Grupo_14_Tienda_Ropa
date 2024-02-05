@@ -119,6 +119,10 @@
     padding: .5rem;
     border: none;
 }
+.top-bars-right .btn-bars .user-name{
+    font-size: 1.2rem;
+    color: var(--colorgray);
+}
 .top-bars-right .container-btn-user .dropdown-user {
     display: none;
     background-color: var(--primaryColor);

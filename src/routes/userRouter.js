@@ -10,6 +10,8 @@ const router = express.Router();
 //Middlewares
 const validationsRegisterMiddleware = require("../middlewares/validateRegisterMiddleware");
 const validationsLoginMiddleware = require("../middlewares/validateLoginMiddleware");
+const guestMiddleware = require("../middlewares/guestMiddleware");
+const authMiddleware = require("../middlewares/authMiddleware");
 //requerimos el controlador
 const userController = require("../controllers/userController");
 //configuramos multer
@@ -27,10 +29,10 @@ const upload = multer({ storage });
 
 //Definimos las rutas de users
 
-router.get("/", userController.index);
+router.get("/", authMiddleware , userController.index);
 
 //rutas de registro
-router.get("/register", userController.register);
+router.get("/register",guestMiddleware, userController.register);
 router.post(
   "/register",
   upload.single("imageProfile"),
@@ -38,8 +40,10 @@ router.post(
   userController.processRegister
 );
 //rutas de login
-router.get("/login", userController.login);
-router.post("/login", validationsLoginMiddleware , userController.processLogin);
+router.get("/login",guestMiddleware, userController.login);
+router.post("/login",validationsLoginMiddleware , userController.processLogin);
+//rutas de logout
+router.get("/logout", userController.logout);
 
 //exportamos la ruta
 module.exports = router;

@@ -11,7 +11,7 @@ const { validationResult } = require("express-validator");
 //creamos el objeto controller
 const userController = {
   index: (req, res) => {
-    res.render("users");
+    res.render("profileUser");
   },
   register: (req, res) => {
     res.render("register");
@@ -36,10 +36,10 @@ const userController = {
         });
       }
       //generamos un id
-      let User = users.pop()
+      let User = users.pop();
       let idUser;
       if (User) {
-         idUser = User.id + 1;
+        idUser = User.id + 1;
       } else {
         idUser = 1;
       }
@@ -64,28 +64,38 @@ const userController = {
       res.render("register", { errors: errors.mapped(), old: req.body });
     }
   },
-  logout: (req, res) => {
-    res.render("logout");
-  },
-  processLogout: (req, res) => {
-    res.send(req.body);
-  },
   login: (req, res) => {
     res.render("login");
   },
   processLogin: (req, res) => {
-    //creamos una varible error
-    let errors = validationResult(req);
     //leemos el json
     let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
+    //guardamos los datos del usuario que viene en el form en la variable user
+    let userToLogin = users.find(
+      (user) =>
+        user.email == req.body.email &&
+        bcrypt.compareSync(req.body.password, user.password)
+    );
+    //borramos la propiedad password
+    //verificamos que el usuario exista
+    if (userToLogin) {
+      delete userToLogin.password;
+    }
+    //creamos una varible error
+    let errors = validationResult(req);
+    //guardamos el usuario en la sesion
+    req.session.userLogged = userToLogin;
     //si no hay errores
     if (errors.isEmpty()) {
-      res.send(req.body);
+      res.redirect("/");
     } else {
       //si hay errores
       res.render("login", { errors: errors.mapped(), old: req.body });
     }
-    //verificamos que el email exista
+  },
+  logout: (req, res) => {
+    req.session.destroy();
+    return res.redirect("/");
   },
   processEdit: (req, res) => {
     res.send(req.body);
