@@ -1,8 +1,8 @@
 [
  {
   "id": 2,
-  "nombre": "Remera",
-  "imagen": "default-image.png",
+  "nombre": "Remera The Original Teen",
+  "imagen": "camisa-verde.jpg",
   "precio": 5000,
   "categoria": "hombre",
   "descripcion": "Remera de hombre",
@@ -15,22 +15,22 @@
  },
  {
   "id": 3,
-  "nombre": "zapatillas nike",
-  "imagen": "default-image.png",
+  "nombre": "Perfect Tee Stripe",
+  "imagen": "camisa-azul-mujer.jpg",
   "precio": 1000,
   "categoria": "mujer",
-  "descripcion": "Zapatillas de mujer",
+  "descripcion": "camisa azul mujer",
   "talles": {
-   "38": 3,
-   "40": 3,
-   "42": 4,
-   "44": 6
+    "S": 2,
+    "M": 4,
+    "L": 3,
+    "XL": 2
   }
  },
  {
   "id": 4,
-  "nombre": "Pantalon",
-  "imagen": "default-image.png",
+  "nombre": "Hi Rise Skinny",
+  "imagen": "pantalon-jean-mujer.jpg",
   "precio": 1000,
   "categoria": "mujer",
   "descripcion": "Pantalon de mujer",
@@ -43,8 +43,8 @@
  },
  {
   "id": 5,
-  "nombre": "Remera",
-  "imagen": "default-image.png",
+  "nombre": "Honey Full Print",
+  "imagen": "camisa-blanca-mujer.jpg",
   "precio": 500,
   "categoria": "mujer",
   "descripcion": "Remera de mujer",
@@ -57,40 +57,114 @@
  },
  {
   "id": 6,
-  "nombre": "Zapatillas",
-  "imagen": "default-image.png",
+  "nombre": "Core Zip Up",
+  "imagen": "saco-negro.jpg",
   "precio": 2000,
-  "categoria": "mujer",
-  "descripcion": "Zapatillas de mujer",
+  "categoria": "hombre",
+  "descripcion": "Saco negro de hombre",
   "talles": {
-   "38": 5,
-   "39": 4,
-   "40": 3,
-   "41": 2
+    "S": 5,
+    "M": 4,
+    "L": 3,
+    "XL": 2
   }
  },
  {
   "id": 7,
-  "nombre": "remera",
-  "imagen": "product-1705330528531.jpg",
+  "nombre": "Graphic Set",
+  "imagen": "camisa-blanca.jpg",
   "precio": 1234,
   "categoria": "hombre",
   "descripcion": "remera hombre",
   "talles": {
-   "talle": 2,
-   "stock": 3
+    "S": 5,
+    "M": 8,
+    "L": 3,
+    "XL": 4
   }
  },
  {
   "id": 8,
-  "nombre": "zaptillas ",
-  "imagen": "product-1705329036239.png",
+  "nombre": "Hommies Classic Teen",
+  "imagen": "campera-negra-mujer.jpg",
   "precio": 1123,
-  "categoria": "hombre",
-  "descripcion": "zapatillas de hombre",
+  "categoria": "mujer",
+  "descripcion": "campera negra mujer",
   "talles": {
-   "talle": 3,
-   "stock": 2
+    "S": 5,
+    "M": 4,
+    "L": 3,
+    "XL": 2
   }
+ },
+ {
+    "id": 9,
+    "nombre": "Chino Short II",
+    "imagen": "bermuda-hombre.jpg",
+    "precio": 1500,
+    "categoria": "hombre",
+    "descripcion": "Bermuda para hombre",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ },
+ {
+    "id": 10,
+    "nombre": "Standard Hommie Crew",
+    "imagen": "camisa-hombre-16.jpg",
+    "precio": 1823,
+    "categoria": "Hombre",
+    "descripcion": "Camisa para Hombre",
+    "talles": {
+      "S": 3,
+      "M": 2,
+      "L": 6,
+      "XL": 2
+    }
+},
+{
+    "id": 11,
+    "nombre": "503 Mid Thihh Short",
+    "imagen": "bermuda-jean-mujer.jpg",
+    "precio": 2500,
+    "categoria": "mujer",
+    "descripcion": "Short Hommies para mujer",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ },
+ {
+    "id": 12,
+    "nombre": "Icon Skirt Hommies",
+    "imagen": "falda-jean-mujer.jpg",
+    "precio": 2100,
+    "categoria": "mujer",
+    "descripcion": "Skirt Hommies para mujer",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ },
+ {
+    "id": 13,
+    "nombre": "402 Regular Fit",
+    "imagen": "pantalon-jean-hombre.jpg",
+    "precio": 3000,
+    "categoria": "hombre",
+    "descripcion": "Pantalon Hommie Regular Fit",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
  }
 ]
