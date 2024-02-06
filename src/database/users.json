@@ -1,0 +1,13 @@
+[
+ {
+  "id": 1,
+  "nombre": "Enzo ",
+  "apellido": "Soliz",
+  "nombreUsuario": "enzosoliz",
+  "email": "enzosoliz95@gmail.com",
+  "fechaNacimiento": "1995-10-26",
+  "domicilio": "Belgrano 1104",
+  "password": "$2a$10$UQZ5Y3jL00og7zFiu/kZT.y2DGyTDK2yX83qP9i0I0U1qcoELwcby",
+  "foto": "user-1707155711813.png"
+ }
+]
