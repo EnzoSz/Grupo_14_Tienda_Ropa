@@ -37,6 +37,13 @@
     border: 0.1rem solid #ccc;
     border-radius: 0.4rem;
 }
+.is-invalid {
+    border:0.1rem solid rgb(192, 18, 53) !important; 
+}
+.text-danger {
+    color: rgb(192, 18, 53);
+    font-size: 1.2rem;
+}
 .container-input input:focus {
     outline: none;
     border-color: #000;
@@ -56,6 +63,7 @@
 .form-register button:hover {
     background-color: crimson;
 }
+
 /* .form-register label {
     display: block;
     margin-bottom: 8px;

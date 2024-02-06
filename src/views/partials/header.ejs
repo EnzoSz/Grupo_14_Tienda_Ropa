@@ -6,7 +6,7 @@
           <button class="icon-close" onclick="toggleMenu()">
             <i class="fa-solid fa-xmark"></i>
           </button>
-    
+
           <ul class="bars-categories">
             <li>
               <a href="/">HOMBRE</a>
@@ -29,17 +29,28 @@
           <i class="fas fa-bars"></i>
         </button>
         <div class="container-logo">
-          <img src="/assets/images/rsz_logo.jpg" alt="" />
+          <a href="/"><img src="/assets/images/rsz_logo.jpg" alt="logo" /></a>
         </div>
       </section>
       <ul class="top-bars-right">
         <li class="container-btn-user">
           <button class="btn-bars">
+            <% if (locals.isLogged) { %>
+
+            <p class="user-name"><%= locals.userLogged.nombre %> <%= locals.userLogged.apellido %></p>
+            <% } else { %>
             <i class="fas fa-user"></i>
+            <% } %>
           </button>
           <div class="dropdown-user">
+            <% if (locals.isLogged) { %>
+            <a href="/user">Mi perfil</a>
+            <a href="/user/logout">Cerrar Sesión</a>
+
+            <% } else { %>
             <a href="/user/login">Iniciar Sesión</a>
             <a href="/user/register">Registrarse</a>
+            <% } %>
             <a href="/products/create">Crear Producto</a>
           </div>
         </li>

@@ -1,5 +1,9 @@
 // Importamos el módulo express
 const express = require("express");
+//requerimos el módulo session
+const session = require("express-session");
+//requerimos cookies
+const cookies = require("cookie-parser");
 
 // Importamos path
 const path = require("path");
@@ -15,6 +19,19 @@ app.set("view engine", "ejs");
 
 // configuramos el directorio de vistas
 app.set("views", path.resolve(__dirname, "./views"));
+
+//middlewares de aplicación
+const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
+// configuramos la sesión
+app.use(session({
+  secret: 'claveSecreta',
+  resave: false,
+  saveUninitialized: false
+}));
+// configuramos el middleware cookies
+app.use(cookies());
+// configuramos el middleware userLoggedMiddleware
+app.use(userLoggedMiddleware);
 // configuramos la app para capturar los datos del formulario
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

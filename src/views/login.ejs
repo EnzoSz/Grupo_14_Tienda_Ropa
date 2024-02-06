@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('./partials/head.ejs', {loginCss: 'login' }) %>
+  <%- include('./partials/head.ejs', {loginCss: 'login' }) %>
 
   <body>
     <%- include('./partials/header.ejs') %>
-      <main>
-        <form class="form-login" action="/login" method="POST">
-          <div class="input-group">
-            <input type="text" id="usuario" name="usuario" required placeholder="Usuario" />
+    <main>
+      <form class="form-login" action="/user/login" method="POST">
+        <div class="input-group">
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value="<%= locals.old && locals.old.email ? locals.old.email : '' %>"
+            class="<%= locals.errors && locals.errors.email ? 'is-invalid' : '' %>"
+          />
+          <% if (locals.errors && locals.errors.email) { %>
+          <div class="text-danger"><%= locals.errors.email.msg %></div>
+          <% } %>
+        </div>
 
-          </div>
+        <div class="input-group">
+          <input
+            type="password"
+            id="password	"
+            name="password"
+            placeholder="Contraseña"
+            class="<%= locals.errors && locals.errors.password ? 'is-invalid' : '' %>"
+          />
+          <% if (locals.errors && locals.errors.password) { %>
+          <div class="text-danger"><%= locals.errors.password.msg %></div>
+          <% } %>
+        </div>
+        <div class="input-group">
+          <label for="rememberMe">Recordarme</label>
+          <input type="checkbox" id="rememberMe" name="rememberMe" />
+        </div>
 
-          <div class="input-group">
-            <input type="password" id="contrasena" name="contrasena" required placeholder="Contraseña" />
-
-          </div>
-
-          <button type="submit">Iniciar Sesión</button>
-        </form>
-      </main>
+        <button type="submit">Iniciar Sesión</button>
+      </form>
+    </main>
   </body>
-
 </html>
