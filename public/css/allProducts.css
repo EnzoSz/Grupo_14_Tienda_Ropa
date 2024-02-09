@@ -1,5 +1,7 @@
 .products-list {
+    margin: auto;
     margin-top: 12.5rem;
+    max-width: 1024px;
 }
 
 .products-items {
