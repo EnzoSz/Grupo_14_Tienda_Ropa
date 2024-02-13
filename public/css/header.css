@@ -248,6 +248,12 @@
     } */
 }
 
+@media (min-width: 768px) {
+  .top-bars-right li .btn-bars {
+    padding: 0;
+  }
+}
+
 @media (min-width: 1024px) {
   .main-header {
     height: 8.4rem;

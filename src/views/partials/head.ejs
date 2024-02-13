@@ -9,6 +9,9 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
     rel="stylesheet"
   />
+  <% if (typeof allProductsCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= allProductsCss %>.css" />
+  <% } %> 
   <% if (typeof uploadFormCss !=='undefined' ) { %>
   <link rel="stylesheet" href="/css/<%= uploadFormCss %>.css" />
   <% } %> 

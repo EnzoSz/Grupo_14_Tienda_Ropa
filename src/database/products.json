@@ -104,17 +104,5 @@
    "talle": "small",
    "stock": "1"
   }
- },
- {
-  "id": 10,
-  "nombre": "remera ",
-  "imagen": "product-1706911221333.png",
-  "precio": "123",
-  "categoria": "hombre",
-  "descripcion": "remera hombre",
-  "talles": {
-   "talle": "medium",
-   "stock": "1"
-  }
  }
 ]
