@@ -1,7 +1,7 @@
 const { body } = require("express-validator");
 const path = require("path");
 const fs = require("fs");
-const usersFilePath = path.join(__dirname, "../database/users.json");
+const usersFilePath = path.join(__dirname, "../data/users.json");
 const bcrypt = require("bcryptjs");
 module.exports = [
   body("email")

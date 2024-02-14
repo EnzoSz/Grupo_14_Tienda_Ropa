@@ -5,7 +5,7 @@ const fs = require("fs");
 //requerimos path para poder enviar archivos
 const path = require("path");
 //obtenemos el archivo JSON
-const usersFilePath = path.join(__dirname, "../database/users.json");
+const usersFilePath = path.join(__dirname, "../data/users.json");
 //requerimos express-validator
 const { validationResult } = require("express-validator");
 //creamos el objeto controller
