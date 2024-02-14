@@ -17,7 +17,7 @@
 }
 
 /* media query */
-@media (min-width: 768px) {
+@media (min-width: 480px) {
   .products-items {
     flex-direction: row;
     flex-wrap: wrap;
