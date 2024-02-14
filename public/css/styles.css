@@ -11,6 +11,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* link[rel="icon"] {
+    border-radius: 50%;
+} */
 
 html {
     font-size: 62.5%;
@@ -19,4 +22,13 @@ html {
 body {
     font-family: var(--fontFamily);
     background-color: var(--primaryColor);
+}
+main {
+    margin-top: 12.5rem;
+}
+
+@media (min-width: 1024px) {
+    main {
+        margin-top: 8.4rem;
+    }
 }

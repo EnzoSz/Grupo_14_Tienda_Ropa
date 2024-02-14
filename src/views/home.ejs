@@ -30,7 +30,9 @@
         <h2>Productos Destacados</h2>
         <!-- traer 3 productos de products.jon y mostrarlos con tags ejs -->
         <section class="container-productCard">
-          <%- include('./partials/productCard.ejs') %>
+          <% products.forEach(product => { %>
+            <%- include('./partials/productCard.ejs',  {product: product}) %>
+          <% }) %>
         </section>
     </main>
       <%- include('./partials/footer.ejs') %>
