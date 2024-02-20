@@ -8,6 +8,7 @@ const path = require("path");
 const usersFilePath = path.join(__dirname, "../database/users.json");
 //requerimos express-validator
 const { validationResult } = require("express-validator");
+const { log } = require("console");
 //creamos el objeto controller
 const userController = {
   index: (req, res) => {
@@ -107,6 +108,67 @@ const userController = {
   processEdit: (req, res) => {
     res.send(req.body);
   },
+  profile: (req,res) => {
+
+    let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
+
+    const singleUser = users[0]
+
+    res.render("profileUser",{singleUser})
+  },
+  profileEdition:(req,res) => {
+    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+
+    const idUserToEdit = users.find(users => {
+      return users.id == req.params.id
+    })
+
+    res.render("profileUserEdit",{idUserToEdit})
+  },
+  profileEdit: (req,res) => {
+  
+		const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+
+		// buscamos el usuario que tenemos que editar
+		const id = req.params.id;
+		let userToEdit = users.find(users => users.id == id);
+    
+    console.log(userToEdit);
+		
+		// Creamos el usuario "nuevo" que va a reemplazar al anterior
+		/* userToEdit = {
+			id: userToEdit.id,
+			nombre: req.body.nombre,
+			apellido: req.body.apellido,
+			nombreUsuario: req.body.nombreUsuario,
+			email: req.body.email,
+			fechaNacimiento: req.body.fechaNacimiento,
+      domicilio: req.body.domicilio
+		} */
+
+    console.log(req.body);
+
+    userToEdit.id = parseInt(userToEdit.id);
+    userToEdit.nombre = req.body.nombre;
+    userToEdit.apellido = req.body.apellido;
+    userToEdit.nombreUsuario = req.body.nombreUsuario;
+    userToEdit.email = req.body.email;
+    userToEdit.fechaNacimiento = req.body.fechaNacimiento
+    userToEdit.domicilio = req.body.domicilio
+
+    console.log(userToEdit);
+
+		// Buscamos la posicion del producto a editar
+
+    let indice = users.findIndex(users => {
+      return users.id == id
+    })
+		// Reemplazamos
+		users[indice] = userToEdit;
+
+		fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
+		res.redirect("/")
+  }
 };
 //exportamos el objeto controlador
 module.exports = userController;

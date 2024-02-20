@@ -1,13 +1,13 @@
 [
  {
-  "id": 1,
-  "nombre": "Enzo ",
-  "apellido": "Soliz",
-  "nombreUsuario": "enzosoliz",
-  "email": "enzosoliz95@gmail.com",
-  "fechaNacimiento": "1995-10-26",
-  "domicilio": "Belgrano 1104",
-  "password": "$2a$10$UQZ5Y3jL00og7zFiu/kZT.y2DGyTDK2yX83qP9i0I0U1qcoELwcby",
-  "foto": "user-1707155711813.png"
+  "id": 0,
+  "nombre": "Oswaldo",
+  "apellido": "Mejia Cueto",
+  "nombreUsuario": "Spardak_17",
+  "email": "oswaldo.mejiac@gmail.com",
+  "fechaNacimiento": "1995-10-25",
+  "domicilio": "NA",
+  "password": "$2a$10$neFXPKIkkDR0GSRseO68N.duxUpwhJTEYZNltR8WqX.PtJ9MfOBWy",
+  "foto": "user-1707503362125.jpg"
  }
 ]

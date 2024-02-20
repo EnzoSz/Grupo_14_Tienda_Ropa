@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs', {homeCss: 'home', productCardCss: 'productCard', registerCss: 'register', userProfileCss: 'userProfile'}) %>
+<body>
+    <%- include('./partials/header') %>
+    <main>
+        <h1 class="title-edition">MI CUENTA</h1>
+
+      <form
+        class="form-edition"
+        action="/user/edit/<%= idUserToEdit.id %>?_method=PUT"
+        method="POST"
+        enctype="multipart/form-data" 
+      >
+        <fieldset class="personal-info">
+          <div class="container-input">
+            <label for="name">Nombre</label>
+              <input 
+              type="text" 
+              name="nombre"
+              id="nombre"
+              value="<%= idUserToEdit.nombre %>">
+          </div>
+          <div class="container-input">
+            <label for="lastName">Apellidos</label>
+              <input 
+              type="text"
+              name="apellido"
+              id="apellido"
+              value="<%= idUserToEdit.apellido %>">
+          </div>
+          <div class="container-input">
+            <label for="userName">Nombre de usuario</label>
+              <input 
+              type="text"
+              name="nombreUsuario"
+              id="nombreUsuario"
+              value="<%= idUserToEdit.nombreUsuario %>">
+          </div>
+          <div class="container-input">
+            <label for="email">Email</label>
+              <input 
+              type="email"
+              name="email"
+              id="email"
+              required
+              value=" <%= idUserToEdit.email %>">
+
+          </div>
+          <div class="container-input">
+            <label for="birthday">Fecha de nacimiento</label>
+              <input 
+              type="date" 
+              min="1960-01-01" 
+              name="fechaNacimiento"
+              id="fechaNacimiento"
+              value="<%= idUserToEdit.fechaNacimiento %>">            
+          </div>
+          <div class="container-input">
+            <label for="Domicilio">Domicilio</label>
+              <input 
+              type="text"
+              name="domicilio"
+              id="domicilio"
+              value="<%= idUserToEdit.domicilio %>">            
+          </div>
+        
+        
+        </fieldset>
+      <button type="submit" value="edit">Guardar</button>
+      </form>
+
+        
+    </main>
+    <%- include("./partials/footer") %>
+</body>
+</html>

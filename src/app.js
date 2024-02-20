@@ -5,6 +5,8 @@ const session = require("express-session");
 //requerimos cookies
 const cookies = require("cookie-parser");
 
+const bodyParser = require('body-parser');
+
 // Importamos path
 const path = require("path");
 
@@ -22,12 +24,18 @@ app.set("views", path.resolve(__dirname, "./views"));
 
 //middlewares de aplicación
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
+
 // configuramos la sesión
 app.use(session({
   secret: 'claveSecreta',
   resave: false,
   saveUninitialized: false
 }));
+
+
+// Configuración del middleware body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // configuramos el middleware cookies
 app.use(cookies());
 // configuramos el middleware userLoggedMiddleware

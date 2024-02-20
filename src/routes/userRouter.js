@@ -44,6 +44,11 @@ router.get("/login",guestMiddleware, userController.login);
 router.post("/login",validationsLoginMiddleware , userController.processLogin);
 //rutas de logout
 router.get("/logout", userController.logout);
+//rutas de profile
+router.get("/profile/:id",userController.profile);
+//rutas de edit 
+router.get("/profile/edit/:id",userController.profileEdition)
+router.put("/edit/:id",userController.profileEdit)
 
 //exportamos la ruta
 module.exports = router;
