@@ -1,0 +1,24 @@
+[
+ {
+  "id": 1,
+  "nombre": "Pepe",
+  "apellido": "Alvarez",
+  "nombreUsuario": "pepeAlvarez",
+  "email": "pepe@gmail.com",
+  "fechaNacimiento": "1999-12-12",
+  "domicilio": "av. los álamos 123",
+  "password": "$2a$10$2fAAmOC9yjiWAZ7zwnYA1udYAFSWr8OyH0pVm0NmHBJfE9UBU8zKi",
+  "foto": "user-1707262739337.png"
+ },
+ {
+  "id": 2,
+  "nombre": "Enzo ",
+  "apellido": "Soliz ",
+  "nombreUsuario": "enzosoliz",
+  "email": "enzosoliz95@gmail.com",
+  "fechaNacimiento": "1995-10-26",
+  "domicilio": "Belgrano 1104",
+  "password": "$2a$10$H3NthqOF2pbj8rJjgZG7deYicEsxy85w06EioDSfDn81.sKxmqD4a",
+  "foto": "user-1707262739337.png"
+ }
+]

@@ -5,7 +5,7 @@ const fs = require("fs");
 //requerimos path para poder enviar archivos
 const path = require("path");
 //obtenemos el archivo JSON
-const usersFilePath = path.join(__dirname, "../database/users.json");
+const usersFilePath = path.join(__dirname, "../data/users.json");
 //requerimos express-validator
 const { validationResult } = require("express-validator");
 const { log } = require("console");
@@ -21,10 +21,10 @@ const userController = {
   processRegister: (req, res) => {
     //creamos una varible error
     let errors = validationResult(req);
+    //leemos el json
+    let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
     //si no hay errores
     if (errors.isEmpty()) {
-      //leemos el json
-      let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
       //verificamos que el email no exista
       let userInDB = users.find((user) => user.email == req.body.email);
       if (userInDB) {
@@ -38,7 +38,7 @@ const userController = {
         });
       }
       //generamos un id
-      let User = users.pop();
+      let User = users.slice(-1)[0];
       let idUser;
       if (User) {
         idUser = User.id + 1;

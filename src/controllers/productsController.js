@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const productsFilePath = path.join(__dirname, "../database/products.json");
+const productsFilePath = path.join(__dirname, "../data/products.json");
 const productsController = {
   //metodo get, renderizamos todos los productos
   index: (req, res) => {
