@@ -45,10 +45,12 @@ router.post("/login",validationsLoginMiddleware , userController.processLogin);
 //rutas de logout
 router.get("/logout", userController.logout);
 //rutas de profile
-router.get("/profile/:id",userController.profile);
+router.get("/profile/:id", userController.profileView);
 //rutas de edit 
 router.get("/profile/edit/:id",userController.profileEdition)
-router.put("/edit/:id",userController.profileEdit)
+router.put("/profile/edit/:id",upload.single("imageProfile") ,userController.profileEdit)
+//rutas de delete
+router.delete("/delete/:id",userController.destroy)
 
 //exportamos la ruta
 module.exports = router;

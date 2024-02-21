@@ -44,7 +44,7 @@ app.use(userLoggedMiddleware);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // usar el método override
-app.use(methodOverride("_method"));
+app.use(methodOverride("_method"));   
 // Importamos el módulo rutas
 const homeRouter = require('./routes/homeRouter');
 const productsRouter = require('./routes/productsRouter');

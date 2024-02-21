@@ -8,7 +8,7 @@
 
       <form
         class="form-edition"
-        action="/user/edit/<%= idUserToEdit.id %>?_method=PUT"
+        action="/user/profile/edit/<%= idUserToEdit.id %>?_method=PUT"
         method="POST"
         enctype="multipart/form-data" 
       >
@@ -17,24 +17,24 @@
             <label for="name">Nombre</label>
               <input 
               type="text" 
-              name="nombre"
-              id="nombre"
+              name="name"
+              id="name"
               value="<%= idUserToEdit.nombre %>">
           </div>
           <div class="container-input">
-            <label for="lastName">Apellidos</label>
+            <label for="lastname">Apellidos</label>
               <input 
               type="text"
-              name="apellido"
-              id="apellido"
+              name="lastname"
+              id="lastname"
               value="<%= idUserToEdit.apellido %>">
           </div>
           <div class="container-input">
-            <label for="userName">Nombre de usuario</label>
+            <label for="nickname">Nombre de usuario</label>
               <input 
               type="text"
-              name="nombreUsuario"
-              id="nombreUsuario"
+              name="nickname"
+              id="nickname"
               value="<%= idUserToEdit.nombreUsuario %>">
           </div>
           <div class="container-input">
@@ -48,21 +48,29 @@
 
           </div>
           <div class="container-input">
-            <label for="birthday">Fecha de nacimiento</label>
+            <label for="birthdate">Fecha de nacimiento</label>
               <input 
               type="date" 
               min="1960-01-01" 
-              name="fechaNacimiento"
-              id="fechaNacimiento"
+              name="birthdate"
+              id="birthdate"
               value="<%= idUserToEdit.fechaNacimiento %>">            
           </div>
           <div class="container-input">
-            <label for="Domicilio">Domicilio</label>
+            <label for="domicilio">Domicilio</label>
               <input 
               type="text"
               name="domicilio"
               id="domicilio"
               value="<%= idUserToEdit.domicilio %>">            
+          </div>
+          <div class="container-input">
+            <label for="imageProfile">Imagen de perfil <%=idUserToEdit.foto%></label>
+              <input 
+              type="file"
+              name="imageProfile"
+              id="imageProfile"
+              value="<%= idUserToEdit.foto %>">            
           </div>
         
         

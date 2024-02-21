@@ -66,9 +66,11 @@ const userController = {
       res.render("register", { errors: errors.mapped(), old: req.body });
     }
   },
+
   login: (req, res) => {
     res.render("login");
   },
+
   processLogin: (req, res) => {
     //leemos el json
     let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
@@ -100,74 +102,61 @@ const userController = {
       res.render("login", { errors: errors.mapped(), old: req.body });
     }
   },
+
   logout: (req, res) => {
     res.clearCookie("userEmail");
     req.session.destroy();
     return res.redirect("/");
   },
-  processEdit: (req, res) => {
-    res.send(req.body);
-  },
+
   profile: (req,res) => {
 
-    let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
-
-    const singleUser = users[0]
+    let singleUser = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
 
     res.render("profileUser",{singleUser})
   },
-  profileEdition:(req,res) => {
+  soyUnaPrueba: (req,res) => {
+    let id = req.params.id
+
     let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
 
-    const idUserToEdit = users.find(users => {
-      return users.id == req.params.id
+    let singleUser = users[0]
+    
+    res.render("profileUser",singleUser)
+  },
+
+  profileView:(req,res) => {
+
+    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+    let id = req.params.id
+    const idUserToEdit = users.find((user) => {
+      return user.id == id
+    })
+
+    console.log()
+
+    res.render("profileUser",{idUserToEdit})
+  },
+
+  profileEdition:(req,res) => {
+
+    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+    let id = req.params.id
+    const idUserToEdit = users.find((user) => {
+      return user.id == id
     })
 
     res.render("profileUserEdit",{idUserToEdit})
   },
+
   profileEdit: (req,res) => {
   
-		const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+		res.send("VOY POR PUT!!!")
+  },
 
-		// buscamos el usuario que tenemos que editar
-		const id = req.params.id;
-		let userToEdit = users.find(users => users.id == id);
+  destroy: (req,res) => {
     
-    console.log(userToEdit);
-		
-		// Creamos el usuario "nuevo" que va a reemplazar al anterior
-		/* userToEdit = {
-			id: userToEdit.id,
-			nombre: req.body.nombre,
-			apellido: req.body.apellido,
-			nombreUsuario: req.body.nombreUsuario,
-			email: req.body.email,
-			fechaNacimiento: req.body.fechaNacimiento,
-      domicilio: req.body.domicilio
-		} */
-
-    console.log(req.body);
-
-    userToEdit.id = parseInt(userToEdit.id);
-    userToEdit.nombre = req.body.nombre;
-    userToEdit.apellido = req.body.apellido;
-    userToEdit.nombreUsuario = req.body.nombreUsuario;
-    userToEdit.email = req.body.email;
-    userToEdit.fechaNacimiento = req.body.fechaNacimiento
-    userToEdit.domicilio = req.body.domicilio
-
-    console.log(userToEdit);
-
-		// Buscamos la posicion del producto a editar
-
-    let indice = users.findIndex(users => {
-      return users.id == id
-    })
-		// Reemplazamos
-		users[indice] = userToEdit;
-
-		fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
-		res.redirect("/")
+    res.send("VOY POR DELETE!!!")
   }
 };
 //exportamos el objeto controlador
