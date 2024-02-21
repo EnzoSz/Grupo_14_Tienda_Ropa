@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const productsFilePath = path.join(__dirname, "../database/products.json");
+const productsFilePath = path.join(__dirname, "../data/products.json");
 const productsController = {
   //metodo get, renderizamos todos los productos
   index: (req, res) => {
@@ -72,7 +72,7 @@ const productsController = {
       productToEdit.talles[talle] = parseInt(talles[index]);
     });
     //ahora editamos las demas propiedades del producto
-    productToEdit.id = productToEdit.id;
+    productToEdit.id = parseInt(productToEdit.id);
     productToEdit.nombre = req.body.nombre;
     productToEdit.imagen =
       req.file != undefined ? req.file.filename : productToEdit.imagen;

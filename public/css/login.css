@@ -55,3 +55,31 @@
 .form-login button:hover {
     background-color: crimson;
 }
+
+.is-invalid {
+    border-color: crimson !important;
+}
+
+.text-danger {
+    text-align: left;
+    color: crimson;
+    font-size: 1.2rem;
+}
+
+.rememberMe {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    
+}
+
+.rememberMe label {
+    display: inline-block;
+    font-size: 1.4rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+.rememberMe input {
+    display: inline-block;
+    margin-right: 0.5rem;
+}
