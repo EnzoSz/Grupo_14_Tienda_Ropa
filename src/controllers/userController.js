@@ -115,15 +115,6 @@ const userController = {
 
     res.render("profileUser",{singleUser})
   },
-  soyUnaPrueba: (req,res) => {
-    let id = req.params.id
-
-    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
-
-    let singleUser = users[0]
-    
-    res.render("profileUser",singleUser)
-  },
 
   profileView:(req,res) => {
 
@@ -150,13 +141,53 @@ const userController = {
   },
 
   profileEdit: (req,res) => {
+    //const errors = validationResult(req);
   
-		res.send("VOY POR PUT!!!")
+    /* if (errors.isEmpty()) {
+      let idUserToEdit2 = req.body
+      res.send(idUserToEdit2)
+    }  */ 
+    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+
+    let id = req.params.id
+
+    const idUserToEdit = users.find((user) => {
+      return user.id == id
+    });
+    userToEdit = {
+      id: idUserToEdit.id,
+      nombre: req.body.name,
+      apellido: req.body.lastName,
+      nombreUsuario: req.body.nickname,
+      email: req.body.email,
+      fechaNacimiento: req.body.birthdate,
+      domicilio: req.body.domicilio,
+      password: idUserToEdit.password,
+      foto: req.file.filename
+    }
+    
+    let indice = users.findIndex(user => {
+      return user.id == id
+    });
+
+    users[indice] = userToEdit;
+
+    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
+    res.redirect('/')
   },
 
   destroy: (req,res) => {
+
+    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+    let id = req.params.id
+
+    users = users.filter(user => {
+      return user.id != id
+    })
+
+    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
     
-    res.send("VOY POR DELETE!!!")
+    res.redirect('/')
   }
 };
 //exportamos el objeto controlador

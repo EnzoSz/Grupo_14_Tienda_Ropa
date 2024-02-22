@@ -12,6 +12,7 @@ const validationsRegisterMiddleware = require("../middlewares/validateRegisterMi
 const validationsLoginMiddleware = require("../middlewares/validateLoginMiddleware");
 const guestMiddleware = require("../middlewares/guestMiddleware");
 const authMiddleware = require("../middlewares/authMiddleware");
+const validationsEditProfileMiddleware = require("../middlewares/validateEditProfileMiddleware");
 //requerimos el controlador
 const userController = require("../controllers/userController");
 //configuramos multer
@@ -47,10 +48,15 @@ router.get("/logout", userController.logout);
 //rutas de profile
 router.get("/profile/:id", userController.profileView);
 //rutas de edit 
-router.get("/profile/edit/:id",userController.profileEdition)
-router.put("/profile/edit/:id",upload.single("imageProfile") ,userController.profileEdit)
+router.get("/profile/edit/:id",userController.profileEdition);
+router.put(
+  "/profile/edit/:id",
+  upload.single("imageProfile"),
+  //validationsEditProfileMiddleware,
+  userController.profileEdit
+);
 //rutas de delete
-router.delete("/delete/:id",userController.destroy)
+router.delete("/delete/:id",userController.destroy);
 
 //exportamos la ruta
 module.exports = router;
