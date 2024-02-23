@@ -3,7 +3,7 @@ const fs = require("fs");
 //requerimos el path
 const path = require("path");
 //obtenemos el archivo JSON
-const usersFilePath = path.join(__dirname, "../database/users.json");
+const usersFilePath = path.join(__dirname, "../data/users.json");
 function userLoggedMiddleware(req, res, next) {
   res.locals.isLogged = false;
   //leemos el json

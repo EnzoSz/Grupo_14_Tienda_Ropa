@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs', {productCardCss: 'productCard', allProducts: 'allProducts'}) %>
-    <body class="container-all-products">
-        <%- include('./partials/header.ejs') %>
-        <main class="products-list">
-            <section class="products-items">
-                <%- include('./partials/productCard.ejs') %> 
-            </section>
-        </main>
-        <%- include('./partials/footer.ejs') %>
-    </body>
+  <%- include('./partials/head.ejs', {productCardCss: 'productCard',
+  allProductsCss: 'allProducts'}) %>
+  <body class="container-all-products">
+    <%- include('./partials/header.ejs') %>
+    <main>
+      <h2 class="subtitle-allProduct">Todos los productos</h2>
+      <section class="products-items">
+        <% products.forEach(product => { %> <%-
+        include('./partials/productCard.ejs', {product}) %> <% }) %>
+      </section>
+    </main>
+    <%- include('./partials/footer.ejs') %>
+  </body>
 </html>
