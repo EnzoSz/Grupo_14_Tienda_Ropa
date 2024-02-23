@@ -77,10 +77,18 @@
     padding: 1.5rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 .container-product-detail .container-info .btn-primary:hover {
     background-color: crimson;
 }
+.container-product-detail .container-btn-edit-product .btn-edit:hover {
+    background-color: crimson;
+}
+.container-product-detail .container-btn-edit-product .btn-delete:hover {
+    background-color: crimson;
+}
+
 .size {
     padding: 1rem;
 }
@@ -121,6 +129,7 @@
     border-radius: 0.5rem;
     transition: all 0.3s ease-in-out;
     font-weight: bold;
+    cursor: pointer;
 }
 
 @media (min-width: 430px) {
