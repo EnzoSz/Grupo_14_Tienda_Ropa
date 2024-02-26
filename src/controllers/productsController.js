@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const productsFilePath = path.join(__dirname, "../data/products.json");
+const Product = require('../database/models/Product.js');
 const productsController = {
   //metodo get, renderizamos todos los productos
   index: (req, res) => {
@@ -105,5 +106,15 @@ const productsController = {
     //redireccionamos al home
     res.redirect("/");
   },
+  //Obtener productos segun su categoria
+  getProductsByCategory: async (categoria) => {
+    try {
+      const products = await Product.find({ categoria: categoria });
+      return products;
+    } catch (error) {
+      console.error('Eror al obtener productos por categoria: ', error);
+      throw new error('Error al obtener productos por categoria.');
+    }
+  }
 };
 module.exports = productsController;
