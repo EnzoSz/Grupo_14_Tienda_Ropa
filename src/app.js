@@ -32,7 +32,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-
 // Configuración del middleware body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -50,7 +49,6 @@ const homeRouter = require('./routes/homeRouter');
 const productsRouter = require('./routes/productsRouter');
 const carritoRouter = require('./routes/carritoRouter');
 const userController = require("./routes/userRouter");
-
 
 // Obtenemos la ruta absoluta del directorio public
 const publicPath = path.resolve(__dirname, "../public");

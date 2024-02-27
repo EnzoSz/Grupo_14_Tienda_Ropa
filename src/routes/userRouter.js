@@ -12,7 +12,6 @@ const validationsRegisterMiddleware = require("../middlewares/validateRegisterMi
 const validationsLoginMiddleware = require("../middlewares/validateLoginMiddleware");
 const guestMiddleware = require("../middlewares/guestMiddleware");
 const authMiddleware = require("../middlewares/authMiddleware");
-const validationsEditProfileMiddleware = require("../middlewares/validateEditProfileMiddleware");
 //requerimos el controlador
 const userController = require("../controllers/userController");
 //configuramos multer
@@ -30,15 +29,15 @@ const upload = multer({ storage });
 
 //Definimos las rutas de users
 
-router.get("/", authMiddleware , userController.index);
+router.get("/login", userController.index);
 
 //rutas de registro
-router.get("/register",guestMiddleware, userController.register);
+router.get("/register",guestMiddleware, userController.createView);
 router.post(
   "/register",
   upload.single("imageProfile"),
   validationsRegisterMiddleware,
-  userController.processRegister
+  userController.create
 );
 //rutas de login
 router.get("/login",guestMiddleware, userController.login);
@@ -46,17 +45,19 @@ router.post("/login",validationsLoginMiddleware , userController.processLogin);
 //rutas de logout
 router.get("/logout", userController.logout);
 //rutas de profile
-router.get("/profile/:id", userController.profileView);
+router.get("/profile/:id", authMiddleware, userController.profileView);
 //rutas de edit 
-router.get("/profile/edit/:id",userController.profileEdition);
+router.get("/profile/edit/:id", authMiddleware,userController.profileEdition);
 router.put(
   "/profile/edit/:id",
   upload.single("imageProfile"),
-  //validationsEditProfileMiddleware,
   userController.profileEdit
 );
 //rutas de delete
-router.delete("/delete/:id",userController.destroy);
-
+router.delete("/delete/:id",
+  authMiddleware,
+  //validationDeleteProfileMiddleware,
+  userController.destroy
+);
 //exportamos la ruta
 module.exports = router;
