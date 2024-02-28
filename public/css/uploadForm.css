@@ -53,6 +53,12 @@
   display: flex;
 }
 
+#categoria{
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  padding: 0.75rem;
+}
+
 .input-container .input-group select {
   border: 0.1rem solid #ccc;
   border-radius: 0.4rem;
@@ -78,6 +84,7 @@ textarea {
 #color,
 #categoria,
 #precio,
+#size,
 .radio-container {
   margin-top: 1rem;
 }

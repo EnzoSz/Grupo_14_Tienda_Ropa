@@ -9,12 +9,14 @@
     
       <img
         src="/assets/images/products/<%= product.imagen %>"
-        alt="<%= product.nombre %>"
+        alt="<%= product.name %>"
       />
     </a>
     <div class="card-body">
-      <h3 class="card-title"><%= product.nombre %></h3>
-      <p class="card-precio">$<%= product.precio %></p>
+      <h3 class="card-title"><%= product.name %></h3>
+      <!-- <h3 class="card-title"> ejs archivo(product.nombre) </h3> -->
+      <p class="card-precio">$<%= product.price %></p>
+      <!-- <p class="card-precio">$ ejs archivo( product.precio) </p> -->
       <button class="card-button">Agregar</button>
     </div>
   </article>

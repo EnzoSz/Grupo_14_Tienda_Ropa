@@ -11,9 +11,9 @@
                     <img src="/assets/images/products/<%= product.imagen ? product.imagen : 'default-image.png' %>" alt="<%= product.nombre %>">
                 </div>
                 <div class="container-info">
-                    <h2 class="product-name"><%= product.nombre %></h2>
-                    <p class="product-description"><%= product.descripcion %></p>
-                    <p class="product-price">$<%= product.precio %></p>
+                    <h2 class="product-name"><%= product.name %></h2>
+                    <p class="product-description"><%= product.description %></p>
+                    <p class="product-price">$<%= product.price %></p>
                     <div class="product-oferta">
                         <i class="fa-solid fa-credit-card"></i>
                         <p>Pagá en 12 cuotas sin interes</p>
@@ -26,8 +26,8 @@
                        
                     <form action="/carrito" method="POST">
                         <input type="hidden" name="id" value="<%= product.id %>">
-                        <input type="hidden" name="name" value="<%= product.nombre %>">
-                        <input type="hidden" name="price" value="<%= product.precio %>">
+                        <input type="hidden" name="name" value="<%= product.name %>">
+                        <input type="hidden" name="price" value="<%= product.price %>">
                         <input type="hidden" name="image" value="<%= product.imagen %>">
                         <div class="container-sizes">
                             <% for (const propiedad in product.talles) { %>
@@ -44,9 +44,11 @@
 
                     <div class="container-btn-edit-product">
                         <a class="btn-edit" href="/products/edit/<%= product.id %>">Editar</a>
-                        <form action="/products/delete/<%= product.id %>?_method=DELETE" method="post">
-                            <button type="submit" class="btn-delete">Eliminar</button>
-                        </form>
+
+                       <!--  <form action="/products/delete/?_method=DELETE" method="post"> -->
+                        <a class="btn-delete"  href="/products/delete/<%= product.id %>">Eliminar</a>
+                            <!-- <button type="submit" class="btn-delete">Eliminar</button> -->
+                       
                     </div>
                 </div>
             </div>
