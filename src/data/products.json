@@ -84,6 +84,7 @@
   }
  },
  {
+<<<<<<< HEAD
   "id": 9,
   "nombre": "Chino Short II",
   "imagen": "bermuda-hombre.jpg",
@@ -152,5 +153,75 @@
    "42": 3,
    "44": 2
   }
+=======
+    "id": 9,
+    "nombre": "Chino Short II",
+    "imagen": "bermuda-hombre.jpg",
+    "precio": 1500,
+    "categoria": "hombre",
+    "descripcion": "Bermuda para hombre",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ },
+ {
+    "id": 10,
+    "nombre": "Standard Hommie Crew",
+    "imagen": "camisa-hombre-16.jpg",
+    "precio": 1823,
+    "categoria": "Hombre",
+    "descripcion": "Camisa para Hombre",
+    "talles": {
+      "S": 3,
+      "M": 2,
+      "L": 6,
+      "XL": 2
+    }
+},
+{
+    "id": 11,
+    "nombre": "503 Mid Thihh Short",
+    "imagen": "bermuda-jean-mujer.jpg",
+    "precio": 2500,
+    "categoria": "mujer",
+    "descripcion": "Short Hommies para mujer",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ },
+ {
+    "id": 12,
+    "nombre": "Icon Skirt Hommies",
+    "imagen": "falda-jean-mujer.jpg",
+    "precio": 2100,
+    "categoria": "mujer",
+    "descripcion": "Skirt Hommies para mujer",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ },
+ {
+    "id": 13,
+    "nombre": "402 Regular Fit",
+    "imagen": "pantalon-jean-hombre.jpg",
+    "precio": 3000,
+    "categoria": "hombre",
+    "descripcion": "Pantalon Hommie Regular Fit",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+>>>>>>> danilo
  }
 ]
