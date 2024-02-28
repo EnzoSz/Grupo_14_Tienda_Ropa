@@ -109,7 +109,7 @@ const productsController = {
   //Obtener productos segun su categoria
   getProductsByCategory: async (categoria) => {
     try {
-      const products = await Product.find({ categoria: categoria });
+      const products = await Product.filter({ categoria: categoria });
       return products;
     } catch (error) {
       console.error('Eror al obtener productos por categoria: ', error);
