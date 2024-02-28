@@ -34,6 +34,17 @@
             <%- include('./partials/productCard.ejs',  {product: product}) %>
           <% }) %>
         </section>
+      </section>
+      <section class="container-destacados">
+        <h2>Ofertas</h2>
+        <!-- traer 3 productos de products.jon y mostrarlos con tags ejs -->
+        <section class="container-productCard">
+          <% products.forEach(product => { %>
+            <%- include('./partials/productCard.ejs',  {product: product}) %>
+          <% }) %>
+        </section>
+      </section>
+      
     </main>
       <%- include('./partials/footer.ejs') %>
   </body>
