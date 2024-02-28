@@ -98,10 +98,16 @@ const productsController = {
         res.status(500).send(error.message);
       }
     },
-    /* destroy: async function (req, res){
-
-
-    }, */
+    destroy: async (req, res) =>{
+      try {
+        await db.Product.destroy({
+          where: {id: req.params.id}
+        })
+        res.redirect('/');
+      } catch (error) {
+        res.status(500).send(error.message);
+        }
+    },
 
   //metodo get, renderizamos todos los productos
   /* index: (req, res) => {
