@@ -21,7 +21,7 @@ router.get("/", productsController.index);
 //Mostramos un producto
 router.get("/detail/:id", productsController.detail);
 //Creando ruta parametrizada
-router.get('/products/:categoria', (req, res) => {
+router.get('/products/:categoria?', (req, res) => {
     const categoria = req.params.categoria;
 
     productsController.getProductsByCategory(categoria)

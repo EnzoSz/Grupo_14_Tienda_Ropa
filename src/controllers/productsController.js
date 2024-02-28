@@ -8,6 +8,25 @@ const productsController = {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     res.render("allProducts", { products: products });
   },
+  //metodo get, mostramos los productos de hombres
+  index: (req, res) => {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    let product = products.filter((product) => product.categoria == req.params.categoria);
+    res.render("productsHombre", { products: products });
+  },
+
+  index: (req, res) => {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    let product = products.filter((product) => product.categoria == req.params.categoria);
+    res.render("productsMujer", { products: products });
+  },
+
+  index: (req, res) => {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    let product = products.filter((product) => product.categoria == req.params.categoria);
+    res.render("productsKids", { products: products });
+  },
+
   //metodo get, mostramos el detalle del producto
   detail: (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
