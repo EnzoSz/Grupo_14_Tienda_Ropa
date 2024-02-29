@@ -9,21 +9,21 @@ const productsController = {
     res.render("allProducts", { products: products });
   },
   //metodo get, mostramos los productos de hombres, mujer y niño.
-  'hombre': (req, res) => {
+  hombre: (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    let product = products.filter((product) => product.categoria == req.params.categoria);
+    let product = products.filter((product) => product.categoria == "hombre");
     res.render("productsHombre", { products: product});
   },
 
   'mujer': (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    let product = products.filter((product) => product.categoria == req.params.categoria);
+    let product = products.filter((product) => product.categoria == "mujer");
     res.render("productsMujer", { products: product });
   },
 
   'kids': (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    let product = products.filter((product) => product.categoria == req.params.categoria);
+    let product = products.filter((product) => product.categoria == "kids");
     res.render("productsKids", { products: product });
   },
 
