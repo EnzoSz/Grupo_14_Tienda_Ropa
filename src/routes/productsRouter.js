@@ -20,21 +20,10 @@ const upload = multer({storage})
 router.get("/", productsController.index);
 //Mostramos un producto
 router.get("/detail/:id", productsController.detail);
-//Creando ruta parametrizada
-router.get('/products/:categoria?', (req, res) => {
-    const categoria = req.params.categoria;
-
-    productsController.getProductsByCategory(categoria)
-
-    .then(products => {
-        res.render('allProducts', {products: products}, {categoria: categoria})
-    })
-
-    .catch (error => {
-        console.log('Error al obtener productos por categoria.', error);
-        res.status(500).send('Error al obtener productos por categoria.')
-    })
-})
+//Creando ruta de categoria
+router.get('/products/hombre', productsController.hombre);
+router.get('/products/mujer', productsController.mujer);
+router.get('/products/kids', productsController.kids);
 
 //Cargar un producto
 router.get("/create", productsController.create);

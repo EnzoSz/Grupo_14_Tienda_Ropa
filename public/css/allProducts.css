@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-.products-list {
-    margin: auto;
-    margin-top: 12.5rem;
-    max-width: 1024px;
-}
-
-.products-items {
-    margin: auto;
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    white-space: nowrap;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    gap: 2rem;
-=======
 .subtitle-allProduct {
   font-family: Interstate, sans-serif;
   font-size: 2.2rem;
@@ -31,7 +14,6 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
->>>>>>> 09b05d053dac303d8a16c9441e83f25940a39029
 }
 /* media query */
 @media (min-width: 480px) {

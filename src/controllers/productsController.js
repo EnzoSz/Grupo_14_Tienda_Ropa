@@ -8,23 +8,23 @@ const productsController = {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     res.render("allProducts", { products: products });
   },
-  //metodo get, mostramos los productos de hombres
-  index: (req, res) => {
+  //metodo get, mostramos los productos de hombres, mujer y niño.
+  'hombre': (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     let product = products.filter((product) => product.categoria == req.params.categoria);
-    res.render("productsHombre", { products: products });
+    res.render("productsHombre", { products: product});
   },
 
-  index: (req, res) => {
+  'mujer': (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     let product = products.filter((product) => product.categoria == req.params.categoria);
-    res.render("productsMujer", { products: products });
+    res.render("productsMujer", { products: product });
   },
 
-  index: (req, res) => {
+  'kids': (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     let product = products.filter((product) => product.categoria == req.params.categoria);
-    res.render("productsKids", { products: products });
+    res.render("productsKids", { products: product });
   },
 
   //metodo get, mostramos el detalle del producto
@@ -126,7 +126,7 @@ const productsController = {
     res.redirect("/");
   },
   //Obtener productos segun su categoria
-  getProductsByCategory: async (categoria) => {
+  getProductsByCategory: async (categoria) => { 
     try {
       const products = await Product.filter({ categoria: categoria });
       return products;
