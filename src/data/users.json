@@ -22,17 +22,6 @@
   "foto": "user-1707262739337.png"
  },
  {
-  "id": 3,
-  "nombre": "Oswaldo",
-  "apellido": "Mejia Cueto",
-  "nombreUsuario": "spardak_17",
-  "email": "oswaldo.mejiac@gmail.com",
-  "fechaNacimiento": "1995-10-25",
-  "domicilio": "NA",
-  "password": "$2a$10$n9JiAycZnuq6mFAdY3mp3.bTPbNEBohjkbjdMz5wuhMKnlW66cE9C",
-  "foto": "user-1708745584264.jpg"
- },
- {
   "id": 4,
   "nombre": "Javier",
   "apellido": "isoldo",

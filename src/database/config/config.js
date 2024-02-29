@@ -6,7 +6,7 @@ module.exports = {
     "password": process.env.DB_PASS,
     "database": process.env.DB_NAME,
     "host": process.env.DB_HOST,
-    "dialect": "mysql",
+    "dialect": "mysql2",
     "migrationStorage": "sequelize",
     "migrationStorageTableName": "migrations"
   },
@@ -15,14 +15,14 @@ module.exports = {
     "password": process.env.DB_PASS,
     "database": process.env.DB_NAME,
     "host": process.env.DB_HOST,
-    "dialect": "mysql"
+    "dialect": "mysql2"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql2"
   },
   
 }

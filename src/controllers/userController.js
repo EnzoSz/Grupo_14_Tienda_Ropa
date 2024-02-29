@@ -10,7 +10,7 @@ const usersFilePath = path.join(__dirname, "../data/users.json");
 const { validationResult } = require("express-validator");
 const { log } = require("console");
 //requerimos los modelos
-const UserDb = require('../database/models').User;
+const UserDb = require('../database/models');
 //creamos el objeto controller
 const userController = {
 
@@ -23,21 +23,7 @@ const userController = {
   },
 
   create: (req, res) => {
-
-      return UserDb.create({
-        id: 1,
-        first_name: "CACHITO1",
-        last_name: "CHARLIE",
-        phone: 5543436,
-        email: "oswaldo.mejiac@gmail.com",
-        birth_date: "12/12/12",
-        address: "Na",
-        password: "1",
-        image_profile: "1",
-        rol_id: 1,
-      })
-        .then(user => res.status(201).send(user))
-        .catch(error => res.status(400).send(error))
+    
   },
 
   login: (req, res) => {
