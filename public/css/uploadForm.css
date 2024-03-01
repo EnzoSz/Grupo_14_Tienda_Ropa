@@ -53,7 +53,7 @@
   display: flex;
 }
 
-#categoria{
+#category{
   border: 0.1rem solid #ccc;
   border-radius: 0.4rem;
   padding: 0.75rem;
@@ -79,11 +79,18 @@ textarea {
   display: block;
 }
 
-#cantidad,
+/* #cantidad,
 #nombre,
 #color,
 #categoria,
 #precio,
+#size, */
+
+#amount,
+#name,
+#color,
+#category,
+#price,
 #size,
 .radio-container {
   margin-top: 1rem;
