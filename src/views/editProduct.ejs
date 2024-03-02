@@ -4,25 +4,14 @@
   <body>
     <%- include('./partials/header.ejs') %>
     <main>
-      <form
-        class="form-login"
-        action="/products/edit/<%= product.id %>?_method=PUT"
-        method="POST"
-        enctype="multipart/form-data"
-      >
+      <form class="form-login" action="/products/edit/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="input-group">
           <label for="nombre">Nombre</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            value="<%= product.name %>"
-          />
+          <input type="text" id="name"name="name" value="<%= product.name %>" required/>
         </div>
         <div class="input-group">
           <label for="description">Descripcion</label>
-          <textarea name="descripction" id="description" rows="5"><%= product.description %></textarea>
+          <textarea name="description" id="description" rows="5"><%= product.description %></textarea>
         </div>
         <div class="input-group">
           <label for="category">Categoria</label>
@@ -31,22 +20,19 @@
             <% allCategories.forEach(categories => { %>
               <option value="<%= categories.id %>"><%= categories.name %></option>
             <% }) %>
+          </select>
         </div>
         <div class="input-group">
           <label for="price">Precio</label>
           <input type="number" id="price" name="price" required  value="<%= product.price %>"/>
         </div>
+        
+        
         <% for( const propiedad in product.size) { %>
 
         <div class="input-group">
           <label for="cantidad_<%= propiedad %>">Cantidad talle <%= propiedad %> :</label>
-          <input
-            type="number"
-            id="amount_<%= propiedad %>"
-            name="amount"
-            required
-            value="<%= product.size[propiedad] %>"
-          />
+          <input type="number" id="amount_<%= propiedad %>" name="amount" required value="<%= product.size[propiedad] %>"/>
         </div>
         <% } %>
         <div class="input-container">
@@ -66,10 +52,19 @@
               <option value="Rojo">Rojo</option>
             </select> -->
           </div> 
+          <div class="input-group">
+            <label for="size">Size</label>
+            <select name="size_id" id="size">
+              <option value="" disabled selected> Selecciona Talle</option>
+                <% allSizes.forEach(size => { %>
+                  <option value="<%= size.id %>"><%= size.name %></option>
+                <% }) %>
+            </select>
+          </div>
         </div>
         <div class="input-group">
           <label for="">Seleccioná una imagen</label>
-          <input type="file" name="imagenProducto" accept=".jpg" />
+          <input type="file" name="image_product" id="image_product" accept=".jpg" />
         </div>
         <div>
           <button type="submit" class="cargar">Guardar</button>

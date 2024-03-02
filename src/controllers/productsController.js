@@ -98,11 +98,13 @@ const productsController = {
         const allColors = await db.Color.findAll()
         const allSizes = await db.Size.findAll()
         const allCategories = await db.Category.findAll()
+        const allImages = await db.Image.findAll()
         res.render("./editProduct", {
           product,
           allColors, 
           allSizes, 
-          allCategories
+          allCategories,
+          allImages
         });
         
       } catch (error) {
@@ -113,22 +115,27 @@ const productsController = {
     processEdit: async(req, res) => {
       try {
         const product = await db.Product.findByPk(req.params.id);
-        await db.Product.update({
+        if(!product){
+          return res.status(404).send("Producto no encontrado");
+        }
+        const updateProducto = {
           name: req.body.name,
           price: req.body.price,
           description: req.body.description,
           amount: req.body.amount,
-          category_id: req.body.category_id ? req.body.category_id : product.category_id,
-          color: req.body.color_id ? req.body.color_id : product.color_id,
-          size: req.body.size_id,
+          category_id: req.body.category_id || product.category_id,
+          color: req.body.color_id || product.color_id,
+          size: req.body.size_id || product.size_id,
           image: req.file ? req.file.filename : product.image
-        },
-        {
+        };
+        
+        await db.Product.update(updateProducto,{
           where:{
-            id: product
+            id: req.params.id,
           }
-        })
-        res.redirect('./products/' + product.id)
+        });  
+        
+        res.redirect('/products/detail/' + req.params.id);
       } catch (error) {
         res.status(500).send(error.message);
       }
