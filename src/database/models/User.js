@@ -1,49 +1,49 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-module.exports = (sequelize, DataType) => {
+module.exports = (sequelize, DataTypes) => {
   let alias = "User";
   let cols = {
     id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
     last_name: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     first_name: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     phone: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     email: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true
     },
     birth_date: {
-      type: DataType.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     address: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     password: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     image_profile: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     rol_id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   };
