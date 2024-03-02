@@ -4,68 +4,71 @@
   <body>
     <%- include('./partials/header.ejs') %>
     <main>
-      <form
-        class="form-login"
-        action="/products/edit/<%= product.id %>?_method=PUT"
-        method="POST"
-        enctype="multipart/form-data"
-      >
+      <form class="form-login" action="/products/edit/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="input-group">
           <label for="nombre">Nombre</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            required
-            value="<%= product.nombre %>"
-          />
+          <input type="text" id="name"name="name" value="<%= product.name %>" required/>
         </div>
         <div class="input-group">
-          <label for="descripcion">Descripcion</label>
-          <textarea name="descripcion" id="descripcion" rows="5"><%= product.descripcion %></textarea>
+          <label for="description">Descripcion</label>
+          <textarea name="description" id="description" rows="5"><%= product.description %></textarea>
         </div>
         <div class="input-group">
-          <label for="categoria">Categoria</label>
-          <input
-            type="text"
-            id="categoria"
-            name="categoria"
-            required
-            value="<%= product.categoria %>"
-          />
+          <label for="category">Categoria</label>
+          <select name="category_id" id="category">
+            <option value="" disabled selected> Selecciona Categoria</option>
+            <% allCategories.forEach(categories => { %>
+              <option value="<%= categories.id %>"><%= categories.name %></option>
+            <% }) %>
+          </select>
         </div>
         <div class="input-group">
-          <label for="precio">Precio</label>
-          <input type="number" id="precio" name="precio" required  value="<%= product.precio %>"/>
+          <label for="price">Precio</label>
+          <input type="number" id="price" name="price" required  value="<%= product.price %>"/>
         </div>
-        <% for( const propiedad in product.talles) { %>
+        
+        
+        <% for( const propiedad in product.size) { %>
 
         <div class="input-group">
           <label for="cantidad_<%= propiedad %>">Cantidad talle <%= propiedad %> :</label>
-          <input
-            type="number"
-            id="cantidad_<%= propiedad %>"
-            name="cantidades"
-            required
-            value="<%= product.talles[propiedad] %>"
-          />
+          <input type="number" id="amount_<%= propiedad %>" name="amount" required value="<%= product.size[propiedad] %>"/>
         </div>
         <% } %>
         <div class="input-container">
           <div class="input-group">
             <label for="color">Color</label>
+            <select name="color_id" id="color">
+              <option value="" disabled selected> Selecciona color</option
+                <% allColors.forEach(color => { %>
+                  <option value="<%= color.id %>"><%= color.name %></option>
+                <% }) %>
+            </select>
+            <!-- <label for="color">Color</label>
             <select name="color" id="color">
               <option value="Negro">Negro</option>
               <option value="Blanco">Blanco</option>
               <option value="Azul">Azul</option>
               <option value="Rojo">Rojo</option>
+            </select> -->
+          </div> 
+          <div class="input-group">
+            <label for="size">Size</label>
+            <select name="size_id" id="size">
+              <option value="" disabled selected> Selecciona Talle</option>
+                <% allSizes.forEach(size => { %>
+                  <option value="<%= size.id %>"><%= size.name %></option>
+                <% }) %>
             </select>
           </div>
         </div>
         <div class="input-group">
-          <input type="file" name="imagenProducto" />
+          <label for="">Seleccioná una imagen</label>
+          <input type="file" name="image_product" id="image_product" accept=".jpg" />
         </div>
-        <button type="submit" class="cargar">Guardar</button>
+        <div>
+          <button type="submit" class="cargar">Guardar</button>
+        </div>
       </form>
     </main>
     <%- include('./partials/footer.ejs') %>

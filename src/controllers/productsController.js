@@ -34,7 +34,9 @@ const productsController = {
             include:[{association: "brand"},
             {association: "category"},
             {association: "colors"},
-            {association: "sizes"}]
+            {association: "sizes"},
+            {association: "images"}
+          ]
           })
           /* res.send(product); */
           res.render("./productDetail",{product: product});
@@ -56,8 +58,8 @@ const productsController = {
     },  
     /* Creamos el producto nuevo asociando todos los atributos a la BD */
     processCreate: async(req, res) => {
-      try {
-        let errors = validationResult(req);
+    
+        /* let errors = validationResult(req);
         if(!errors.isEmpty()){
           const allColors = await db.Color.findAll()
           const allSizes = await db.Size.findAll()
@@ -69,25 +71,75 @@ const productsController = {
                 allSizes, 
                 allCategories   
             })
-        };
+        }; */
+        try {
 
-        const product = await db.Product.create({
-          nombre: req.body.nombre,
-          precio: req.body.precio,
-          descripcion: req.body.descripcion,
-          cantidad: req.body.cantidad,
-          categoria: req.body.category_id,
+         const newProduct = await db.Product.create({
+          name: req.body.name,
+          price: req.body.price,
+          description: req.body.description,
+          amount: req.body.amount,
+          category_id: req.body.category_id,
           color: req.body.color_id,
-          talle: req.body.size_id,
-          imagen: req.file.filename,
+          size: req.body.size_id,
+          image: req.file.filename,
 
         })
 
-        res.redirect("./productDetail/${product.id}");
+        res.redirect("./detail/" + newProduct.id);
 
       } catch (error) {
         res.status(500).send(error.message);
       }
+    },
+    editProduct: async(req, res) => {
+      try {
+        const product = await db.Product.findByPk(req.params.id);
+        const allColors = await db.Color.findAll()
+        const allSizes = await db.Size.findAll()
+        const allCategories = await db.Category.findAll()
+        const allImages = await db.Image.findAll()
+        res.render("./editProduct", {
+          product,
+          allColors, 
+          allSizes, 
+          allCategories,
+          allImages
+        });
+        
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
+        
+    },
+    processEdit: async(req, res) => {
+      try {
+        const product = await db.Product.findByPk(req.params.id);
+        if(!product){
+          return res.status(404).send("Producto no encontrado");
+        }
+        const updateProducto = {
+          name: req.body.name,
+          price: req.body.price,
+          description: req.body.description,
+          amount: req.body.amount,
+          category_id: req.body.category_id || product.category_id,
+          color: req.body.color_id || product.color_id,
+          size: req.body.size_id || product.size_id,
+          image: req.file ? req.file.filename : product.image
+        };
+        
+        await db.Product.update(updateProducto,{
+          where:{
+            id: req.params.id,
+          }
+        });  
+        
+        res.redirect('/products/detail/' + req.params.id);
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
+
     },
     /* Traemos la vista delete con PK para confirmar el softdelete del producto */
     delete: async (req, res) => {
@@ -155,15 +207,15 @@ const productsController = {
     }
   },
   //metodo get, mostramos formulario de edicion de un producto */
-  editProduct: (req, res) => {
+  /* editProduct: (req, res) => {
     let products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     const productToEdit = products.find((product) => {
       return product.id == req.params.id;
     });
     res.render("editProduct", { product: productToEdit });
-  },
+  }, */
   //metodo PUT, para actualizar la info del producto
-  processEdit: (req, res) => {
+  /* processEdit: (req, res) => {
     //leemos el Json
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     //buscamos el producto que tenemos que editar
@@ -197,7 +249,7 @@ const productsController = {
     fs.writeFileSync(productsFilePath, JSON.stringify(products, null, " "));
 
     res.redirect("/products/detail/" + id);
-  },
+  }, */
   /* detroy: (req, res) => {
     //leemos el json
     let products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));

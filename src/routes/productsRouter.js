@@ -23,11 +23,11 @@ router.get("/detail/:id", productsController.detail);
 
 //Cargar un producto
 router.get("/create", productsController.create);
-router.post("/create", upload.single('imagenProducto'), productsController.processCreate);
+router.post("/create", upload.single('image_product'), productsController.processCreate);
 
 //Editamos un producto
 router.get("/edit/:id", productsController.editProduct);
-router.put("/edit/:id", upload.single('imagenProducto'), productsController.processEdit);
+router.put("/edit/:id", upload.single('image_product'), productsController.processEdit);
 
 //Eliminamos un producto
 router.get("/delete/:id", productsController.delete);
