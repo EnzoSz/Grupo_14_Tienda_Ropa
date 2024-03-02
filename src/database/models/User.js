@@ -49,7 +49,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   let config = {
     tableName: "users",
-    timestamps: false
+    timestamps: true,
+    paranoid: true
   }
   const User = sequelize.define(alias, cols, config);
   User.associate = (models) => {

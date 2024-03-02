@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: "updated_at",
     deletedAt: false,
     timestamps: true,
+    paranoid: true
   }
   const Category = sequelize.define(alias, cols, config);
   Category.associate = (models) => {
