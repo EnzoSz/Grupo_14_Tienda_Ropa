@@ -16,19 +16,25 @@
           <div class="container-input">
             <label for="name">Nombre:</label>
                 <div class="color-information-user">
-                    <%=  idUserToEdit.nombre  %>
+                    <%=  idUserToEdit.first_name  %>
                 </div>
           </div>
           <div class="container-input">
             <label for="name">Apellidos:</label>
                 <div class="color-information-user">
-                    <%=  idUserToEdit.apellido  %>
+                    <%=  idUserToEdit.last_name  %>
                 </div>
           </div>
           <div class="container-input">
-            <label for="name">Nombre de Usuario:</label>
+            <label for="phone">Nombre de usuario:</label>
                 <div class="color-information-user">
-                    <%=  idUserToEdit.nombreUsuario  %>
+                    <%=  idUserToEdit.nick_name  %>
+                </div>
+          </div>
+          <div class="container-input">
+            <label for="phone">Telefono:</label>
+                <div class="color-information-user">
+                    <%=  idUserToEdit.phone  %>
                 </div>
           </div>
           <div class="container-input">
@@ -37,16 +43,29 @@
                     <%=  idUserToEdit.email  %>
                 </div>
           </div>
+          <% const fechaDesdeMySQL = idUserToEdit.birth_date;
+
+          // Crear un objeto Date en base a la fecha de MySQL
+          const fecha = new Date(fechaDesdeMySQL);
+          
+          // Obtener componentes de la fecha
+          const dia = fecha.getDate();
+          const mes = fecha.getMonth() + 1; // Los meses en JavaScript son indexados desde 0
+          const año = fecha.getFullYear();
+          
+          // Formatear la fecha según tus necesidades
+          const fechaFormateada = `${dia < 10 ? '0' : ''}${dia}-${mes < 10 ? '0' : ''}${mes}-${año}`; %>
+
           <div class="container-input">
             <label for="name">Fecha de nacimiento:</label>
                 <div class="color-information-user">
-                    <%=  idUserToEdit.fechaNacimiento  %>
+                    <%=  fechaFormateada  %>
                 </div>
           </div>
           <div class="container-input">
             <label for="name">Domicilio:</label>
                 <div class="color-information-user">
-                    <%=  idUserToEdit.domicilio  %>
+                    <%=  idUserToEdit.address  %>
                 </div>
           </div>
         </fieldset>

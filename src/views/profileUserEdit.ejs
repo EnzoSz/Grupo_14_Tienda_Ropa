@@ -19,7 +19,7 @@
               type="text" 
               name="name"
               id="name"
-              value="<%= idUserToEdit.nombre %>">
+              value="<%= idUserToEdit.first_name %>">
           </div>
           <div class="container-input">
             <label for="lastName">Apellidos</label>
@@ -27,23 +27,23 @@
               type="text"
               name="lastName"
               id="lastName"
-              value="<%= idUserToEdit.apellido %>">
+              value="<%= idUserToEdit.last_name %>">
           </div>
-          <!-- <div class="container-input">
+          <div class="container-input">
             <label for="phone">Telefono</label>
               <input 
-              type="tel"
+              type="number"
               name="phone"
-              id="phone"
-              value="<% "idUserToEdit.phone" %>">
-          </div> -->
+              id="number"
+              value="<%= idUserToEdit.phone %>">
+          </div>
           <div class="container-input">
-            <label for="nickname">Nombre de usuario</label>
+            <label for="nickName">Nombre de usuario</label>
               <input 
               type="text"
               name="nickname"
               id="nickname"
-              value="<%= idUserToEdit.nombreUsuario %>">
+              value="<%= idUserToEdit.nick_name %>">
           </div>
           <div class="container-input">
             <label for="email">Email</label>
@@ -62,7 +62,7 @@
               min="1960-01-01" 
               name="birthdate"
               id="birthdate"
-              value="<%= idUserToEdit.fechaNacimiento %>">            
+              value="<%= idUserToEdit.birth_date %>">            
           </div>
           <div class="container-input">
             <label for="domicilio">Domicilio</label>
@@ -70,15 +70,15 @@
               type="text"
               name="domicilio"
               id="domicilio"
-              value="<%= idUserToEdit.domicilio %>">            
+              value="<%= idUserToEdit.address %>">            
           </div>
           <div class="container-input">
-            <label for="imageProfile">Imagen de perfil <%=idUserToEdit.foto%></label>
+            <label for="imageProfile">Imagen de perfil <%=idUserToEdit.image_profile%></label>
               <input 
               type="file"
               name="imageProfile"
               id="imageProfile"
-              value="<%= idUserToEdit.foto %>">            
+              value="">            
           </div>
         
         

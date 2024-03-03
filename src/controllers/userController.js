@@ -10,27 +10,50 @@ const usersFilePath = path.join(__dirname, "../data/users.json");
 const { validationResult } = require("express-validator");
 const { log } = require("console");
 //requerimos los modelos
-const UserDb = require('../database/models');
+const db = require('../database/models');
+const User = require("../database/models/User.js");
 //creamos el objeto controller
 const userController = {
 
-  index: (req, res) => {
-    return res.render('login')
+ /*  index: (req, res) => {
+    return res.render('')
   },
-
+ */
   createView: (req, res) => {
     res.render("register");
   },
 
-  create: (req, res) => {
-    
-  },
+  processCreate: async (req, res) => {
 
+    try {
+
+
+       const idUserToEdit = await db.User.create({
+        first_name: req.body.name,
+        last_name: req.body.lastName,
+        phone: req.body.phone,
+        nick_name: req.body.nickname,
+        email: req.body.email,
+        birth_date: req.body.birthdate,
+        address: req.body.address,
+        password: bcrypt.hashSync(req.body.password, 8),
+        image_profile: req.file.filename,
+        rol_id: 1
+     })
+
+    res.redirect("./profile/" + idUserToEdit.id);
+
+   } catch (error) {
+     res.status(400).send(error.message);
+   }
+  },
+    
   login: (req, res) => {
     res.render("login");
   },
 
   processLogin: (req, res) => {
+  
     //leemos el json
     let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
     //guardamos los datos del usuario que viene en el form en la variable user
@@ -68,88 +91,81 @@ const userController = {
     return res.redirect("/");
   },
 
-  profile: (req,res) => {
+  profile: async (req,res) => {
 
-    let singleUser = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
+    try {
+      const idUserToEdit = await db.User.findByPk(req.params.id,
+         {
+           include:[
+           {association: "rols"}
+         ]
+         })
 
-    res.render("profileUser",{singleUser})
+         res.render("profileUser",{idUserToEdit});
+       } catch (error) {
+         res.status(500).send(error.message);
+       }
   },
 
-  profileView:(req,res) => {
+  upload: async (req,res) => {
 
-    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
-    let id = req.params.id
-    const idUserToEdit = users.find((user) => {
-      return user.id == id
-    })
-
-    console.log()
-
-    res.render("profileUser",{idUserToEdit})
-  },
-
-  profileEdition:(req,res) => {
-
-    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
-    let id = req.params.id
-    const idUserToEdit = users.find((user) => {
-      return user.id == id
-    })
-
-    res.render("profileUserEdit",{idUserToEdit})
-  },
-
-  profileEdit: (req,res) => {
-    const validationErrors = validationResult(req);
-    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
-    let id = req.params.id
-    const idUserToEdit = users.find((user) => {
-      return user.id == id
-    });
-
-    if (validationErrors.errors.length > 0) {
-      res.render("profileUserEdit",{idUserToEdit}, {
-        errorsObjeto: validationErrors.mapped(),
-        oldData: req.body
-      })
-    } else {  
-        userToEdit = {
-        id: parseInt(idUserToEdit.id),
-        nombre: req.body.name,
-        apellido: req.body.lastName,
-        nombreUsuario: req.body.nickname,
-        email: req.body.email,
-        fechaNacimiento: req.body.birthdate,
-        domicilio: req.body.domicilio,
-        password: idUserToEdit.password,
-        foto: req.file != undefined ? req.file.filename : idUserToEdit.foto
-        }
+    try {
+      const idUserToEdit = await db.User.findByPk(req.params.id);
       
-        let indice = users.findIndex(user => {
-          return user.id == id
-        });
-
-        users[indice] = userToEdit;
-
-        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
-        res.redirect('/')
-      }  
+      res.render("profileUserEdit", {idUserToEdit});
       
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+
   },
 
-  destroy: (req,res) => {
-
-    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
-    let id = req.params.id
-
-    users = users.filter(user => {
-      return user.id != id
-    })
-
-    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
+  processUpload: async (req,res) => {
     
-    res.redirect('/')
-  }
+    try {
+      const user = await db.User.findByPk(req.params.id);
+      if(!user){
+        return res.status(404).send("Producto no encontrado");
+      }
+      const userUpload = {
+        first_name: req.body.name,
+        last_name: req.body.lastName,
+        phone: req.body.phone,
+        nick_name: req.body.nickname,
+        email: req.body.email,
+        birth_date: req.body.birthdate,
+        address: req.body.address,
+        image_profile: req.file ? req.file.filename : User.image_profile,
+        
+      };
+      
+      await db.User.update(userUpload,{
+        where:{
+          id: req.params.id,
+        }
+      });  
+      
+      res.redirect('/user/profile/' + req.params.id);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+      
+  },
+
+  deleteUser: async (req,res) => {
+    try {
+      const user = await db.User.findByPk(req.params.id);
+      if (user) {
+        await db.User.destroy({
+          where: {id: req.params.id}
+        })
+        res.redirect('/');
+      }
+      
+    } catch (error) {
+      res.status(500).send(error.message);
+      }
+  },
 };
 //exportamos el objeto controlador
 module.exports = userController;
