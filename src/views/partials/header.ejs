@@ -9,13 +9,13 @@
 
           <ul class="bars-categories">
             <li>
-              <a href="/">HOMBRE</a>
+              <a href="/products/hombre">HOMBRE</a>
             </li>
             <li>
-              <a href="/">MUJER</a>
+              <a href="/products/mujer">MUJER</a>
             </li>
             <li>
-              <a href="/">KIDS</a>
+              <a href="/products/kids">KIDS</a>
             </li>
             <li>
               <a href="/">SALE</a>
@@ -46,7 +46,7 @@
           </button>
           <div class="dropdown-user">
             <% if (locals.isLogged) { %>
-            <a href="/user">Mi perfil</a>
+            <a href="/user/profile/<%= locals.userLogged.id %>">Mi perfil</a>
             <a href="/user/logout">Cerrar Sesión</a>
 
             <% } else { %>

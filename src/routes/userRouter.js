@@ -28,22 +28,34 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 //Definimos las rutas de users
-
-router.get("/", authMiddleware , userController.index);
+/* 
+router.get("/", userController.index); */
 
 //rutas de registro
-router.get("/register",guestMiddleware, userController.register);
+router.get("/register",guestMiddleware, userController.createView);
 router.post(
   "/register",
   upload.single("imageProfile"),
   validationsRegisterMiddleware,
-  userController.processRegister
+  userController.processCreate
 );
 //rutas de login
 router.get("/login",guestMiddleware, userController.login);
-router.post("/login",validationsLoginMiddleware , userController.processLogin);
+router.post("/login",/* validationsLoginMiddleware */  userController.processLogin);
 //rutas de logout
 router.get("/logout", userController.logout);
-
+//rutas de profile
+router.get("/profile/:id", /* authMiddleware, */ userController.profile);
+//rutas de edit 
+router.get("/profile/edit/:id", /* authMiddleware, */userController.upload);
+router.put(
+  "/profile/edit/:id",
+  upload.single("imageProfile"),
+  userController.processUpload
+);
+//rutas de delete
+router.delete("/delete/:id",
+  userController.deleteUser
+);
 //exportamos la ruta
 module.exports = router;

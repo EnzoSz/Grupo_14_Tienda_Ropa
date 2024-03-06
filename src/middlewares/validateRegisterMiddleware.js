@@ -2,11 +2,17 @@ const path = require("path");
 const {body} = require("express-validator");
 
 module.exports = [
-    body("name").notEmpty().withMessage("El nombre es obligatorio"),
-  body("lastname").notEmpty().withMessage("El apellido es obligatorio"),
+  body("name").notEmpty()
+    .withMessage("El nombre es obligatorio"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("El apellido es obligatorio"),
   body("nickname")
     .notEmpty()
     .withMessage("El nombre de usuario es obligatorio"),
+  body('phone')
+    .notEmpty()
+    .withMessage('El telefono es obligatorio'),
   body("email")
     .notEmpty()
     .withMessage("El email es obligatorio")
@@ -19,7 +25,9 @@ module.exports = [
     .bail()
     .isISO8601()
     .withMessage("La fecha de nacimiento debe ser una fecha válida"),
-  body("domicilio").notEmpty().withMessage("El domicilio es obligatorio"),
+  body("address")
+    .notEmpty()
+    .withMessage("El domicilio es obligatorio"),
   body("password")
     .notEmpty()
     .withMessage("La contraseña es obligatoria")

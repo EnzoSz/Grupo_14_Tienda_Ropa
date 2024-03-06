@@ -14,20 +14,6 @@
   }
  },
  {
-  "id": 3,
-  "nombre": "Perfect Tee Stripe",
-  "imagen": "camisa-azul-mujer.jpg",
-  "precio": 1000,
-  "categoria": "mujer",
-  "descripcion": "camisa azul mujer",
-  "talles": {
-    "S": 2,
-    "M": 4,
-    "L": 3,
-    "XL": 2
-  }
- },
- {
   "id": 4,
   "nombre": "Hi Rise Skinny",
   "imagen": "pantalon-jean-mujer.jpg",
@@ -63,10 +49,10 @@
   "categoria": "hombre",
   "descripcion": "Saco negro de hombre",
   "talles": {
-    "S": 5,
-    "M": 4,
-    "L": 3,
-    "XL": 2
+   "S": 5,
+   "M": 4,
+   "L": 3,
+   "XL": 2
   }
  },
  {
@@ -77,10 +63,10 @@
   "categoria": "hombre",
   "descripcion": "remera hombre",
   "talles": {
-    "S": 5,
-    "M": 8,
-    "L": 3,
-    "XL": 4
+   "S": 5,
+   "M": 8,
+   "L": 3,
+   "XL": 4
   }
  },
  {
@@ -91,10 +77,10 @@
   "categoria": "mujer",
   "descripcion": "campera negra mujer",
   "talles": {
-    "S": 5,
-    "M": 4,
-    "L": 3,
-    "XL": 2
+   "S": 5,
+   "M": 4,
+   "L": 3,
+   "XL": 2
   }
  },
  {
@@ -116,7 +102,7 @@
     "nombre": "Standard Hommie Crew",
     "imagen": "camisa-hombre-16.jpg",
     "precio": 1823,
-    "categoria": "Hombre",
+    "categoria": "hombre",
     "descripcion": "Camisa para Hombre",
     "talles": {
       "S": 3,
@@ -167,4 +153,5 @@
      "44": 2
     }
  }
+ 
 ]

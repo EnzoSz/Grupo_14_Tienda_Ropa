@@ -15,7 +15,6 @@
   flex-direction: column;
   overflow-y: auto;
 }
-
 /* media query */
 @media (min-width: 480px) {
   .products-items {
