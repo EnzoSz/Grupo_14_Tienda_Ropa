@@ -1,24 +1,205 @@
 const fs = require("fs");
 const path = require("path");
 const productsFilePath = path.join(__dirname, "../data/products.json");
+const {validationResult} = require("express-validator");
+const db = require("../database/models");
+const Product = require("../database/models/Product");
+
+
 const productsController = {
+      /* Traemos todos los productos de la base de datos y los mostramos en la vista allProducts */
+    index: async(req, res) =>{
+      try {
+          /* traemos los productos y le asociamos los atributos categoria, colores y talles para que se muestren en las tarjetas de productos */
+        const product = await db.Product.findAll({
+            include:[{association: "brand"},
+            {association: "category"},
+            {association: "colors"},
+            {association: "sizes"}]
+            
+        });
+        /* res.send(product); */
+        /* monstramos los productos con los atributos ya asociados */
+        res.render("./allProducts", {products: product});
+
+      } catch (error) {
+          res.status(500).send(error.message);
+      }
+    },
+    /* monstramos la vista del detalle del producto de la DB trayendolo con la PK y le asociamos los atributos */
+    detail: async(req, res) => {
+      try {
+       const product = await db.Product.findByPk(req.params.id,
+          {
+            include:[{association: "brand"},
+            {association: "category"},
+            {association: "colors"},
+            {association: "sizes"},
+            {association: "images"}
+          ]
+          })
+          /* res.send(product); */
+          res.render("./productDetail",{product: product});
+        } catch (error) {
+          res.status(500).send(error.message);
+        }
+        },
+        /* traemos la vista para crear un nuevo producto y traemos los atributos del form de la DB para el formulario */
+    create: async(req, res) => {
+      try {
+        const allColors = await db.Color.findAll()
+        const allSizes = await db.Size.findAll()
+        const allCategories = await db.Category.findAll()
+        res.render("./uploadProduct.ejs", {allColors, allSizes, allCategories});
+          
+      } catch (error) {
+          res.status(500).send(error.message);
+        }
+    },  
+    /* Creamos el producto nuevo asociando todos los atributos a la BD */
+    processCreate: async(req, res) => {
+    
+        /* let errors = validationResult(req);
+        if(!errors.isEmpty()){
+          const allColors = await db.Color.findAll()
+          const allSizes = await db.Size.findAll()
+          const allCategories = await db.Category.findAll()
+            return res.render("./uploadProduct.ejs", {
+                oldBody: req.body,
+                error: error.mapped(),
+                allColors, 
+                allSizes, 
+                allCategories   
+            })
+        }; */
+        try {
+
+         const newProduct = await db.Product.create({
+          name: req.body.name,
+          price: req.body.price,
+          description: req.body.description,
+          amount: req.body.amount,
+          category_id: req.body.category_id,
+          color: req.body.color_id,
+          size: req.body.size_id,
+          image: req.file.filename,
+
+        })
+
+        res.redirect("./detail/" + newProduct.id);
+
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
+    },
+    editProduct: async(req, res) => {
+      try {
+        const product = await db.Product.findByPk(req.params.id);
+        const allColors = await db.Color.findAll()
+        const allSizes = await db.Size.findAll()
+        const allCategories = await db.Category.findAll()
+        const allImages = await db.Image.findAll()
+        res.render("./editProduct", {
+          product,
+          allColors, 
+          allSizes, 
+          allCategories,
+          allImages
+        });
+        
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
+        
+    },
+    processEdit: async(req, res) => {
+      try {
+        const product = await db.Product.findByPk(req.params.id);
+        if(!product){
+          return res.status(404).send("Producto no encontrado");
+        }
+        const updateProducto = {
+          name: req.body.name,
+          price: req.body.price,
+          description: req.body.description,
+          amount: req.body.amount,
+          category_id: req.body.category_id || product.category_id,
+          color: req.body.color_id || product.color_id,
+          size: req.body.size_id || product.size_id,
+          image: req.file ? req.file.filename : product.image
+        };
+        
+        await db.Product.update(updateProducto,{
+          where:{
+            id: req.params.id,
+          }
+        });  
+        
+        res.redirect('/products/detail/' + req.params.id);
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
+
+    },
+    /* Traemos la vista delete con PK para confirmar el softdelete del producto */
+    delete: async (req, res) => {
+      try {
+        const product = await db.Product.findByPk(req.params.id)
+        res.render("./delete", {product: product})
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
+    },
+    destroy: async (req, res) =>{
+      try {
+        await db.Product.destroy({
+          where: {id: req.params.id}
+        })
+        res.redirect('/');
+      } catch (error) {
+        res.status(500).send(error.message);
+        }
+    },
+
   //metodo get, renderizamos todos los productos
-  index: (req, res) => {
+  /* index: (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     res.render("allProducts", { products: products });
+
   },
+  //metodo get, mostramos los productos de hombres, mujer y niño.
+  hombre: (req, res) => {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    let product = products.filter((product) => product.categoria == "hombre");
+    res.render("productsHombre", { products: product});
+  },
+
+  'mujer': (req, res) => {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    let product = products.filter((product) => product.categoria == "mujer");
+    res.render("productsMujer", { products: product });
+  },
+
+  'kids': (req, res) => {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    let product = products.filter((product) => product.categoria == "kids");
+    res.render("productsKids", { products: product });
+  },
+
+  }, */
+
   //metodo get, mostramos el detalle del producto
-  detail: (req, res) => {
+  /* detail: (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     let product = products.find((product) => product.id == req.params.id);
     res.render("productDetail", { product: product });
-  },
+  }, */
   //metodo get, mostramos formulario para crear un pructo
-  create: (req, res) => {
+  /* create: (req, res) => {
     res.render("uploadProduct");
-  },
+  }, */
   //metodo post, creamos un nuevo producto y lo guardamos
-  processCreate: (req, res) => {
+  /* processCreate: (req, res) => {
     //leemos el json
     let products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     //verificamos que la imagen del producto exista
@@ -47,16 +228,16 @@ const productsController = {
       res.redirect("/products/create");
     }
   },
-  //metodo get, mostramos formulario de edicion de un producto
-  editProduct: (req, res) => {
+  //metodo get, mostramos formulario de edicion de un producto */
+  /* editProduct: (req, res) => {
     let products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     const productToEdit = products.find((product) => {
       return product.id == req.params.id;
     });
     res.render("editProduct", { product: productToEdit });
-  },
+  }, */
   //metodo PUT, para actualizar la info del producto
-  processEdit: (req, res) => {
+  /* processEdit: (req, res) => {
     //leemos el Json
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     //buscamos el producto que tenemos que editar
@@ -90,8 +271,8 @@ const productsController = {
     fs.writeFileSync(productsFilePath, JSON.stringify(products, null, " "));
 
     res.redirect("/products/detail/" + id);
-  },
-  detroy: (req, res) => {
+  }, */
+  /* detroy: (req, res) => {
     //leemos el json
     let products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
@@ -105,5 +286,16 @@ const productsController = {
     //redireccionamos al home
     res.redirect("/");
   },
+  //Obtener productos segun su categoria
+  getProductsByCategory: async (categoria) => { 
+    try {
+      const products = await Product.filter({ categoria: categoria });
+      return products;
+    } catch (error) {
+      console.error('Eror al obtener productos por categoria: ', error);
+      throw new error('Error al obtener productos por categoria.');
+    }
+  }
+  }, */
 };
 module.exports = productsController;

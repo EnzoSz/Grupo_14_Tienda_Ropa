@@ -33,7 +33,6 @@
     "sequelize": "^6.37.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
-  },
-  "keywords": []
+    "nodemon": "^3.0.3"
+  }
 }

@@ -77,10 +77,18 @@
     padding: 1.5rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 .container-product-detail .container-info .btn-primary:hover {
     background-color: crimson;
 }
+.container-product-detail .container-btn-edit-product .btn-edit:hover {
+    background-color: crimson;
+}
+.container-product-detail .container-btn-edit-product .btn-delete:hover {
+    background-color: crimson;
+}
+
 .size {
     padding: 1rem;
 }
@@ -121,6 +129,24 @@
     border-radius: 0.5rem;
     transition: all 0.3s ease-in-out;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+}
+.input-group select {
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+    padding: 0.75rem;
 }
 
 @media (min-width: 430px) {

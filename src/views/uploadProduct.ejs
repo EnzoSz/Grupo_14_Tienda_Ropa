@@ -7,65 +7,52 @@
     <main>
       <form class="form-login" action="/products/create" method="POST" enctype="multipart/form-data">
         <div class="input-group">
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required />
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" required />
         </div>
         <div class="input-group">
-          <label for="descripcion">Descripcion</label>
-          <textarea name="descripcion" id="descripcion" rows="5"></textarea>
+          <label for="description">Descripcion</label>
+          <textarea name="description" id="description" rows="5"></textarea>
         </div>
         <div class="input-group">
-          <label for="categoria">Categoria</label>
-          <input type="text" id="categoria" name="categoria" required />
-        </div>
-        <div class="input-group">
-          <label for="precio">Precio</label>
-          <input type="number" id="precio" name="precio" required />
+          <label for="price">Precio</label>
+          <input type="number" id="price" name="price" required />
       </div>
         <div class="input-group">
-          <label for="descripcion">Cantidad</label>
-          <input type="number" id="cantidad" name="cantidad" required />
+          <label for="amount">Cantidad</label>
+          <input type="number" id="amount" name="amount" required />
+        </div>
+        <div class="input-group">
+          <label for="category">Categoria</label>
+          <select name="category_id" id="category" required>
+            <option value="" disabled selected> Selecciona Categoria</option>
+              <% allCategories.forEach(categories => { %>
+                <option value="<%= categories.id %>"><%= categories.name %></option>
+              <% }) %>
+          </select>
         </div>
         <div class="input-container">
           <div class="input-group">
             <label for="color">Color</label>
-            <select name="color" id="color">
-              <option value="Negro">Negro</option>
-              <option value="Blanco">Blanco</option>
-              <option value="Azul">Azul</option>
-              <option value="Rojo">Rojo</option>
+            <select name="color_id" id="color" required>
+              <option value="" disabled selected> Selecciona color</option
+                <% allColors.forEach(color => { %>
+                  <option value="<%= color.id %>"><%= color.name %></option>
+                <% }) %>
             </select>
           </div>
           <div class="input-group">
             <label for="size">Size</label>
-            <div class="radio-container">
-              <div>
-                <label for="small">S</label>
-                <input
-                  type="radio"
-                  name="radio"
-                  id="small"
-                  value="small"
-                  checked
-                />
-              </div>
-              <div>
-                <label for="medium">M</label>
-                <input type="radio" name="radio" id="medium" value="medium" />
-              </div>
-              <div>
-                <label for="large">L</label>
-                <input type="radio" name="radio" id="large" value="large" />
-              </div>
-              <div>
-                <label for="xlarge">XL</label>
-                <input type="radio" name="radio" id="xlarge" value="xlarge" />
-              </div>
-            </div>
+            <select name="size_id" id="size" required>
+              <option value="" disabled selected> Selecciona Talle</option>
+                <% allSizes.forEach(size => { %>
+                  <option value="<%= size.id %>"><%= size.name %></option>
+                <% }) %>
+            </select>
           </div>
         </div>
         <div class="input-group">
-          <input type="file" name="imagenProducto" />
+          <input type="file" name="image_product" id="image_product" accept=".jpg"/>
         </div>
         <button type="submit" class="cargar">Cargar</button>
       </form>

@@ -58,6 +58,7 @@ module.exports = (sequelize, DataTypes) => {
     deletedAt: "deletedAt",
     timestamps: false,
     paranoid: true,
+
   }
   const User = sequelize.define(alias, cols, config);
   User.associate = (models) => {

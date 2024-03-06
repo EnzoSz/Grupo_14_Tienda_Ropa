@@ -20,15 +20,20 @@ const upload = multer({storage})
 router.get("/", productsController.index);
 //Mostramos un producto
 router.get("/detail/:id", productsController.detail);
+//Creando ruta de categoria
+router.get('/hombre', productsController.hombre);
+router.get('/mujer', productsController.mujer);
+router.get('/kids', productsController.kids);
 
 //Cargar un producto
 router.get("/create", productsController.create);
-router.post("/create", upload.single('imagenProducto'), productsController.processCreate);
+router.post("/create", upload.single('image_product'), productsController.processCreate);
 
 //Editamos un producto
 router.get("/edit/:id", productsController.editProduct);
-router.put("/edit/:id", upload.single('imagenProducto'), productsController.processEdit);
+router.put("/edit/:id", upload.single('image_product'), productsController.processEdit);
 
 //Eliminamos un producto
-router.delete("/delete/:id", productsController.detroy);
+router.get("/delete/:id", productsController.delete);
+router.delete("/delete/:id", productsController.destroy);
 module.exports = router;

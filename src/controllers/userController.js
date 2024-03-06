@@ -8,7 +8,6 @@ const path = require("path");
 const usersFilePath = path.join(__dirname, "../data/users.json");
 //requerimos express-validator
 const { validationResult } = require("express-validator");
-const { log } = require("console");
 //requerimos los modelos
 const db = require('../database/models');
 const User = require("../database/models/User.js");

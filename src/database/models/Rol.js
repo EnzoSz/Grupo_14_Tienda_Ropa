@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       createdAt: "createdAt",
       updatedAt: "updatedAt",
       deletedAt: "deletedAt",
+
     }
   let Rol = sequelize.define(alias, cols, config);
   Rol.associate = (models) => {
