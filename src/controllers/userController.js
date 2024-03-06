@@ -8,67 +8,51 @@ const path = require("path");
 const usersFilePath = path.join(__dirname, "../data/users.json");
 //requerimos express-validator
 const { validationResult } = require("express-validator");
+//requerimos los modelos
+const db = require('../database/models');
+const User = require("../database/models/User.js");
 //creamos el objeto controller
 const userController = {
-  index: (req, res) => {
-    console.log(req.cookies.userEmail);
-    res.render("profileUser");
+
+ /*  index: (req, res) => {
+    return res.render('')
   },
-  register: (req, res) => {
+ */
+  createView: (req, res) => {
     res.render("register");
   },
-  processRegister: (req, res) => {
-    //creamos una varible error
-    let errors = validationResult(req);
-    //leemos el json
-    let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
-    //si no hay errores
-    if (errors.isEmpty()) {
-      //verificamos que el email no exista
-      let userInDB = users.find((user) => user.email == req.body.email);
-      if (userInDB) {
-        return res.render("register", {
-          errors: {
-            email: {
-              msg: "Este email ya esta registrado",
-            },
-          },
-          old: req.body,
-        });
-      }
-      //generamos un id
-      let User = users.slice(-1)[0];
-      let idUser;
-      if (User) {
-        idUser = User.id + 1;
-      } else {
-        idUser = 1;
-      }
-      //creamos un objeto literal y guardamos dentro de el la info que viene del form
-      const newUser = {
-        id: idUser,
-        nombre: req.body.name,
-        apellido: req.body.lastname,
-        nombreUsuario: req.body.nickname,
+
+  processCreate: async (req, res) => {
+
+    try {
+
+
+       const idUserToEdit = await db.User.create({
+        first_name: req.body.name,
+        last_name: req.body.lastName,
+        phone: req.body.phone,
+        nick_name: req.body.nickname,
         email: req.body.email,
-        fechaNacimiento: req.body.birthdate,
-        domicilio: req.body.domicilio,
-        password: bcrypt.hashSync(req.body.password, 10),
-        foto: req.file.filename,
-      };
-      //pusheamos el objeto literal al array
-      users.push(newUser);
-      //sobreescribomos el archivo JSON
-      fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
-      res.redirect("/");
-    } else {
-      res.render("register", { errors: errors.mapped(), old: req.body });
-    }
+        birth_date: req.body.birthdate,
+        address: req.body.address,
+        password: bcrypt.hashSync(req.body.password, 8),
+        image_profile: req.file.filename,
+        rol_id: 1
+     })
+
+    res.redirect("./profile/" + idUserToEdit.id);
+
+   } catch (error) {
+     res.status(400).send(error.message);
+   }
   },
+    
   login: (req, res) => {
     res.render("login");
   },
+
   processLogin: (req, res) => {
+  
     //leemos el json
     let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
     //guardamos los datos del usuario que viene en el form en la variable user
@@ -99,13 +83,87 @@ const userController = {
       res.render("login", { errors: errors.mapped(), old: req.body });
     }
   },
+
   logout: (req, res) => {
     res.clearCookie("userEmail");
     req.session.destroy();
     return res.redirect("/");
   },
-  processEdit: (req, res) => {
-    res.send(req.body);
+
+  profile: async (req,res) => {
+
+    try {
+      const idUserToEdit = await db.User.findByPk(req.params.id,
+         {
+           include:[
+           {association: "rols"}
+         ]
+         })
+
+         res.render("profileUser",{idUserToEdit});
+       } catch (error) {
+         res.status(500).send(error.message);
+       }
+  },
+
+  upload: async (req,res) => {
+
+    try {
+      const idUserToEdit = await db.User.findByPk(req.params.id);
+      
+      res.render("profileUserEdit", {idUserToEdit});
+      
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+
+  },
+
+  processUpload: async (req,res) => {
+    
+    try {
+      const user = await db.User.findByPk(req.params.id);
+      if(!user){
+        return res.status(404).send("Producto no encontrado");
+      }
+      const userUpload = {
+        first_name: req.body.name,
+        last_name: req.body.lastName,
+        phone: req.body.phone,
+        nick_name: req.body.nickname,
+        email: req.body.email,
+        birth_date: req.body.birthdate,
+        address: req.body.address,
+        image_profile: req.file ? req.file.filename : User.image_profile,
+        
+      };
+      
+      await db.User.update(userUpload,{
+        where:{
+          id: req.params.id,
+        }
+      });  
+      
+      res.redirect('/user/profile/' + req.params.id);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+      
+  },
+
+  deleteUser: async (req,res) => {
+    try {
+      const user = await db.User.findByPk(req.params.id);
+      if (user) {
+        await db.User.destroy({
+          where: {id: req.params.id}
+        })
+        res.redirect('/');
+      }
+      
+    } catch (error) {
+      res.status(500).send(error.message);
+      }
   },
 };
 //exportamos el objeto controlador

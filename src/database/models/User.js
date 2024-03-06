@@ -1,53 +1,64 @@
-module.exports = (sequelize, DataType) => {
+const { Sequelize, DataTypes } = require('sequelize');
+
+module.exports = (sequelize, DataTypes) => {
   let alias = "User";
   let cols = {
     id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    last_name: {
-      type: DataType.STRING,
+    first_name: {
+      type: DataTypes.STRING,
       allowNull: false
     },
-    first_name: {
-      type: DataType.STRING,
-      allowNull: false
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    nick_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     phone: {
-      type: DataType.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER,
+      allowNull: true  
     },
     email: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true
     },
     birth_date: {
-      type: DataType.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     address: {
-      type: DataType.STRING,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     password: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     image_profile: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     rol_id: {
-      type: DataType.INTEGER,
-      allowNull: false
-    }
+      type: DataTypes.INTEGER,
+      allowNull: true  
+    },
   };
   let config = {
     tableName: "users",
-    timestamps: false
+    createdAt: "createdAt",
+    updatedAt: "updatedAt",
+    deletedAt: "deletedAt",
+    timestamps: false,
+    paranoid: true,
+
   }
   const User = sequelize.define(alias, cols, config);
   User.associate = (models) => {

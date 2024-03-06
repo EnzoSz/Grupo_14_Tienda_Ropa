@@ -166,7 +166,29 @@ const productsController = {
   /* index: (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     res.render("allProducts", { products: products });
+
+  },
+  //metodo get, mostramos los productos de hombres, mujer y niño.
+  hombre: (req, res) => {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    let product = products.filter((product) => product.categoria == "hombre");
+    res.render("productsHombre", { products: product});
+  },
+
+  'mujer': (req, res) => {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    let product = products.filter((product) => product.categoria == "mujer");
+    res.render("productsMujer", { products: product });
+  },
+
+  'kids': (req, res) => {
+    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    let product = products.filter((product) => product.categoria == "kids");
+    res.render("productsKids", { products: product });
+  },
+
   }, */
+
   //metodo get, mostramos el detalle del producto
   /* detail: (req, res) => {
     const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
@@ -264,6 +286,17 @@ const productsController = {
 
     //redireccionamos al home
     res.redirect("/");
+  },
+  //Obtener productos segun su categoria
+  getProductsByCategory: async (categoria) => { 
+    try {
+      const products = await Product.filter({ categoria: categoria });
+      return products;
+    } catch (error) {
+      console.error('Eror al obtener productos por categoria: ', error);
+      throw new error('Error al obtener productos por categoria.');
+    }
+  }
   }, */
 };
 module.exports = productsController;
