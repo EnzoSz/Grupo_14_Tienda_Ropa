@@ -1,11 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('./partials/head') %>
+<%- include('./partials/head.ejs', { homeCss: 'home', productCardCss: 'productCard', registerCss: 'register', userProfileCss: 'userProfile'}) %>
 <body>
     <%- include('./partials/header') %>
     <main>
-        <h1>PROFILE</h1>
+        <h1 class="title-register">MI CUENTA</h1>
+
+      <form
+        class="form-register"
+        action="/user/delete/<%=idUserToEdit.id%>?_method=DELETE"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <fieldset class="personal-info">
+          <div class="container-input">
+            <label for="name">Nombre:</label>
+                <div class="color-information-user">
+                    <%=  idUserToEdit.nombre  %>
+                </div>
+          </div>
+          <div class="container-input">
+            <label for="name">Apellidos:</label>
+                <div class="color-information-user">
+                    <%=  idUserToEdit.apellido  %>
+                </div>
+          </div>
+          <div class="container-input">
+            <label for="name">Nombre de Usuario:</label>
+                <div class="color-information-user">
+                    <%=  idUserToEdit.nombreUsuario  %>
+                </div>
+          </div>
+          <div class="container-input">
+            <label for="name">Email:</label>
+                <div class="color-information-user">
+                    <%=  idUserToEdit.email  %>
+                </div>
+          </div>
+          <div class="container-input">
+            <label for="name">Fecha de nacimiento:</label>
+                <div class="color-information-user">
+                    <%=  idUserToEdit.fechaNacimiento  %>
+                </div>
+          </div>
+          <div class="container-input">
+            <label for="name">Domicilio:</label>
+                <div class="color-information-user">
+                    <%=  idUserToEdit.domicilio  %>
+                </div>
+          </div>
+        </fieldset>
+        <!-- <button onclick="" type="submit" value="edit">Editar</button> -->
+        <a class="form-edition-a" href="/user/profile/edit/<%= idUserToEdit.id %>">Editar</a>
+          <button type="submit">Eliminar Cuenta</button>
         
+      </form>
+      
     </main>
+    <%- include("./partials/footer") %>
 </body>
 </html>

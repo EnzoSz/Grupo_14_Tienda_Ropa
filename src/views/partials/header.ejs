@@ -46,7 +46,7 @@
           </button>
           <div class="dropdown-user">
             <% if (locals.isLogged) { %>
-            <a href="/user">Mi perfil</a>
+            <a href="/user/profile/<%= locals.userLogged.id %>">Mi perfil</a>
             <a href="/user/logout">Cerrar Sesión</a>
 
             <% } else { %>

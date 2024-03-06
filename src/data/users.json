@@ -20,5 +20,38 @@
   "domicilio": "Belgrano 1104",
   "password": "$2a$10$H3NthqOF2pbj8rJjgZG7deYicEsxy85w06EioDSfDn81.sKxmqD4a",
   "foto": "user-1707262739337.png"
+ },
+ {
+  "id": 3,
+  "nombre": "Oswaldo",
+  "apellido": "Mejia Cueto",
+  "nombreUsuario": "spardak_17",
+  "email": "oswaldo.mejiac@gmail.com",
+  "fechaNacimiento": "1995-10-25",
+  "domicilio": "NA",
+  "password": "$2a$10$n9JiAycZnuq6mFAdY3mp3.bTPbNEBohjkbjdMz5wuhMKnlW66cE9C",
+  "foto": "user-1708745584264.jpg"
+ },
+ {
+  "id": 4,
+  "nombre": "Javier",
+  "apellido": "isoldo",
+  "nombreUsuario": "dfgdfg",
+  "email": "asdasd@gmail.com",
+  "fechaNacimiento": "1994-01-11",
+  "domicilio": "NA",
+  "password": "$2a$10$UP0h55j3thTloKro2VRgyu3RL7xPpAklzR.KTT53tPf8BhY6hFXwq",
+  "foto": "user-1708488565981.jpg"
+ },
+ {
+  "id": 5,
+  "nombre": "Monica ",
+  "apellido": "Mendoza",
+  "nombreUsuario": "blueketa",
+  "email": "remolinadesigner@gmail.com",
+  "fechaNacimiento": "2024-02-08",
+  "domicilio": "NA",
+  "password": "$2a$10$ezVZXMyABgedtSZcwr.ICOMH7hWFwAkFCDYyMVpoDXd9o3rTpBsx6",
+  "foto": "user-1708489702146.jpg"
  }
 ]

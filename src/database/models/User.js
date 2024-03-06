@@ -1,3 +1,5 @@
+const { Sequelize, DataTypes } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   let alias = "User";
   let cols = {
@@ -25,29 +27,30 @@ module.exports = (sequelize, DataTypes) => {
       unique: true
     },
     birth_date: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     address: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     password: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     image_profile: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     rol_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   };
   let config = {
     tableName: "users",
-    timestamps: false
+    timestamps: true,
+    paranoid: true
   }
   const User = sequelize.define(alias, cols, config);
   User.associate = (models) => {

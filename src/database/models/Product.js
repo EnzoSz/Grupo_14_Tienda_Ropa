@@ -16,18 +16,25 @@ module.exports = (sequelize, DataTypes) => {
     },
     brand_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     category_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
+    price:{
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
+    /* created_at: DataTypes.TIMESTAMP,
+    updated_at: DataTypes.TIMESTAMP */
   };
   let config = {
     tableName: "products",
     createdAt: "created_at",
     updatedAt: "updated_at",
     deletedAt: "deleted_at",
+    timestamps: false,
+    paranoid: true,
   }
   const Product = sequelize.define(alias, cols, config);
   Product.associate = (models) => {

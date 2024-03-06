@@ -8,66 +8,41 @@ const path = require("path");
 const usersFilePath = path.join(__dirname, "../data/users.json");
 //requerimos express-validator
 const { validationResult } = require("express-validator");
+//requerimos los modelos
+const UserDb = require('../database/models').User;
 //creamos el objeto controller
 const userController = {
+
   index: (req, res) => {
-    console.log(req.cookies.userEmail);
-    res.render("profileUser");
+    return res.render('login')
   },
-  register: (req, res) => {
+
+  createView: (req, res) => {
     res.render("register");
   },
-  processRegister: (req, res) => {
-    //creamos una varible error
-    let errors = validationResult(req);
-    //leemos el json
-    let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
-    //si no hay errores
-    if (errors.isEmpty()) {
-      //verificamos que el email no exista
-      let userInDB = users.find((user) => user.email == req.body.email);
-      if (userInDB) {
-        return res.render("register", {
-          errors: {
-            email: {
-              msg: "Este email ya esta registrado",
-            },
-          },
-          old: req.body,
-        });
-      }
-      //generamos un id
-      let User = users.slice(-1)[0];
-      let idUser;
-      if (User) {
-        idUser = User.id + 1;
-      } else {
-        idUser = 1;
-      }
-      //creamos un objeto literal y guardamos dentro de el la info que viene del form
-      const newUser = {
-        id: idUser,
-        nombre: req.body.name,
-        apellido: req.body.lastname,
-        nombreUsuario: req.body.nickname,
-        email: req.body.email,
-        fechaNacimiento: req.body.birthdate,
-        domicilio: req.body.domicilio,
-        password: bcrypt.hashSync(req.body.password, 10),
-        foto: req.file.filename,
-      };
-      //pusheamos el objeto literal al array
-      users.push(newUser);
-      //sobreescribomos el archivo JSON
-      fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
-      res.redirect("/");
-    } else {
-      res.render("register", { errors: errors.mapped(), old: req.body });
-    }
+
+  create: (req, res) => {
+
+      return UserDb.create({
+        id: 1,
+        first_name: "CACHITO1",
+        last_name: "CHARLIE",
+        phone: 5543436,
+        email: "oswaldo.mejiac@gmail.com",
+        birth_date: "12/12/12",
+        address: "Na",
+        password: "1",
+        image_profile: "1",
+        rol_id: 1,
+      })
+        .then(user => res.status(201).send(user))
+        .catch(error => res.status(400).send(error))
   },
+
   login: (req, res) => {
     res.render("login");
   },
+
   processLogin: (req, res) => {
     //leemos el json
     let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
@@ -99,14 +74,95 @@ const userController = {
       res.render("login", { errors: errors.mapped(), old: req.body });
     }
   },
+
   logout: (req, res) => {
     res.clearCookie("userEmail");
     req.session.destroy();
     return res.redirect("/");
   },
-  processEdit: (req, res) => {
-    res.send(req.body);
+
+  profile: (req,res) => {
+
+    let singleUser = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
+
+    res.render("profileUser",{singleUser})
   },
+
+  profileView:(req,res) => {
+
+    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+    let id = req.params.id
+    const idUserToEdit = users.find((user) => {
+      return user.id == id
+    })
+
+    console.log()
+
+    res.render("profileUser",{idUserToEdit})
+  },
+
+  profileEdition:(req,res) => {
+
+    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+    let id = req.params.id
+    const idUserToEdit = users.find((user) => {
+      return user.id == id
+    })
+
+    res.render("profileUserEdit",{idUserToEdit})
+  },
+
+  profileEdit: (req,res) => {
+    const validationErrors = validationResult(req);
+    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+    let id = req.params.id
+    const idUserToEdit = users.find((user) => {
+      return user.id == id
+    });
+
+    if (validationErrors.errors.length > 0) {
+      res.render("profileUserEdit",{idUserToEdit}, {
+        errorsObjeto: validationErrors.mapped(),
+        oldData: req.body
+      })
+    } else {  
+        userToEdit = {
+        id: parseInt(idUserToEdit.id),
+        nombre: req.body.name,
+        apellido: req.body.lastName,
+        nombreUsuario: req.body.nickname,
+        email: req.body.email,
+        fechaNacimiento: req.body.birthdate,
+        domicilio: req.body.domicilio,
+        password: idUserToEdit.password,
+        foto: req.file != undefined ? req.file.filename : idUserToEdit.foto
+        }
+      
+        let indice = users.findIndex(user => {
+          return user.id == id
+        });
+
+        users[indice] = userToEdit;
+
+        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
+        res.redirect('/')
+      }  
+      
+  },
+
+  destroy: (req,res) => {
+
+    let users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+    let id = req.params.id
+
+    users = users.filter(user => {
+      return user.id != id
+    })
+
+    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, " "));
+    
+    res.redirect('/')
+  }
 };
 //exportamos el objeto controlador
 module.exports = userController;
