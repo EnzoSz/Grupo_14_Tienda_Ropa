@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: "updated_at",
     deletedAt: "deleted_at",
     timestamps: true,
-    paranoid: true
+  
   }
   const Image = sequelize.define(alias, cols, config);
   Image.associate = (models) => {

@@ -11,7 +11,7 @@ const productsController = {
     index: async(req, res) =>{
       try {
           /* traemos los productos y le asociamos los atributos categoria, colores y talles para que se muestren en las tarjetas de productos */
-        const product = await Product.findAll({
+        const product = await db.Product.findAll({
             include:[{association: "brand"},
             {association: "category"},
             {association: "colors"},

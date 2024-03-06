@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: "updated_at",
     deletedAt: "deleted_at",
     timestamps: false,
-    paranoid: true
+
   }
   const Size = sequelize.define(alias, cols, config);
   Size.associate = (models) => {
