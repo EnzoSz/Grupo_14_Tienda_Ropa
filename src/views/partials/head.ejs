@@ -2,17 +2,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homies</title>
+  <link rel="icon" type="image/png" href="/assets/images/rsz_logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="/css/login.css" />
-  <link rel="stylesheet" href="/css/register.css" />
+  <% if (typeof allProductsCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= allProductsCss %>.css" />
+  <% } %> 
+  <% if (typeof uploadFormCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= uploadFormCss %>.css" />
+  <% } %> 
+  <% if (typeof carritoCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= carritoCss %>.css" />
+  <% } %> 
+  <% if (typeof productDetailCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= productDetailCss %>.css" />
+  <% } %> 
+  <% if (typeof loginCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= loginCss %>.css" />
+  <% } %> 
+  <% if (typeof registerCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= registerCss %>.css" />
+  <% } %> 
+  <% if (typeof productCardCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= productCardCss %>.css" />
+  <% } %> 
+  <% if (typeof uploadFormCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= uploadFormCss %>.css" />
+  <% } %> 
+  <% if (typeof homeCss !=='undefined' ) { %>
+  <link rel="stylesheet" href="/css/<%= homeCss %>.css" />
+  <% } %>
+  <% if (typeof userProfileCss !=='undefined' ) { %>
+    <link rel="stylesheet" href="/css/<%= userProfileCss %>.css" />
+    <% } %>
+  <% if (typeof deleteCss !=='undefined' ) { %>
+    <link rel="stylesheet" href="/css/<%= deleteCss %>.css" />
+  <% } %>  
   <link rel="stylesheet" href="/css/footer.css" />
-  <link rel="stylesheet" href="/css/productCard.css">
-  <link rel="stylesheet" href="/css/home.css" />
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/styles.css" />
   <script

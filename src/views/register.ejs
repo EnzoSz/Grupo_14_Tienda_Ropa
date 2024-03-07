@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/head.ejs') %>
+  <%- include('./partials/head.ejs', {registerCss: 'register'}) %>
   <body>
     <%- include('./partials/header.ejs') %>
     <main>
       <h1 class="title-register">REGISTRARME</h1>
-      <form class="form-register" action="/register" method="POST">
+
+      <form
+        class="form-register"
+        action="/user/register"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         <fieldset class="personal-info">
           <div class="container-input">
             <label for="name">Nombre</label>
@@ -14,18 +20,26 @@
               name="name"
               id="name"
               placeholder="Ingrese su Nombre"
-              required
+              value="<%- locals.old && locals.old.name ? locals.old.name : '' %>"
+              class="<%- locals.errors && errors.name ? 'is-invalid' : '' %>"
             />
+            <% if (locals.errors && errors.name) { %>
+            <div class="text-danger"><%= errors.name.msg %></div>
+            <% } %>
           </div>
           <div class="container-input">
             <label for="lastname">Apellido</label>
             <input
               type="text"
-              name="lastname"
+              name="lastName"
               id="lastname"
               placeholder="Ingrese su Apellido"
-              required
+              value="<%- locals.old && locals.old.lastname ? locals.old.lastname : '' %>"
+              class="<%- locals.errors && errors.lastname ? 'is-invalid' : '' %>"
             />
+            <% if (locals.errors && errors.lastname) { %>
+            <div class="text-danger"><%= errors.lastname.msg %></div>
+            <% } %>
           </div>
           <div class="container-input">
             <label for="nickname">Nombre de usuario</label>
@@ -34,60 +48,98 @@
               name="nickname"
               id="nickname"
               placeholder="Ingrese un nombre de usuario"
-              required
+              value="<%- locals.old && locals.old.nickname ? locals.old.nickname : '' %>"
+              class="<%- locals.errors && errors.nickname ? 'is-invalid' : '' %>"
             />
+          
+            <% if (locals.errors && errors.nickname) { %>
+            <div class="text-danger"><%= errors.nickname.msg %></div>
+            <% } %>
+          </div>
+          <div class="container-input">
+            <label for="phone">Telefono</label>
+            <input
+              type="tel"
+              name="phone"
+              id=""
+              placeholder="Ingrese un numero de telefono"
+              value="<%- locals.old && locals.old.phone ? locals.old.phone : '' %>"
+              class="<%- locals.errors && errors.phone ? 'is-invalid' : '' %>"
+            />
+          
+            <% if (locals.errors && errors.phone) { %>
+            <div class="text-danger"><%= errors.phone.msg %></div>
+            <% } %>
           </div>
           <div class="container-input">
             <label for="email">Email</label>
             <input
-              type="email"
+              type="text"
               name="email"
               id="email"
               placeholder="Ingrese su e-mail"
-              required
+              value="<%- locals.old && locals.old.email ? locals.old.email : '' %>"
+              class="<%- locals.errors && errors.email ? 'is-invalid' : '' %>"
             />
+            <% if (locals.errors && errors.email) { %>
+            <div class="text-danger"><%= errors.email.msg %></div>
+            <% } %>
           </div>
           <div class="container-input">
             <label for="birthdate">Fecha de nacimiento</label>
             <input
               type="date"
-              min="2000-01-01"
-              max="2022-04-06"
+              min="1960-01-01"
               name="birthdate"
               id="birthdate"
+              value="<%- locals.old && locals.old.birthdate ? locals.old.birthdate : '' %>"
+              class="<%- locals.errors && errors.birthdate ? 'is-invalid' : '' %>"
             />
+            <% if (locals.errors && errors.birthdate) { %>
+            <div class="text-danger"><%= errors.birthdate.msg %></div>
+            <% } %>
           </div>
           <div class="container-input">
-            <label for="domicilio">Domicilio</label>
+            <label for="address">Domicilio</label>
             <input
               type="text"
-              name="domicilio"
-              id="domicilio"
+              name="address"
+              id="address"
               placeholder="Ingrese su domicilio"
-              required
+              value="<%- locals.old && locals.old.domicilio ? locals.old.domicilio : '' %>"
+              class="<%- locals.errors && errors.domicilio ? 'is-invalid' : '' %>"
             />
+            <% if (locals.errors && errors.domicilio) { %>
+            <div class="text-danger"><%= errors.domicilio.msg %></div>
+            <% } %>
+          </div>
+          <div class="container-input">
+            <label for="imageProfile">Imagen de perfil</label>
+            <input
+              type="file"
+              name="imageProfile"
+              id="imageProfile"
+              class="<%- locals.errors && errors.imageProfile ? 'is-invalid' : '' %>"
+            />
+            <% if (locals.errors && errors.imageProfile) { %>
+            <div class="text-danger"><%= errors.imageProfile.msg %></div>
+            <% } %>
           </div>
         </fieldset>
         <fieldset class="personal-info">
           <div class="container-input">
-            <label for="contraseña">Contraseña</label>
+            <label for="password">Contraseña</label>
             <input
+              type="password"
               text="password"
               name="password"
               id="password"
               placeholder="Ingrese su contraseña"
-              required
+              class="<%- locals.errors && errors.password ? 'is-invalid' : '' %>"
             />
-          </div>
-          <div class="container-input">
-            <label for="confirmar">Confirmar contraseña</label>
-            <input
-              text="password"
-              name="password"
-              id="password"
-              placeholder="Confirme su contraseña"
-              required
-            />
+            <% if (locals.errors && errors.password) { %>
+            <div class="text-danger"><%= errors.password.msg %></div>
+            <% } %>
           </div>
         </fieldset>
         <button type="submit" value="enviar">Enviar</button>

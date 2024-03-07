@@ -6,37 +6,55 @@
           <button class="icon-close" onclick="toggleMenu()">
             <i class="fa-solid fa-xmark"></i>
           </button>
-    
+
           <ul class="bars-categories">
             <li>
-              <a href="/">HOMBRE</a>
+              <a href="/products/hombre">HOMBRE</a>
             </li>
             <li>
-              <a href="/">MUJER</a>
+              <a href="/products/mujer">MUJER</a>
             </li>
             <li>
-              <a href="/">KIDS</a>
+              <a href="/products/kids">KIDS</a>
             </li>
             <li>
               <a href="/">SALE</a>
             </li>
             <li>
-              <a href="/">STORIES</a>
+              <a href="/products">ALL</a>
             </li>
           </ul>
         </div>
         <button class="menu-bars" onclick="toggleMenu()">
           <i class="fas fa-bars"></i>
         </button>
-        <div class="container-logo">
-          <img src="/assets/images/rsz_logo.jpg" alt="" />
-        </div>
+        <a href="/">
+          <div class="container-logo">
+            <img src="/assets/images/rsz_logo.jpg" alt="" />
+          </div>
+        </a>
       </section>
       <ul class="top-bars-right">
-        <li>
+        <li class="container-btn-user">
           <button class="btn-bars">
+            <% if (locals.isLogged) { %>
+
+            <p class="user-name"><%= locals.userLogged.nombre %> <%= locals.userLogged.apellido %></p>
+            <% } else { %>
             <i class="fas fa-user"></i>
+            <% } %>
           </button>
+          <div class="dropdown-user">
+            <% if (locals.isLogged) { %>
+            <a href="/user/profile/<%= locals.userLogged.id %>">Mi perfil</a>
+            <a href="/user/logout">Cerrar Sesión</a>
+
+            <% } else { %>
+            <a href="/user/login">Iniciar Sesión</a>
+            <a href="/user/register">Registrarse</a>
+            <% } %>
+            <a href="/products/create">Crear Producto</a>
+          </div>
         </li>
         <li>
           <span class="btn-bars">
@@ -44,9 +62,9 @@
           </span>
         </li>
         <li>
-          <button class="btn-bars">
+          <a href="/carrito" class="btn-bars">
             <i class="fas fa-shopping-cart"></i>
-          </button>
+          </a>
         </li>
       </ul>
     </section>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs', {productDetailCss: 'productDetail'}) %>
+<body>
+    <%- include('./partials/header') %>
+    <main>
+        <!-- Datalle del producto -->
+        <section class="product-detail">
+            <div class="container-product-detail">
+                <div class="container-img">
+                    <img src="/assets/images/products/<%= product.images ? product.imagen : 'default-image.png' %>" alt="<%= product.name %>">
+                </div>
+                <div class="container-info">
+                    <h2 class="product-name"><%= product.name %></h2>
+                    <p class="product-description"><%= product.description %></p>
+                    <p class="product-price">$<%= product.price %></p>
+                    <div class="product-oferta">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <p>Pagá en 12 cuotas sin interes</p>
+                    </div>
+                    <div class="product-retiro">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>Retiro en tienda</p>
+                    </div>
+                    <div class="input-group">
+
+                        <select name="color" id="color">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                    <form action="/carrito" method="POST">
+                        <input type="hidden" name="id" value="<%= product.id %>">
+                        <input type="hidden" name="name" value="<%= product.name %>">
+                        <input type="hidden" name="price" value="<%= product.price %>">
+                        <input type="hidden" name="image" value="<%= product.imagen %>">
+                        <div class="container-sizes">
+                            <% for (const propiedad in product.talles) { %>
+                    
+                                <div class="size">
+                                    <input type="radio" name="size" id="size-<%= propiedad %>" value="<%= propiedad %>">
+                                    <label for="size-<%= propiedad %>"><%= propiedad %></label>
+                                </div>
+                                
+                            <% }  %>
+                        </div> 
+                        <button class="btn-primary" type="submit">Agregar al carrito</button>
+                    </form>
+
+                    <div class="container-btn-edit-product">
+                        <a class="btn-edit" href="/products/edit/<%= product.id %>">Editar</a>
+
+                       <!--  <form action="/products/delete/?_method=DELETE" method="post"> -->
+                        <a class="btn-delete"  href="/products/delete/<%= product.id %>">Eliminar</a>
+                            <!-- <button type="submit" class="btn-delete">Eliminar</button> -->
+                       
+                    </div>
+                </div>
+            </div>
+    </main>
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

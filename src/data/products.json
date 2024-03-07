@@ -1,0 +1,157 @@
+[
+ {
+  "id": 2,
+  "nombre": "Remera The Original Teen",
+  "imagen": "camisa-verde.jpg",
+  "precio": 5000,
+  "categoria": "hombre",
+  "descripcion": "Remera de hombre",
+  "talles": {
+   "S": 2,
+   "M": 4,
+   "L": 3,
+   "XL": 2
+  }
+ },
+ {
+  "id": 4,
+  "nombre": "Hi Rise Skinny",
+  "imagen": "pantalon-jean-mujer.jpg",
+  "precio": 1000,
+  "categoria": "mujer",
+  "descripcion": "Pantalon de mujer",
+  "talles": {
+   "38": 5,
+   "40": 4,
+   "42": 3,
+   "44": 2
+  }
+ },
+ {
+  "id": 5,
+  "nombre": "Honey Full Print",
+  "imagen": "camisa-blanca-mujer.jpg",
+  "precio": 500,
+  "categoria": "mujer",
+  "descripcion": "Remera de mujer",
+  "talles": {
+   "S": 5,
+   "M": 4,
+   "L": 3,
+   "XL": 2
+  }
+ },
+ {
+  "id": 6,
+  "nombre": "Core Zip Up",
+  "imagen": "saco-negro.jpg",
+  "precio": 2000,
+  "categoria": "hombre",
+  "descripcion": "Saco negro de hombre",
+  "talles": {
+   "S": 5,
+   "M": 4,
+   "L": 3,
+   "XL": 2
+  }
+ },
+ {
+  "id": 7,
+  "nombre": "Graphic Set",
+  "imagen": "camisa-blanca.jpg",
+  "precio": 1234,
+  "categoria": "hombre",
+  "descripcion": "remera hombre",
+  "talles": {
+   "S": 5,
+   "M": 8,
+   "L": 3,
+   "XL": 4
+  }
+ },
+ {
+  "id": 8,
+  "nombre": "Hommies Classic Teen",
+  "imagen": "campera-negra-mujer.jpg",
+  "precio": 1123,
+  "categoria": "mujer",
+  "descripcion": "campera negra mujer",
+  "talles": {
+   "S": 5,
+   "M": 4,
+   "L": 3,
+   "XL": 2
+  }
+ },
+ {
+    "id": 9,
+    "nombre": "Chino Short II",
+    "imagen": "bermuda-hombre.jpg",
+    "precio": 1500,
+    "categoria": "hombre",
+    "descripcion": "Bermuda para hombre",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ },
+ {
+    "id": 10,
+    "nombre": "Standard Hommie Crew",
+    "imagen": "camisa-hombre-16.jpg",
+    "precio": 1823,
+    "categoria": "hombre",
+    "descripcion": "Camisa para Hombre",
+    "talles": {
+      "S": 3,
+      "M": 2,
+      "L": 6,
+      "XL": 2
+    }
+},
+{
+    "id": 11,
+    "nombre": "503 Mid Thihh Short",
+    "imagen": "bermuda-jean-mujer.jpg",
+    "precio": 2500,
+    "categoria": "mujer",
+    "descripcion": "Short Hommies para mujer",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ },
+ {
+    "id": 12,
+    "nombre": "Icon Skirt Hommies",
+    "imagen": "falda-jean-mujer.jpg",
+    "precio": 2100,
+    "categoria": "mujer",
+    "descripcion": "Skirt Hommies para mujer",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ },
+ {
+    "id": 13,
+    "nombre": "402 Regular Fit",
+    "imagen": "pantalon-jean-hombre.jpg",
+    "precio": 3000,
+    "categoria": "hombre",
+    "descripcion": "Pantalon Hommie Regular Fit",
+    "talles": {
+     "38": 5,
+     "40": 4,
+     "42": 3,
+     "44": 2
+    }
+ }
+ 
+]
