@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs', {loginCss: 'login' }) %>
+
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <!-- <div class="input-box">
+      <span class="details">Nombre</span>
+      <input type="text" placeholder="Ingrese nombre" name="nombre" id="nombre"
+        value="<% locals.oldBody && oldBody.nombre? oldBody.nombre: '' %>">
+        <div id="errorNombre"></div>
+        <% if (locals.error && error.nombre) { %>
+        <p><%= error.nombre.msg %></p>
+        <% } %>
+    </div> -->
+    <main>
+      <form class="form-login" action="/user/login" method="POST">
+        <div class="input-group">
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value="<%= locals.old && locals.old.email ? locals.old.email : '' %>"
+            class="<%= locals.errors && locals.errors.email ? 'is-invalid' : '' %>"
+          />
+          <% if (locals.errors && locals.errors.email) { %>
+          <div class="text-danger"><%= locals.errors.email.msg %></div>
+          <% } %>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Contraseña"
+            class="<%= locals.errors && locals.errors.password ? 'is-invalid' : '' %>"
+          />
+          <% if (locals.errors && locals.errors.password) { %>
+          <div class="text-danger"><%= locals.errors.password.msg %></div>
+          <% } %>
+        </div>
+        <div class="rememberMe">
+          <label for="rememberMe">Recordarme</label>
+          <input type="checkbox" id="rememberMe" name="rememberMe" />
+        </div>
+
+        <button type="submit">Iniciar Sesión</button>
+      </form>
+    </main>
+  </body>
+</html>

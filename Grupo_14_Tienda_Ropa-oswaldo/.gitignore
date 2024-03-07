@@ -1,0 +1,5 @@
+// Ignora la carpeta node_modules
+node_modules/
+
+//ignorar el archivo .env
+.env
