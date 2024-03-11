@@ -60,8 +60,8 @@ const productsController = {
     /* Creamos el producto nuevo asociando todos los atributos a la BD */
     processCreate: async(req, res) => {
     
-        /* let errors = validationResult(req);
-        if(!errors.isEmpty()){
+        let error = validationResult(req);
+        if(!error.isEmpty()){
           const allColors = await db.Color.findAll()
           const allSizes = await db.Size.findAll()
           const allCategories = await db.Category.findAll()
@@ -72,7 +72,7 @@ const productsController = {
                 allSizes, 
                 allCategories   
             })
-        }; */
+        }; 
         try {
 
          const newProduct = await db.Product.create({
@@ -114,6 +114,20 @@ const productsController = {
         
     },
     processEdit: async(req, res) => {
+      let error = validationResult(req);
+        if(!error.isEmpty()){
+          const allColors = await db.Color.findAll()
+          const allSizes = await db.Size.findAll()
+          const allCategories = await db.Category.findAll()
+            return res.render("./uploadProduct.ejs", {
+                oldBody: req.body,
+                error: error.mapped(),
+                allColors, 
+                allSizes, 
+                allCategories   
+            }) 
+        };
+
       try {
         const product = await db.Product.findByPk(req.params.id);
         if(!product){

@@ -7,11 +7,21 @@
       <form class="form-login" action="/products/edit/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="input-group">
           <label for="nombre">Nombre</label>
-          <input type="text" id="name"name="name" value="<%= product.name %>" required/>
+          <input type="text" id="name"name="name" value="<%= product.name %>" />
+          <% if (locals.error && error.name) { %>
+            <p>
+              <%= error.name.msg %>
+            </p>
+          <% } %>
         </div>
         <div class="input-group">
           <label for="description">Descripcion</label>
           <textarea name="description" id="description" rows="5"><%= product.description %></textarea>
+          <% if (locals.error && error.description) { %>
+            <p>
+              <%= error.description.msg %>
+            </p>
+          <% } %>
         </div>
         <div class="input-group">
           <label for="category">Categoria</label>
@@ -21,10 +31,29 @@
               <option value="<%= categories.id %>"><%= categories.name %></option>
             <% }) %>
           </select>
+          <% if (locals.error && error.categories) { %>
+            <p>
+              <%= error.categories.msg %>
+            </p>
+          <% } %>
+        </div>
+        <div class="input-group">
+          <label for="amount">Cantidad</label>
+          <input type="number" id="amount" name="amount" />
+          <% if (locals.error && error.amount) { %>
+            <p>
+              <%= error.amount.msg %>
+            </p>
+          <% } %>
         </div>
         <div class="input-group">
           <label for="price">Precio</label>
           <input type="number" id="price" name="price" required  value="<%= product.price %>"/>
+          <% if (locals.error && error.price) { %>
+            <p>
+              <%= error.price.msg %>
+            </p>
+          <% } %>
         </div>
         
         
@@ -32,7 +61,7 @@
 
         <div class="input-group">
           <label for="cantidad_<%= propiedad %>">Cantidad talle <%= propiedad %> :</label>
-          <input type="number" id="amount_<%= propiedad %>" name="amount" required value="<%= product.size[propiedad] %>"/>
+          <input type="number" id="amount_<%= propiedad %>" name="amount"  value="<%= product.size[propiedad] %>"/>
         </div>
         <% } %>
         <div class="input-container">
@@ -44,6 +73,11 @@
                   <option value="<%= color.id %>"><%= color.name %></option>
                 <% }) %>
             </select>
+            <% if (locals.error && error.color) { %>
+              <p>
+                <%= error.color.msg %>
+              </p>
+            <% } %>
             <!-- <label for="color">Color</label>
             <select name="color" id="color">
               <option value="Negro">Negro</option>
@@ -60,11 +94,21 @@
                   <option value="<%= size.id %>"><%= size.name %></option>
                 <% }) %>
             </select>
+            <% if (locals.error && error.size) { %>
+              <p>
+                <%= error.size.msg %>
+              </p>
+            <% } %>
           </div>
         </div>
         <div class="input-group">
           <label for="">Seleccioná una imagen</label>
           <input type="file" name="image_product" id="image_product" accept=".jpg" />
+          <% if (locals.error && error.image_product) { %>
+            <p>
+              <%= error.image_product.msg %>
+            </p>
+          <% } %>
         </div>
         <div>
           <button type="submit" class="cargar">Guardar</button>
