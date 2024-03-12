@@ -15,6 +15,7 @@
                 <%= error.name.msg %>
               </p>
             <% } %>
+            <div id="errorName"></div>
         </div>
         <div class="input-group">
           <label for="description">Descripcion</label>
@@ -24,6 +25,7 @@
               <%= error.description.msg %>
             </p>
           <% } %>
+          <div id="errorDescription"></div>
         </div>
         <div class="input-group">
           <label for="price">Precio</label>
@@ -34,6 +36,7 @@
                 <%= error.price.msg %>
               </p>
             <% } %>
+            <div id="errorPrice"></div>
         </div>
         <div class="input-group">
           <label for="amount">Cantidad</label>
@@ -44,13 +47,14 @@
               <%= error.amount.msg %>
             </p>
           <% } %>
+          <div id="errorAmount"></div>
         </div>
         <div class="input-group">
           <label for="category">Categoria</label>
           <select name="category_id" id="category" >
             <option value="" disabled selected> Selecciona Categoria</option>
               <% allCategories.forEach(categories => { %>
-                <option value="<%= categories.id %>"><%= categories.categories %></option>
+                <option value="<%= categories.id %>"><%= categories.name %></option>
               <% }) %>
           </select>
           <% if (locals.error && error.categories) { %>
@@ -58,6 +62,7 @@
               <%= error.categories.msg %>
             </p>
           <% } %>
+          <div id="errorCategory"></div>
         </div>
         <div class="input-container">
           <div class="input-group">
@@ -73,6 +78,7 @@
                 <%= error.color.msg %>
               </p>
             <% } %>
+            <div id="errorColor"></div>
           </div>
           <div class="input-group">
             <label for="size">Size</label>
@@ -87,6 +93,7 @@
                 <%= error.size.msg %>
               </p>
             <% } %>
+            <div id="errorSize"></div>
           </div>
         </div>
         <div class="input-group">
@@ -96,10 +103,13 @@
               <%= error.image_product.msg %>
             </p>
           <% } %>
+          <div id="errorImage"></div>
         </div>
+        
         <button type="submit" class="cargar">Cargar</button>
       </form>
     </main>
     <%- include('./partials/footer.ejs') %>
+    <script src="/js/createValidation.js"></script>
   </body>
 </html>

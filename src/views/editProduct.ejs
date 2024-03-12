@@ -13,6 +13,7 @@
               <%= error.name.msg %>
             </p>
           <% } %>
+          <div id="errorName"></div>
         </div>
         <div class="input-group">
           <label for="description">Descripcion</label>
@@ -22,6 +23,7 @@
               <%= error.description.msg %>
             </p>
           <% } %>
+          <div id="errorDescription"></div>
         </div>
         <div class="input-group">
           <label for="category">Categoria</label>
@@ -36,6 +38,7 @@
               <%= error.categories.msg %>
             </p>
           <% } %>
+          <div id="errorCategory"></div>
         </div>
         <div class="input-group">
           <label for="amount">Cantidad</label>
@@ -45,6 +48,7 @@
               <%= error.amount.msg %>
             </p>
           <% } %>
+          <div id="errorAmount"></div>
         </div>
         <div class="input-group">
           <label for="price">Precio</label>
@@ -54,6 +58,7 @@
               <%= error.price.msg %>
             </p>
           <% } %>
+          <div id="errorPrice"></div>
         </div>
         
         
@@ -62,6 +67,7 @@
         <div class="input-group">
           <label for="cantidad_<%= propiedad %>">Cantidad talle <%= propiedad %> :</label>
           <input type="number" id="amount_<%= propiedad %>" name="amount"  value="<%= product.size[propiedad] %>"/>
+          <div id="errorAmount"></div>
         </div>
         <% } %>
         <div class="input-container">
@@ -78,6 +84,7 @@
                 <%= error.color.msg %>
               </p>
             <% } %>
+            <div id="errorColor"></div>
             <!-- <label for="color">Color</label>
             <select name="color" id="color">
               <option value="Negro">Negro</option>
@@ -99,6 +106,7 @@
                 <%= error.size.msg %>
               </p>
             <% } %>
+            <div id="errorSize"></div>
           </div>
         </div>
         <div class="input-group">
@@ -109,6 +117,7 @@
               <%= error.image_product.msg %>
             </p>
           <% } %>
+          <div id="errorImage"></div>
         </div>
         <div>
           <button type="submit" class="cargar">Guardar</button>
@@ -116,5 +125,6 @@
       </form>
     </main>
     <%- include('./partials/footer.ejs') %>
+    <script src="/js/createValidation.js"></script>
   </body>
 </html>
