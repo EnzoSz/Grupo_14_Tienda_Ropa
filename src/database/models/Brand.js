@@ -1,3 +1,4 @@
+
 module.exports = (sequelize, DataTypes) => {
   let alias = "Brand";
   let cols = {
@@ -17,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: "created_at",
     updatedAt: "updated_at",
     deletedAt: "deleted_at",
+    timestamps: true
   }
   const Brand = sequelize.define(alias, cols, config);
   Brand.associate = (models) => {

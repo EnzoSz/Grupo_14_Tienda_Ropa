@@ -31,7 +31,7 @@
             <label for="lastname">Apellido</label>
             <input
               type="text"
-              name="lastname"
+              name="lastName"
               id="lastname"
               placeholder="Ingrese su Apellido"
               value="<%- locals.old && locals.old.lastname ? locals.old.lastname : '' %>"
@@ -51,8 +51,24 @@
               value="<%- locals.old && locals.old.nickname ? locals.old.nickname : '' %>"
               class="<%- locals.errors && errors.nickname ? 'is-invalid' : '' %>"
             />
+          
             <% if (locals.errors && errors.nickname) { %>
             <div class="text-danger"><%= errors.nickname.msg %></div>
+            <% } %>
+          </div>
+          <div class="container-input">
+            <label for="phone">Telefono</label>
+            <input
+              type="tel"
+              name="phone"
+              id=""
+              placeholder="Ingrese un numero de telefono"
+              value="<%- locals.old && locals.old.phone ? locals.old.phone : '' %>"
+              class="<%- locals.errors && errors.phone ? 'is-invalid' : '' %>"
+            />
+          
+            <% if (locals.errors && errors.phone) { %>
+            <div class="text-danger"><%= errors.phone.msg %></div>
             <% } %>
           </div>
           <div class="container-input">
@@ -84,11 +100,11 @@
             <% } %>
           </div>
           <div class="container-input">
-            <label for="domicilio">Domicilio</label>
+            <label for="address">Domicilio</label>
             <input
               type="text"
-              name="domicilio"
-              id="domicilio"
+              name="address"
+              id="address"
               placeholder="Ingrese su domicilio"
               value="<%- locals.old && locals.old.domicilio ? locals.old.domicilio : '' %>"
               class="<%- locals.errors && errors.domicilio ? 'is-invalid' : '' %>"

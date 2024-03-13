@@ -132,6 +132,23 @@
     cursor: pointer;
 }
 
+.input-group {
+    margin-bottom: 1.5rem;
+    
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+}
+.input-group select {
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+    padding: 0.75rem;
+}
+
 @media (min-width: 430px) {
     main {
         height: 100vh;

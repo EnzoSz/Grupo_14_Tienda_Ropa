@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false
     },
-    name: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -21,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: "created_at",
     updatedAt: "updated_at",
     deletedAt: "deleted_at",
+    timestamps: true,
+  
   }
   const Image = sequelize.define(alias, cols, config);
   Image.associate = (models) => {

@@ -1,3 +1,5 @@
+const { Sequelize, DataTypes } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   let alias = "User";
   let cols = {
@@ -7,17 +9,21 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false
     },
-    last_name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     first_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    nick_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     phone: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true  
     },
     email: {
       type: DataTypes.STRING,
@@ -25,29 +31,34 @@ module.exports = (sequelize, DataTypes) => {
       unique: true
     },
     birth_date: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     address: {
-      type: Sequelize.STRING,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     password: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     image_profile: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     rol_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    }
+      type: DataTypes.INTEGER,
+      allowNull: true  
+    },
   };
   let config = {
     tableName: "users",
-    timestamps: false
+    createdAt: "createdAt",
+    updatedAt: "updatedAt",
+    deletedAt: "deletedAt",
+    timestamps: false,
+    paranoid: true,
+
   }
   const User = sequelize.define(alias, cols, config);
   User.associate = (models) => {
