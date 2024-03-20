@@ -12,11 +12,13 @@ const productsController = {
       try {
           /* traemos los productos y le asociamos los atributos categoria, colores y talles para que se muestren en las tarjetas de productos */
         const product = await db.Product.findAll({
-            include:[{association: "brand"},
+            include:
+            [
             {association: "category"},
             {association: "colors"},
             {association: "sizes"},
-            {association: "images"}]
+            {association: "images"}
+            ]
             
         });
         /* res.send(product); */
@@ -60,8 +62,8 @@ const productsController = {
     /* Creamos el producto nuevo asociando todos los atributos a la BD */
     processCreate: async(req, res) => {
     
-        /* let errors = validationResult(req);
-        if(!errors.isEmpty()){
+        let error = validationResult(req);
+        if(!error.isEmpty()){
           const allColors = await db.Color.findAll()
           const allSizes = await db.Size.findAll()
           const allCategories = await db.Category.findAll()
@@ -72,18 +74,18 @@ const productsController = {
                 allSizes, 
                 allCategories   
             })
-        }; */
+        }; 
         try {
-
+          console.log(req.file);
          const newProduct = await db.Product.create({
           name: req.body.name,
           price: req.body.price,
           description: req.body.description,
           amount: req.body.amount,
           category_id: req.body.category_id,
-          color: req.body.color_id,
-          size: req.body.size_id,
-          image: req.file.filename,
+          color_id: req.body.color_id,
+          size_id: req.body.size_id,
+          image_product: req.file.filename,
 
         })
 
@@ -114,6 +116,20 @@ const productsController = {
         
     },
     processEdit: async(req, res) => {
+      let error = validationResult(req);
+        if(!error.isEmpty()){
+          const allColors = await db.Color.findAll()
+          const allSizes = await db.Size.findAll()
+          const allCategories = await db.Category.findAll()
+            return res.render("./uploadProduct.ejs", {
+                oldBody: req.body,
+                error: error.mapped(),
+                allColors, 
+                allSizes, 
+                allCategories   
+            }) 
+        };
+
       try {
         const product = await db.Product.findByPk(req.params.id);
         if(!product){
@@ -125,9 +141,9 @@ const productsController = {
           description: req.body.description,
           amount: req.body.amount,
           category_id: req.body.category_id || product.category_id,
-          color: req.body.color_id || product.color_id,
-          size: req.body.size_id || product.size_id,
-          image: req.file ? req.file.filename : product.image
+          color_id: req.body.color_id || product.color_id,
+          size_id: req.body.size_id || product.size_id,
+          image_product: req.file ? req.file.filename : product.images
         };
         
         await db.Product.update(updateProducto,{

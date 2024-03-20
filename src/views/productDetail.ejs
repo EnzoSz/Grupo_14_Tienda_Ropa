@@ -8,7 +8,7 @@
         <section class="product-detail">
             <div class="container-product-detail">
                 <div class="container-img">
-                    <img src="/assets/images/products/<%= product.images ? product.imagen : 'default-image.png' %>" alt="<%= product.name %>">
+                    <img src="/assets/images/products/<%= product.images  ? product.images[0]?.image: 'default-image.png' %>" alt="<%= product.name %>">
                 </div>
                 <div class="container-info">
                     <h2 class="product-name"><%= product.name %></h2>
