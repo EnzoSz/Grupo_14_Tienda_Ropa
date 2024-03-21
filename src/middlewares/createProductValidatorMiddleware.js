@@ -17,12 +17,6 @@ const createProductMiddleware = [
         body("amount")
             .notEmpty().withMessage("Ingrese la cantidad del producto")
             .isNumeric().withMessage('Por favor ingrese un valor numerico'),
-        body("category")
-            .notEmpty().withMessage("Ingrese la categoria del producto"),
-        body("color")
-            .notEmpty().withMessage("Ingrese el color del producto"),
-        body("size")
-            .notEmpty().withMessage("Ingrese el talle del producto"),
         body("image_product")
             .custom((value, {req}) => {
 

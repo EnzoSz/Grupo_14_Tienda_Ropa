@@ -9,7 +9,10 @@ const db = require("../database/models");
 const homeController = {
     index: async(req,res) => {
         try {
-            let productsList = await db.Product.findAll();
+            let productsList = await db.Product.findAll({
+                    include:[{association: "category"},
+                    {association: "images"}]
+            });
             res.render("home", {products: productsList});
 
                 

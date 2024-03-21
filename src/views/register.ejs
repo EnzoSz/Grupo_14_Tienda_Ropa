@@ -41,21 +41,7 @@
             <div class="text-danger"><%= errors.lastname.msg %></div>
             <% } %>
           </div>
-          <div class="container-input">
-            <label for="nickname">Nombre de usuario</label>
-            <input
-              type="text"
-              name="nickname"
-              id="nickname"
-              placeholder="Ingrese un nombre de usuario"
-              value="<%- locals.old && locals.old.nickname ? locals.old.nickname : '' %>"
-              class="<%- locals.errors && errors.nickname ? 'is-invalid' : '' %>"
-            />
-          
-            <% if (locals.errors && errors.nickname) { %>
-            <div class="text-danger"><%= errors.nickname.msg %></div>
-            <% } %>
-          </div>
+         
           <div class="container-input">
             <label for="phone">Telefono</label>
             <input
