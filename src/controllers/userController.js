@@ -33,10 +33,10 @@ const userController = {
         birth_date: req.body.birthdate,
         address: req.body.address,
         password: bcrypt.hashSync(req.body.password, 10),
-        image_profile: req.file.filename,
+        image_profile: path.parse(req.file.filename).name,
         rol_id: 1
      })
-     console.log(req.file)
+    //  console.log(req.file)
     res.redirect("./profile/" + idUserToEdit.id);
 
    } catch (error) {

@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const productsFilePath = path.join(__dirname, "../data/products.json");
+// const productsFilePath = path.join(__dirname, "../data/products.json");
 const {validationResult} = require("express-validator");
 const db = require("../database/models");
 const Product = require("../database/models/Product");
@@ -11,7 +11,7 @@ const productsController = {
     index: async(req, res) =>{
       try {
           /* traemos los productos y le asociamos los atributos categoria, colores y talles para que se muestren en las tarjetas de productos */
-        const product = await db.Product.findAll({
+        const products = await db.Product.findAll({
             include:
             [
             {association: "category"},
@@ -21,9 +21,10 @@ const productsController = {
             ]
             
         });
-        /* res.send(product); */
+        console.log(products)
+        // res.send(products);
         /* monstramos los productos con los atributos ya asociados */
-        res.render("./allProducts", {products: product});
+        res.render("allProducts", {products});
 
       } catch (error) {
           res.status(500).send(error.message);
@@ -53,7 +54,8 @@ const productsController = {
         const allColors = await db.Color.findAll()
         const allSizes = await db.Size.findAll()
         const allCategories = await db.Category.findAll()
-        res.render("./uploadProduct.ejs", {allColors, allSizes, allCategories});
+        const allBrands = await db.Brand.findAll()
+        res.render("uploadProduct.ejs", {allColors, allSizes, allCategories, allBrands});
           
       } catch (error) {
           res.status(500).send(error.message);
@@ -86,7 +88,12 @@ const productsController = {
           color_id: req.body.color_id,
           size_id: req.body.size_id,
           image_product: req.file.filename,
+          brand_id: req.body.brand_id
 
+        })
+        const newImage = await db.Image.create({
+          image: req.file.filename,
+          product_id: newProduct.id
         })
 
         res.redirect("./detail/" + newProduct.id);

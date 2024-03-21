@@ -50,6 +50,21 @@
           <div id="errorAmount"></div>
         </div>
         <div class="input-group">
+          <label for="brand">Marca</label>
+          <select name="brand_id" id="brand" >
+            <option value="" disabled selected> Selecciona Marca</option>
+              <% allBrands.forEach(brand => { %>
+                <option value="<%= brand.id %>"><%= brand.name %></option>
+              <% }) %>
+          </select>
+          <% if (locals.error && error.brands) { %>
+            <p>
+              <%= error.brands.msg %>
+            </p>
+          <% } %>
+          <div id="errorBrands"></div>
+        </div>
+        <div class="input-group">
           <label for="category">Categoria</label>
           <select name="category_id" id="category" >
             <option value="" disabled selected> Selecciona Categoria</option>
