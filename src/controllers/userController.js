@@ -25,21 +25,18 @@ const userController = {
   processCreate: async (req, res) => {
 
     try {
-
-
        const idUserToEdit = await db.User.create({
         first_name: req.body.name,
         last_name: req.body.lastName,
         phone: req.body.phone,
-        nick_name: req.body.nickname,
         email: req.body.email,
         birth_date: req.body.birthdate,
         address: req.body.address,
-        password: bcrypt.hashSync(req.body.password, 8),
+        password: bcrypt.hashSync(req.body.password, 10),
         image_profile: req.file.filename,
         rol_id: 1
      })
-
+     console.log(req.file)
     res.redirect("./profile/" + idUserToEdit.id);
 
    } catch (error) {
@@ -51,11 +48,46 @@ const userController = {
     res.render("login");
   },
 
-  processLogin: (req, res) => {
+  processLogin: async(req, res) => {
   
     //leemos el json
-    let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
-    //guardamos los datos del usuario que viene en el form en la variable user
+    // let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
+    try {
+      //traemos el usuario que coincida con el email del form
+      let userToLogin = await db.User.findOne({
+        where: {
+          email: req.body.email
+        }
+      });
+      //creamos una varible error
+      const errors = validationResult(req);
+      // if (!errors.isEmpty()) {
+      //   res.render('login', { errors: errors.mapped() })
+      // }
+      //verificamos que el usuario exista
+      if (userToLogin) {
+        //borramos la propiedad password
+        delete userToLogin.password;
+      }
+      //guardamos el usuario en sesion
+      req.session.userLogged = userToLogin;
+      console.log(req.session.userLogged);
+      //verificamos si vino rememberMe en el form
+      if (req.body.rememberMe) {
+        // creamos una cookie
+        res.cookie("userEmail", req.body.email, { maxAge: 1000 * 60 * 5 }); // Cookie expira en 5 minutos
+      }
+      //sino hay errores redirigimos
+      if (errors.isEmpty()){
+        res.redirect('/')
+      } else {
+        res.render("login", { errors: errors.mapped(), old: req.body });
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
+   /*  //guardamos los datos del usuario que viene en el form en la variable user
     let userToLogin = users.find(
       (user) =>
         user.email == req.body.email &&
@@ -81,7 +113,7 @@ const userController = {
     } else {
       //si hay errores
       res.render("login", { errors: errors.mapped(), old: req.body });
-    }
+    } */
   },
 
   logout: (req, res) => {

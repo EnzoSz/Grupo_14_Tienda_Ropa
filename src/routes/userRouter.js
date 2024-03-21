@@ -36,12 +36,11 @@ router.get("/register",guestMiddleware, userController.createView);
 router.post(
   "/register",
   upload.single("imageProfile"),
-  validationsRegisterMiddleware,
   userController.processCreate
 );
 //rutas de login
 router.get("/login",guestMiddleware, userController.login);
-router.post("/login",/* validationsLoginMiddleware */  userController.processLogin);
+router.post("/login",validationsLoginMiddleware,  userController.processLogin);
 //rutas de logout
 router.get("/logout", userController.logout);
 //rutas de profile
