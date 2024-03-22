@@ -7,11 +7,38 @@ const Product = require("../database/models/Product");
 
 
 const productsController = {
-      /* Traemos todos los productos de la base de datos y los mostramos en la vista allProducts */
     index: async(req, res) =>{
       try {
+        //obtenemos el parametro dinamico de la url
+        const category = req.params.category;
+        //verifacamos que la categoria exista
+        if (!category) {
+          const products = await db.Product.findAll({
+            include:
+            [
+            {association: "category"},
+            {association: "colors"},
+            {association: "sizes"},
+            {association: "images"}
+            ]
+          });
+          return res.render("allProducts", {products});
+          
+        } else {
+          const categoryDB = await db.Category.findOne({where: {name: category}});
+          const products = await db.Product.findAll({
+            where: {category_id: categoryDB.id},
+            include: [
+              {association: "category"},
+              {association: "colors"},
+              {association: "sizes"},
+              {association: "images"}
+            ]
+          });
+          return res.render("allProducts", {products});
+        }
           /* traemos los productos y le asociamos los atributos categoria, colores y talles para que se muestren en las tarjetas de productos */
-        const products = await db.Product.findAll({
+       /*  const products = await db.Product.findAll({
             include:
             [
             {association: "category"},
@@ -23,8 +50,9 @@ const productsController = {
         });
         console.log(products)
         // res.send(products);
-        /* monstramos los productos con los atributos ya asociados */
-        res.render("allProducts", {products});
+         monstramos los productos con los atributos ya asociados 
+        res.render("allProducts", {products}); 
+        */
 
       } catch (error) {
           res.status(500).send(error.message);
@@ -69,7 +97,7 @@ const productsController = {
           const allColors = await db.Color.findAll()
           const allSizes = await db.Size.findAll()
           const allCategories = await db.Category.findAll()
-            return res.render("./uploadProduct.ejs", {
+            return res.render("uploadProduct", {
                 oldBody: req.body,
                 error: error.mapped(),
                 allColors, 

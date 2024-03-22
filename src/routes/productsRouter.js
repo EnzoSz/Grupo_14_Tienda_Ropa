@@ -5,7 +5,7 @@ const path = require('path');
 const productsController = require("../controllers/productsController");
 const createMiddleware = require('../middlewares/createProductValidatorMiddleware');
 
-                /* MULTER CONFIG */
+/* MULTER CONFIG */
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
         cb(null, path.join(__dirname, '../../public/assets/images/products'))
@@ -21,7 +21,7 @@ const upload = multer({storage})
 
 
 //Mostramos todos los productos
-router.get("/", productsController.index);
+router.get("/:category?", productsController.index);
 //Mostramos un producto
 router.get("/detail/:id", productsController.detail);
 //Creando ruta de categoria
