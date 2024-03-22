@@ -11,21 +11,25 @@ const productsController = {
       try {
         //obtenemos el parametro dinamico de la url
         const category = req.params.category;
+        //buscamos la categoria
+        let categoryDB = null;
+        if (category) {
+          categoryDB = await db.Category.findOne({where: {name: category}});
+        }
         //verifacamos que la categoria exista
-        if (!category) {
+        if (!categoryDB) {
           const products = await db.Product.findAll({
             include:
             [
-            {association: "category"},
-            {association: "colors"},
-            {association: "sizes"},
-            {association: "images"}
+              {association: "category"},
+              {association: "colors"},
+              {association: "sizes"},
+              {association: "images"}
             ]
           });
-          return res.render("allProducts", {products});
+          return res.render("allProducts", {products, category: categoryDB});
           
         } else {
-          const categoryDB = await db.Category.findOne({where: {name: category}});
           const products = await db.Product.findAll({
             where: {category_id: categoryDB.id},
             include: [
@@ -35,7 +39,7 @@ const productsController = {
               {association: "images"}
             ]
           });
-          return res.render("allProducts", {products});
+          return res.render("allProducts", {products, category: categoryDB});
         }
           /* traemos los productos y le asociamos los atributos categoria, colores y talles para que se muestren en las tarjetas de productos */
        /*  const products = await db.Product.findAll({

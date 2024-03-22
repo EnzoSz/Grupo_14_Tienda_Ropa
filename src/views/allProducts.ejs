@@ -5,9 +5,9 @@
   <body class="container-all-products">
     <%- include('./partials/header.ejs') %>
     <main>
-      <% if (products.length) { %>
+      <% if (products.length ) { %>
 
-      <h2 class="subtitle-allProduct"><%= products.category?.name? products.category.name : 'Todos los productos' %></h2>
+      <h2 class="subtitle-allProduct"><%= category && category.name ? category.name : 'Todos los productos' %></h2>
       <section class="products-items">
         <% products.forEach(product => { %> <%-
         include('./partials/productCard.ejs', {product}) %> <% }) %>
