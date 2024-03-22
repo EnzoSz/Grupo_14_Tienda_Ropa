@@ -5,11 +5,17 @@
   <body class="container-all-products">
     <%- include('./partials/header.ejs') %>
     <main>
-      <h2 class="subtitle-allProduct">Todos los productos</h2>
+      <% if (products.length) { %>
+
+      <h2 class="subtitle-allProduct"><%= products.category?.name? products.category.name : 'Todos los productos' %></h2>
       <section class="products-items">
         <% products.forEach(product => { %> <%-
         include('./partials/productCard.ejs', {product}) %> <% }) %>
       </section>
+      <% } else { %>
+      <h2 class="subtitle-allProduct">No hay productos</h2>
+      <% } %>
+       
     </main>
     <%- include('./partials/footer.ejs') %>
   </body>
