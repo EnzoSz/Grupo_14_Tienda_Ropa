@@ -18,7 +18,7 @@
           <% if (locals.errors && locals.errors.email) { %>
           <div id="emailError" class="error"><%= locals.errors.email.msg %></div>
           <% } %>
-          <div id="errores"></div>
+          <div id="errorEmail"></div>
         </div>
         <div class="input-group">
           <input
@@ -31,14 +31,14 @@
           <% if (locals.errors && locals.errors.password) { %>
           <div id="passwordError" class="error"><%= locals.errors.password.msg %></div>
           <% } %>
+          <div id="errorPassword"></div>
         </div>
-        <div id="errores"></div>
         <div class="rememberMe">
           <label for="rememberMe">Recordarme</label>
           <input type="checkbox" id="rememberMe" name="rememberMe" />
         </div>
 
-        <button type="submit">Iniciar Sesión</button>
+        <button type="submit" id="submit">Iniciar Sesión</button>
         <div id="loginError" class="error"></div>
       </form>
     </main>

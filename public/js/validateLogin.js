@@ -1,56 +1,32 @@
-window.addEventListener('load', function(){
+window.addEventListener('load', () => {
+    //Capturamos el formulario mediante el id.
+    let formulario = document.getElementById('form-login');
     
-    //Capturar el formulario.
-    let formulario = document.querySelector('.form-login');
+    //Capturamos los inputs mediante el id.
+    let emailError = document.getElementById('errorEmail');
+    let passwordError = document.getElementById('errorPassword');
 
-    formulario.addEventListener('submit', function(evento){
-        if(!validaciones(evento)){
-            evento.preventDefault();
-        }else{
-            formulario.submit();
+    function checkErrorEmail(error) {
+        emailError.innerHTML = `<p class='errorEmail'>${error.toUpperCase()}</p>`;
+        emailError.style.color = 'red';
+    }
+
+    function checkErrorPassword(error) {
+        passwordError.innerHTML = `<p class='errorPassword'>${error.toUpperCase()}</p>`;
+        passwordError.style.color = 'red';
+    }
+
+    formulario.addEventListener('submit', (event) => {
+        if(!formulario.email.value.trim()) {
+            checkErrorEmail('Ingrese un email valido.');
+            event.preventDefault();
         }
 
-        function validaciones(evento) {
-            //Destructuring.
-            let {email, password} = formulario.elements;
-            let errores = [];
-
-            //Validacion del email haciendo uso de expresiones regulares.
-            let reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-            if(!reEmail.test(email.value)) {
-                errores.push('El email es invalido...');
-                email.classList.add('is-invalid');
-            }else{
-                email.classList.add('is-valid');
-                email.classList.remove('is-invalid');
-            }
-
-            //Validacion de la contraseña haciendo uso de expresiones regulares.
-            //Esta expresion regular valida como Minimo seis caracteres, al menos una letra y un numero:
-            let rePassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-            if(!rePassword.test(password.value)){
-                errores.push('La contraseña como minimos debe tener seis caracteres, al menos una letra y un numero.');
-                password.classList.add('is-invalid');
-            }else{
-                password.classList.add('is-valid');
-                password.classList.remove('is-invalid');
-            }
-
-            //Aqui enviamos todos los errores al usuario.
-            let divErrores = document.getElementById('errores');
-            divErrores.classList.add('alert-danger')
-            if(errores.length > 0){
-                evento.preventDefault();
-                divErrores.innerHTML = '';
-                for(let i = 0; i < errores.length; i++){
-                    divErrores.innerHTML += `<li> ${errores[i]} </li>`
-                }
-                errores = [];
-            }else{
-                return true;
-            }
+        if(formulario.password.value.trim().length <= 8) {
+            checkErrorPassword('La contraseña debe tener al menos 8 caracteres.');
+            event.preventDefault();
         }
     })
-})
 
+})
+   
