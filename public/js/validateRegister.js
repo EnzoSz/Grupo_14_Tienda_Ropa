@@ -55,7 +55,7 @@ window.addEventListener('load', () => {
 	formulario.addEventListener('submit', (event) => {
 
 		//Validar nombre y apellido.
-		if(name.length < 2 || lastname.length < 2){
+		if(formulario.name.value.trim().length < 2 || formulario.lastname.value.trim().length < 2){
 			checkErrorName('El nombre debe contener al menos dos caracteres.');
 			checkErrorLastname('El apellido debe contener al menos dos caracteres.');
 			event.preventDefault();
@@ -67,22 +67,15 @@ window.addEventListener('load', () => {
 			event.preventDefault();
 		}
 
-		//Validar contraseña.
-		if(password.length <= 8){
-			checkErrorPassword('Por favor ingrese una contraseña que tenga al menos 8 caracteres.');
-			event.preventDefault();
-		}
-
-		//Validar imagen
-		const extensionesPermitidas = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-		if(!extensionesPermitidas.exec(image)) {
-		 	checkErrorImage('Formato de archivo de imagen inválido. Por favor, sube un archivo JPG, JPEG, PNG o GIF.');
-			event.preventDefault();
-		}
-
 		function validarCorreo(email) {
 			const expresionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 			return expresionCorreo.test(email);
+		}
+
+		//Validar contraseña.
+		if(formulario.password.value.trim().length <= 8){
+			checkErrorPassword('Por favor ingrese una contraseña que tenga al menos 8 caracteres.');
+			event.preventDefault();
 		}
 	})
 })
