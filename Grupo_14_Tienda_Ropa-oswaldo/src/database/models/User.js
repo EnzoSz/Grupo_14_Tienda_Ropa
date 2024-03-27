@@ -38,9 +38,6 @@ module.exports = (sequelize, DataTypes) => {
     address: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        is: /^[0-8a-f]{64}$/i,
-      } 
     },
     password: {
       type: DataTypes.STRING,
@@ -50,10 +47,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    /////////si es 0 es user normal si es 1 es administrador
+    /////////si es 1 es user normal si es 2 es administrador
     rol_id: {
       type: DataTypes.INTEGER,
-      defaultValue: 0, 
+      defaultValue: 1, 
     },
   };
   let config = {

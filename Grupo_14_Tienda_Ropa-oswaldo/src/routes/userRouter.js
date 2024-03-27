@@ -41,11 +41,11 @@ router.post(
 );
 //rutas de login
 router.get("/login",guestMiddleware, userController.login);
-router.post("/login",/* validationsLoginMiddleware */  userController.processLogin);
+router.post("/login", validationsLoginMiddleware,  userController.processLogin);
 //rutas de logout
 router.get("/logout", userController.logout);
 //rutas de profile
-router.get("/profile/:id", /* authMiddleware, */ userController.profile);
+router.get("/profile/:id", /*authMiddleware,*/ userController.profile);
 //rutas de edit 
 router.get("/profile/edit/:id", /* authMiddleware, */userController.upload);
 router.put(
