@@ -77,5 +77,10 @@ window.addEventListener('load', () => {
 			checkErrorPassword('Por favor ingrese una contraseña que tenga al menos 8 caracteres.');
 			event.preventDefault();
 		}
+
+		if(formulario.imageProfile.value === ""){
+            checkErrorImage("La extension del archivo debe ser .jpg, .jpeg, .png o .gif")
+            event.preventDefault();
+        }
 	})
 })
