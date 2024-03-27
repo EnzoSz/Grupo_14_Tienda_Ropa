@@ -15,10 +15,10 @@
               <a href="/products/mujer">MUJER</a>
             </li>
             <li>
-              <a href="/products/kids">KIDS</a>
+              <a href="/products/niña">KIDS</a>
             </li>
             <li>
-              <a href="/">SALE</a>
+              <a href="/products">SALE</a>
             </li>
             <li>
               <a href="/products">ALL</a>
@@ -37,9 +37,11 @@
       <ul class="top-bars-right">
         <li class="container-btn-user">
           <button class="btn-bars">
-            <% if (locals.isLogged) { %>
-
-            <p class="user-name"><%= locals.userLogged.nombre %> <%= locals.userLogged.apellido %></p>
+            <% if (locals.isLogged && locals.userLogged && locals.userLogged.dataValues) { %>
+            <p class="user-name">
+              <%= locals.userLogged.dataValues.first_name %> <%=
+              locals.userLogged.dataValues.last_name %>
+            </p>
             <% } else { %>
             <i class="fas fa-user"></i>
             <% } %>

@@ -1,166 +1,223 @@
 const fs = require("fs");
 const path = require("path");
-const productsFilePath = path.join(__dirname, "../data/products.json");
-const {validationResult} = require("express-validator");
+// const productsFilePath = path.join(__dirname, "../data/products.json");
+const { validationResult } = require("express-validator");
 const db = require("../database/models");
-const Product = require("../database/models/Product");
-
 
 const productsController = {
-      /* Traemos todos los productos de la base de datos y los mostramos en la vista allProducts */
-    index: async(req, res) =>{
-      try {
-          /* traemos los productos y le asociamos los atributos categoria, colores y talles para que se muestren en las tarjetas de productos */
-        const product = await db.Product.findAll({
-            include:[{association: "brand"},
-            {association: "category"},
-            {association: "colors"},
-            {association: "sizes"},
-            {association: "images"}]
-            
-        });
-        /* res.send(product); */
-        /* monstramos los productos con los atributos ya asociados */
-        res.render("./allProducts", {products: product});
-
-      } catch (error) {
-          res.status(500).send(error.message);
+  index: async (req, res) => {
+    try {
+      //obtenemos el parametro dinamico de la url
+      const category = req.params.category;
+      //buscamos la categoria
+      let categoryDB = null;
+      if (category) {
+        categoryDB = await db.Category.findOne({ where: { name: category } });
       }
-    },
-    /* monstramos la vista del detalle del producto de la DB trayendolo con la PK y le asociamos los atributos */
-    detail: async(req, res) => {
-      try {
-       const product = await db.Product.findByPk(req.params.id,
-          {
-            include:[{association: "brand"},
+      //verifacamos que la categoria exista
+      if (!categoryDB) {
+        const products = await db.Product.findAll({
+          include: [
+            { association: "category" },
+            { association: "colors" },
+            { association: "sizes" },
+            { association: "images" },
+          ],
+        });
+        return res.render("allProducts", { products, category: categoryDB });
+      } else {
+        const products = await db.Product.findAll({
+          where: { category_id: categoryDB.id },
+          include: [
+            { association: "category" },
+            { association: "colors" },
+            { association: "sizes" },
+            { association: "images" },
+          ],
+        });
+        return res.render("allProducts", { products, category: categoryDB });
+      }
+      /* traemos los productos y le asociamos los atributos categoria, colores y talles para que se muestren en las tarjetas de productos */
+      /*  const products = await db.Product.findAll({
+            include:
+            [
             {association: "category"},
             {association: "colors"},
             {association: "sizes"},
             {association: "images"}
-          ]
-          })
-          /* res.send(product); */
-          res.render("./productDetail",{product: product});
-        } catch (error) {
-          res.status(500).send(error.message);
-        }
-        },
-        /* traemos la vista para crear un nuevo producto y traemos los atributos del form de la DB para el formulario */
-    create: async(req, res) => {
-      try {
-        const allColors = await db.Color.findAll()
-        const allSizes = await db.Size.findAll()
-        const allCategories = await db.Category.findAll()
-        res.render("./uploadProduct.ejs", {allColors, allSizes, allCategories});
-          
-      } catch (error) {
-          res.status(500).send(error.message);
-        }
-    },  
-    /* Creamos el producto nuevo asociando todos los atributos a la BD */
-    processCreate: async(req, res) => {
-    
-        /* let errors = validationResult(req);
-        if(!errors.isEmpty()){
+            ]
+            
+        });
+        console.log(products)
+        // res.send(products);
+         monstramos los productos con los atributos ya asociados 
+        res.render("allProducts", {products}); 
+        */
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+  /* monstramos la vista del detalle del producto de la DB trayendolo con la PK y le asociamos los atributos */
+  detail: async (req, res) => {
+    try {
+      const product = await db.Product.findByPk(req.params.id, {
+        include: [
+          { association: "brand" },
+          { association: "category" },
+          { association: "colors" },
+          { association: "sizes" },
+          { association: "images" },
+        ],
+      });
+      /* res.send(product); */
+      res.render("./productDetail", { product: product });
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+  /* traemos la vista para crear un nuevo producto y traemos los atributos del form de la DB para el formulario */
+  create: async (req, res) => {
+    try {
+      const allColors = await db.Color.findAll();
+      const allSizes = await db.Size.findAll();
+      const allCategories = await db.Category.findAll();
+      const allBrands = await db.Brand.findAll();
+      return res.render("uploadProduct.ejs", {
+        allColors,
+        allSizes,
+        allCategories,
+        allBrands,
+      });
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+  /* Creamos el producto nuevo asociando todos los atributos a la BD */
+  processCreate: async (req, res) => {
+    let error = validationResult(req);
+    /* if(!error.isEmpty()){
           const allColors = await db.Color.findAll()
           const allSizes = await db.Size.findAll()
           const allCategories = await db.Category.findAll()
-            return res.render("./uploadProduct.ejs", {
+            return res.render("uploadProduct", {
                 oldBody: req.body,
                 error: error.mapped(),
                 allColors, 
                 allSizes, 
                 allCategories   
             })
-        }; */
-        try {
-
-         const newProduct = await db.Product.create({
+        };  */
+    try {
+      if (!error.isEmpty()) {
+        const newProduct = await db.Product.create({
           name: req.body.name,
           price: req.body.price,
           description: req.body.description,
           amount: req.body.amount,
           category_id: req.body.category_id,
-          color: req.body.color_id,
-          size: req.body.size_id,
-          image: req.file.filename,
-
-        })
-
-        res.redirect("./detail/" + newProduct.id);
-
-      } catch (error) {
-        res.status(500).send(error.message);
-      }
-    },
-    editProduct: async(req, res) => {
-      try {
-        const product = await db.Product.findByPk(req.params.id);
-        const allColors = await db.Color.findAll()
-        const allSizes = await db.Size.findAll()
-        const allCategories = await db.Category.findAll()
-        const allImages = await db.Image.findAll()
-        res.render("./editProduct", {
-          product,
-          allColors, 
-          allSizes, 
-          allCategories,
-          allImages
+          color_id: req.body.color_id,
+          size_id: req.body.size_id,
+          brand_id: req.body.brand_id,
         });
-        
-      } catch (error) {
-        res.status(500).send(error.message);
-      }
-        
-    },
-    processEdit: async(req, res) => {
-      try {
-        const product = await db.Product.findByPk(req.params.id);
-        if(!product){
-          return res.status(404).send("Producto no encontrado");
-        }
-        const updateProducto = {
-          name: req.body.name,
-          price: req.body.price,
-          description: req.body.description,
-          amount: req.body.amount,
-          category_id: req.body.category_id || product.category_id,
-          color: req.body.color_id || product.color_id,
-          size: req.body.size_id || product.size_id,
-          image: req.file ? req.file.filename : product.image
-        };
-        
-        await db.Product.update(updateProducto,{
-          where:{
-            id: req.params.id,
-          }
-        });  
-        
-        res.redirect('/products/detail/' + req.params.id);
-      } catch (error) {
-        res.status(500).send(error.message);
-      }
+        const newImage = await db.Image.create({
+          image: req.file.filename,
+          product_id: newProduct.id,
+        });
 
-    },
-    /* Traemos la vista delete con PK para confirmar el softdelete del producto */
-    delete: async (req, res) => {
-      try {
-        const product = await db.Product.findByPk(req.params.id)
-        res.render("./delete", {product: product})
-      } catch (error) {
-        res.status(500).send(error.message);
+        res.redirect("/detail/" + newProduct.id);
+      } else {
+        return res.render("uploadProduct.ejs", {
+          oldBody: req.body,
+          error: error.mapped(),
+          allColors,
+          allSizes,
+          allCategories,
+          allBrands,
+        });
       }
-    },
-    destroy: async (req, res) =>{
-      try {
-        await db.Product.destroy({
-          where: {id: req.params.id}
-        })
-        res.redirect('/');
-      } catch (error) {
-        res.status(500).send(error.message);
-        }
-    },
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+  editProduct: async (req, res) => {
+    try {
+      const product = await db.Product.findByPk(req.params.id);
+      const allColors = await db.Color.findAll();
+      const allSizes = await db.Size.findAll();
+      const allCategories = await db.Category.findAll();
+      const allImages = await db.Image.findAll();
+      res.render("./editProduct", {
+        product,
+        allColors,
+        allSizes,
+        allCategories,
+        allImages,
+      });
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+  processEdit: async (req, res) => {
+    let error = validationResult(req);
+    if (!error.isEmpty()) {
+      const allColors = await db.Color.findAll();
+      const allSizes = await db.Size.findAll();
+      const allCategories = await db.Category.findAll();
+      return res.render("./uploadProduct.ejs", {
+        oldBody: req.body,
+        error: error.mapped(),
+        allColors,
+        allSizes,
+        allCategories,
+      });
+    }
+
+    try {
+      const product = await db.Product.findByPk(req.params.id);
+      if (!product) {
+        return res.status(404).send("Producto no encontrado");
+      }
+      const updateProducto = {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        amount: req.body.amount,
+        category_id: req.body.category_id || product.category_id,
+        color_id: req.body.color_id || product.color_id,
+        size_id: req.body.size_id || product.size_id,
+        image_product: req.file ? req.file.filename : product.images,
+      };
+
+      await db.Product.update(updateProducto, {
+        where: {
+          id: req.params.id,
+        },
+      });
+
+      res.redirect("/products/detail/" + req.params.id);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+  /* Traemos la vista delete con PK para confirmar el softdelete del producto */
+  delete: async (req, res) => {
+    try {
+      const product = await db.Product.findByPk(req.params.id);
+      res.render("./delete", { product: product });
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+  destroy: async (req, res) => {
+    try {
+      await db.Product.destroy({
+        where: { id: req.params.id },
+      });
+      res.redirect("/");
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
 
   //metodo get, renderizamos todos los productos
   /* index: (req, res) => {
