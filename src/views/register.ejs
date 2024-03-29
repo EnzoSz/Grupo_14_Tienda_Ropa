@@ -8,6 +8,7 @@
 
       <form
         class="form-register"
+        id="form-register"
         action="/user/register"
         method="POST"
         enctype="multipart/form-data"
@@ -26,6 +27,7 @@
             <% if (locals.errors && errors.name) { %>
             <div class="text-danger"><%= errors.name.msg %></div>
             <% } %>
+            <div id="nameError"></div>
           </div>
           <div class="container-input">
             <label for="lastname">Apellido</label>
@@ -40,6 +42,7 @@
             <% if (locals.errors && errors.lastname) { %>
             <div class="text-danger"><%= errors.lastname.msg %></div>
             <% } %>
+            <div id="lastnameError"></div>
           </div>
          
           <div class="container-input">
@@ -56,6 +59,7 @@
             <% if (locals.errors && errors.phone) { %>
             <div class="text-danger"><%= errors.phone.msg %></div>
             <% } %>
+            <div id="phoneError"></div>
           </div>
           <div class="container-input">
             <label for="email">Email</label>
@@ -70,6 +74,7 @@
             <% if (locals.errors && errors.email) { %>
             <div class="text-danger"><%= errors.email.msg %></div>
             <% } %>
+            <div id="emailError"></div>
           </div>
           <div class="container-input">
             <label for="birthdate">Fecha de nacimiento</label>
@@ -84,6 +89,7 @@
             <% if (locals.errors && errors.birthdate) { %>
             <div class="text-danger"><%= errors.birthdate.msg %></div>
             <% } %>
+            <div id="birthdateError"></div>
           </div>
           <div class="container-input">
             <label for="address">Domicilio</label>
@@ -98,6 +104,7 @@
             <% if (locals.errors && errors.domicilio) { %>
             <div class="text-danger"><%= errors.domicilio.msg %></div>
             <% } %>
+            <div id="domicilioError"></div>
           </div>
           <div class="container-input">
             <label for="imageProfile">Imagen de perfil</label>
@@ -110,6 +117,7 @@
             <% if (locals.errors && errors.imageProfile) { %>
             <div class="text-danger"><%= errors.imageProfile.msg %></div>
             <% } %>
+            <div id="imageError"></div>
           </div>
         </fieldset>
         <fieldset class="personal-info">
@@ -126,6 +134,7 @@
             <% if (locals.errors && errors.password) { %>
             <div class="text-danger"><%= errors.password.msg %></div>
             <% } %>
+            <div id="errorPassword"></div>
           </div>
         </fieldset>
         <button type="submit" value="enviar">Enviar</button>
@@ -133,5 +142,6 @@
       </form>
     </main>
     <%- include('./partials/footer.ejs') %>
+    <script src="/js/validateRegister.js"></script>
   </body>
 </html>
