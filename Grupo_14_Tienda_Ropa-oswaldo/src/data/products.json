@@ -2,7 +2,7 @@
  {
   "id": 2,
   "nombre": "Remera",
-  "imagen": "default-image.png",
+  "imagen": "product-1711746714773.jpg",
   "precio": 5000,
   "categoria": "hombre",
   "descripcion": "Remera de hombre",
@@ -30,7 +30,7 @@
  {
   "id": 4,
   "nombre": "Pantalon",
-  "imagen": "default-image.png",
+  "imagen": "product-1711746728003.jpg",
   "precio": 1000,
   "categoria": "mujer",
   "descripcion": "Pantalon de mujer",
@@ -44,7 +44,7 @@
  {
   "id": 5,
   "nombre": "Remera",
-  "imagen": "default-image.png",
+  "imagen": "product-1711746737351.jpg",
   "precio": 500,
   "categoria": "mujer",
   "descripcion": "Remera de mujer",
@@ -58,7 +58,7 @@
  {
   "id": 6,
   "nombre": "Zapatillas",
-  "imagen": "default-image.png",
+  "imagen": "product-1711746747298.jpg",
   "precio": 2000,
   "categoria": "mujer",
   "descripcion": "Zapatillas de mujer",
@@ -100,6 +100,30 @@
   "precio": "1234",
   "categoria": "hombre",
   "descripcion": "remera hombre",
+  "talles": {
+   "talle": "small",
+   "stock": "1"
+  }
+ },
+ {
+  "id": 10,
+  "nombre": "Camisa",
+  "imagen": "product-1711745167657.jpg",
+  "precio": "1000",
+  "categoria": "Hombre",
+  "descripcion": "Roja",
+  "talles": {
+   "talle": "small",
+   "stock": "1"
+  }
+ },
+ {
+  "id": 11,
+  "nombre": "Zapato",
+  "imagen": "product-1711747591324.jpg",
+  "precio": "10000",
+  "categoria": "Hombre",
+  "descripcion": "Negro",
   "talles": {
    "talle": "small",
    "stock": "1"
