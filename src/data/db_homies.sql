@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS db_homies /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */;
+USE db_homies;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: db_homies
