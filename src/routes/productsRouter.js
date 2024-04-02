@@ -29,7 +29,7 @@ router.get('/kids', productsController.kids);
 */
 //Cargar un producto
 router.get("/create", productsController.create);
-router.post("/create", upload.single('image_product'),createMiddleware, productsController.processCreate);
+router.post("/create", upload.single('image_product'), createMiddleware ,productsController.processCreate);
 
 //Mostramos todos los productos
 router.get("/:category?", productsController.index);

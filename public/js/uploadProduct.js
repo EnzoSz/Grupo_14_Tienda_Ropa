@@ -1,40 +1,46 @@
 window.addEventListener("load", () => {
-    let contenedorCantidadProductos = document.querySelector(".container-cantidad-product");
-    let inputCantidad = document.querySelector(".input-cantidad");
+    //selecciona el botón de añadir
+    addButton = document.querySelector(".add");
 
-    inputCantidad.addEventListener("blur", (e) => {
-        let cantidad = e.target.value;
-        // segun la cantidad se crean los div correspondientes
-        for (let i = 0; i < cantidad; i++) {
-            contenedorCantidadProductos.insertAdjacentHTML('beforeend', `
-            <div class="input-group">
-                <label for="color">Color</label>
-                <select name="color_id" id="color">
-                    <option value="" disabled selected>Selecciona color</option>
-                    <% allColors.forEach(color => { %>
-                        <option value="<%= color.id %>"><%= color.name %></option>
-                    <% }) %>
-                </select>
-                <% if (locals.error && error.color) { %>
-                    <p><%= error.color.msg %></p>
-                <% } %>
-                <div id="errorColor"></div>
-            </div>
-            <div class="input-group">
-                <label for="size">Talle</label>
-                <select name="size_id" id="size">
-                    <option value="" disabled selected>Selecciona Talle</option>
-                    <% allSizes.forEach(size => { %>
-                        <option value="<%= size.id %>"><%= size.name %></option>
-                    <% }) %>
-                </select>
-                <% if (locals.error && error.size) { %>
-                    <p><%= error.size.msg %></p>
-                <% } %>
-                <div id="errorSize"></div>
-            </div>
-            `)
-        } 
+    //agrega el evento de click al boton de añadir
+    addButton.addEventListener("click", () => {
+        //selecciona la fila existente que contiene los campos talle, cantidad, color
+        const inputContainer = document.querySelector(".input-container");
+
+        //clonamos la fila existente para crear una nueva
+        const newInputContainer = inputContainer.cloneNode(true);
+
+          // Genera un sufijo único para los IDs de los nuevos campos clonados
+          const uniqueId = "inputContainer"+ Date.now();
+          newInputContainer.id = uniqueId;
+
+          // Modifica los IDs de los nuevos campos clonados agregando el sufijo único
+          const inputs = newInputContainer.querySelectorAll("input, select");
+          inputs.forEach((input) => {
+              const oldId = input.getAttribute("id");
+              const newId = oldId + "_" + uniqueId;
+              input.setAttribute("id", newId);
+          });
+          //agrega el boton de eliminar
+          const removeButton = document.createElement("button");
+          removeButton.classList.add("remove");
+          removeButton.classList.add("remove");
+          removeButton.textContent = "-";
+          removeButton.addEventListener("click", () => {
+              newInputContainer.remove();
+          })
+          newInputContainer.appendChild(removeButton);
+
+        //limpia los valores de la nueva fila
+
+        inputs.forEach((input) => {
+            input.value = "";
+        })
+
+        //inserta la nueva fila debajo de la existente
+        inputContainer.parentNode.insertBefore(newInputContainer, inputContainer.nextSibling);
     })
-    
+
+    addButton.classList.remove("show");
+
 })
