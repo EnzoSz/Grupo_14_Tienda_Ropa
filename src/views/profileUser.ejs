@@ -5,6 +5,9 @@
     <%- include('./partials/header') %>
     <main>
         <h1 class="title-register">Bienvenido: <%= idUserToEdit.first_name + " " + idUserToEdit.last_name  %></h1>
+        <% if (locals.isAdmin) { %>
+          <h2 class="text-admin">ADMIN</h2>
+        <% } %>
       <form
         class="form-register"
         action="/user/delete/<%=idUserToEdit.id%>?_method=DELETE"

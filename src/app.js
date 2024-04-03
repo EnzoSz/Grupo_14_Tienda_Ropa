@@ -21,6 +21,7 @@ const homeRouter = require('./routes/homeRouter');
 const productsRouter = require('./routes/productsRouter');
 const carritoRouter = require('./routes/carritoRouter');
 const userController = require("./routes/userRouter");
+const adminRouter = require("./routes/adminRouter");
 
 
 // declaramos el motor de plantillas ejs
@@ -56,6 +57,7 @@ app.use('/', homeRouter);
 app.use('/user', userController);
 app.use('/products', productsRouter);
 app.use('/carrito', carritoRouter);
+app.use('/admin', adminRouter);
 
 
 

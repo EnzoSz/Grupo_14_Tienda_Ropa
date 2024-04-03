@@ -94,59 +94,6 @@ const userController = {
     }
   }, 
   
-
-  /*
-      // Si no se encuentra el usuario, agrega un mensaje de error al objeto errors
-      if (!findUser) {
-        return res.render("login", {
-          error: {
-            email: {
-              msg: "El mail no esta registrado",
-            },
-          },
-          oldBody: req.body,
-        });
-      }
-      // Verifica si la contraseña es valida, si no es valida agrega un mensaje de error
-      let validPassword = await bcrypt.compare(
-        req.body.password,
-        findUser.password
-      );
-      if (!validPassword) {
-        return res.render("login", {
-          error: {
-            password: {
-              msg: "la contraseña no es valida",
-            },
-          },
-          oldBody: req.body,
-        });
-      }
-      // Si no hay errores, procede con el proceso de inicio de sesión.
-      if (findUser && validPassword) {
-        delete findUser.password; // Elimina la contraseña del objeto del usuario para no exponerla.
-        if (findUser.rol_id == 2) {
-          req.session.admin = findUser; // Asigna el usuario a la sesión si es administrador.
-         
-         } else {
-          req.session.userLogged = findUser;
-          // Asigna el usuario a la sesión si no es administrador.
-         
-         }
-        // Si el usuario opta por recordar su correo electrónico, establece una cookie.
-        if (req.body.rememberMe) {
-          res.cookie("userEmail", findUser, { maxAge: 1000 * 60 * 5 });
-        }
-        // Redirige al usuario a su perfil.
-        console.log(req.session);
-        return res.redirect("./profile/" + findUser.id);
-      }
-    } catch (error) {
-      // En caso de error, envía el error como respuesta.
-      res.status(500).send(error.message);
-    }
-  },  */
-
   profile: async (req, res) => {
     try {
       const idUserToEdit = await db.User.findByPk(req.params.id, {

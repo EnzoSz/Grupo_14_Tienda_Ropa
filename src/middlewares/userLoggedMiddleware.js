@@ -1,32 +1,32 @@
 //obtenemos la base de datos
 const db = require("../database/models");
 
-async function userLoggedMiddleware(req, res, next) {
-  res.locals.isLogged = false;
-  res.locals.isAdmin = false;
-
-  let emailInCookie = req.cookies.userEmail;
-
-  if (emailInCookie) {
-    let userCookie = await db.User.findOne({ where: { email: emailInCookie } });
-    if (userCookie) {
-      res.locals.isLogged = true;
-      req.session.userLogged = userCookie;
-      res.locals.userLogged = userCookie;
-    }
-  }
-
-  if (req.session.admin) {
-    res.locals.isAdmin = true;
-    res.locals.userAdmin = req.session.admin;
-  }
-  console.log(req.session);
-  console.log(res.locals);
-
-  next();
+async function userLoggedMiddleware(req,res,next) {
+      res.locals.isLogged = false;
+      res.locals.isAdmin = false;
+      
+      let emailInCookie = req.cookies.userEmail;
+  
+      if (emailInCookie) {
+        let userCookie = await db.User.findOne({ where: { email: emailInCookie } });
+          if (userCookie) {
+            req.session.userLogged = userCookie;
+          }
+      }
+      if(req.session.userAdmin){
+        res.locals.isAdmin = true;
+        res.locals.userAdmin = req.session.userAdmin;
+      }
+      if(req.session.userLogged){
+        res.locals.isLogged = true;
+        res.locals.userLogged = req.session.userLogged;
+      }
+      
+      
+    next();
 }
 module.exports = userLoggedMiddleware;
-/*  try {
+ /*  try {
      // Inicializa las variables locales para indicar si el usuario está logueado y si es un administrador
      res.locals.isLogged = false;
      res.locals.isAdmin = false;
@@ -53,6 +53,10 @@ module.exports = userLoggedMiddleware;
      console.error(error);
      res.status(500).send('Error interno del servidor');
   } */
+ 
+
+
+ 
 
 /* //requerimos el fs
 const fs = require("fs");
@@ -78,3 +82,4 @@ function userLoggedMiddleware(req, res, next) {
 
   next();
 } */
+
