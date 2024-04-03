@@ -5,11 +5,8 @@ window.addEventListener('load', () => {
 	//Capturamos los inputs mediante el id.
 	let name = document.getElementById('nameError');
 	let lastname = document.getElementById('lastnameError');
-	let phone = document.getElementById('phoneError');
 	let email = document.getElementById('emailError');
-	let birthdate = document.getElementById('birthdateError');
-	let domicilio = document.getElementById('domicilioError');
-	let image = document.getElementById('imageError').value;
+	let image = document.getElementById('imageError');
 	let password = document.getElementById('errorPassword');
 
 	function checkErrorEmail(error) {
@@ -20,21 +17,6 @@ window.addEventListener('load', () => {
     function checkErrorPassword(error) {
         password.innerHTML = `<p class='errorPassword'>${error.toUpperCase()}</p>`;
         password.style.color = 'red';
-    }
-
-	function checkErrorPhone(error) {
-        phone.innerHTML = `<p class='phoneError'>${error.toUpperCase()}</p>`;
-        phone.style.color = 'red';
-    }
-
-    function checkErrorBirthdate(error) {
-        birthdate.innerHTML = `<p class='birthdateError'>${error.toUpperCase()}</p>`;
-        birthdate.style.color = 'red';
-    }
-
-	function checkErrorDomicilio(error) {
-        domicilio.innerHTML = `<p class='domicilioError'>${error.toUpperCase()}</p>`;
-        domicilio.style.color = 'red';
     }
 
     function checkErrorImage(error) {
@@ -52,6 +34,11 @@ window.addEventListener('load', () => {
         lastname.style.color = 'red';
     }
 
+	function validarCorreo(email) {
+		const expresionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return expresionCorreo.test(email);
+	}
+
 	formulario.addEventListener('submit', (event) => {
 
 		//Validar nombre y apellido.
@@ -67,20 +54,13 @@ window.addEventListener('load', () => {
 			event.preventDefault();
 		}
 
-		function validarCorreo(email) {
-			const expresionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-			return expresionCorreo.test(email);
-		}
-
 		//Validar contraseña.
 		if(formulario.password.value.trim().length <= 8){
 			checkErrorPassword('Por favor ingrese una contraseña que tenga al menos 8 caracteres.');
 			event.preventDefault();
 		}
 
-		if(formulario.imageProfile.value === ""){
-            checkErrorImage("La extension del archivo debe ser .jpg, .jpeg, .png o .gif")
-            event.preventDefault();
-        }
+		//Validar la imagen de perfil.
+		
 	})
 })
