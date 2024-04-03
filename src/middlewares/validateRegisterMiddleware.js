@@ -7,9 +7,6 @@ module.exports = [
   body("lastName")
     .notEmpty()
     .withMessage("El apellido es obligatorio"),
-  body("nickname")
-    .notEmpty()
-    .withMessage("El nombre de usuario es obligatorio"),
   body('phone')
     .notEmpty()
     .withMessage('El telefono es obligatorio'),

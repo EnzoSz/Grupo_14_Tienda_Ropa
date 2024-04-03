@@ -23,9 +23,17 @@ const userController = {
   },
 
   processCreate: async (req, res) => {
+    let errors = validationResult(req);
 
     try {
-       const idUserToEdit = await db.User.create({
+      if (!errors.isEmpty()) {
+        return res.render("register", {
+          errors: errors.mapped(),
+          old: req.body
+        });
+        
+      } 
+      const idUserToEdit = await db.User.create({
         first_name: req.body.name,
         last_name: req.body.lastName,
         phone: req.body.phone,
@@ -162,7 +170,6 @@ const userController = {
         first_name: req.body.name,
         last_name: req.body.lastName,
         phone: req.body.phone,
-        nick_name: req.body.nickname,
         email: req.body.email,
         birth_date: req.body.birthdate,
         address: req.body.address,

@@ -1,7 +1,7 @@
 const { body } = require("express-validator");
 const path = require("path");
 
-module.exports = [
+const createProductValidatorMiddleware = [
   body("name")
     .notEmpty()
     .withMessage("Ingrese el nombre del producto")
@@ -13,25 +13,28 @@ module.exports = [
   body("description")
     .notEmpty()
     .withMessage("Ingrese la descripcion del producto")
+    .bail()
     .isLength({ min: 20 })
     .withMessage("Debe tener minimo 20 caracteres")
+    .bail()
     .isLength({ max: 3500 })
     .withMessage("Debe tener maximo 500 caracteres"),
-  body("price").notEmpty().withMessage("Ingrese el precio del producto"),
-  body("amount")
+  body("price")
+    .notEmpty()
+    .withMessage("Ingrese el precio del producto")
+    .bail()
+    .isInt({ min: 1 }),
+
+  body("category_id").notEmpty().withMessage("Debe seleccionar una categoria"),
+  body("brand_id").notEmpty().withMessage("Debe seleccionar una marca"),
+  body("size.*").notEmpty().withMessage("Debe seleccionar un talle"),
+  body("amount.*")
     .notEmpty()
     .withMessage("Ingrese la cantidad del producto")
+    .bail()
     .isNumeric()
     .withMessage("Por favor ingrese un valor numerico"),
-  body("category")
-    .notEmpty()
-    .withMessage("Debe seleccionar una categoria"),
-  body("brand")
-    .notEmpty()
-    .withMessage("Debe seleccionar una marca"),
-  body("color")
-  .notEmpty()
-  .withMessage("Debe seleccionar un color"),
+  body("color.*").notEmpty().withMessage("Debe seleccionar un color"),
   body("image_product").custom((value, { req }) => {
     let file = req.file;
     let acceptedExtensions = [".jpg", ".png", ".svg"];
@@ -49,3 +52,4 @@ module.exports = [
   }),
 ];
 
+module.exports = createProductValidatorMiddleware;

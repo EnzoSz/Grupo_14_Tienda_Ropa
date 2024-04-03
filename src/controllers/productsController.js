@@ -95,7 +95,11 @@ const productsController = {
     try {
       let error = validationResult(req);
       
-      if (!error.isEmpty()) {
+      if (error.isEmpty()) {
+        const productDB = await db.Product.findOne({ where: { name: req.body.name } });
+        if (productDB) {
+          return res.status(400).send("El producto ya existe");
+        }
         const newProduct = await db.Product.create({
           name: req.body.name,
           description: req.body.description,
@@ -155,20 +159,18 @@ const productsController = {
         // return res.json({ body:  req.body, file: req.file });
         return res.redirect("/products/detail/" + newProduct.id);
       } else {
-        const allColors = await db.Color.findAll();
-        const allSizes = await db.Size.findAll();
-        const allPruct_size = await db.Produc_size.findAll();
         const allCategories = await db.Category.findAll();
         const allBrands = await db.Brand.findAll();
+        
         return res.render("uploadProduct.ejs", {
           oldBody: req.body,
           error: error.mapped(),
-          allColors,
           allCategories,
-          allSizes,
           allBrands,
-          allPruct_size,
-        });
+        },
+        console.log(error.mapped(), {body: req.body})
+        );
+        // return res.send(error);
       }
     } catch (error) {
       /* if (error.name === 'TypeError' && error.message.includes('findAll')) {
