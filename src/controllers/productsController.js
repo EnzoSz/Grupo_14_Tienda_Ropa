@@ -76,7 +76,7 @@ const productsController = {
             })
         }; 
         try {
-          console.log(req.file);
+          
          const newProduct = await db.Product.create({
           name: req.body.name,
           price: req.body.price,
@@ -86,9 +86,10 @@ const productsController = {
           color_id: req.body.color_id,
           size_id: req.body.size_id,
           image_product: req.file.filename,
+          discount: req.body.discount,
 
         })
-
+        console.log(discount);
         res.redirect("./detail/" + newProduct.id);
 
       } catch (error) {

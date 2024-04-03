@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const {Sequelize, DataTypes, Model} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   let alias = "Rol";
   let cols = {
@@ -18,12 +17,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   let  config = {
       tableName: "rols",
-      createdAt: "createdAt",
-      updatedAt: "updatedAt",
+      createdAt: "created_at",
+      updatedAt: "updated_at",
       deletedAt: "deletedAt",
+      timestamp: false,
 
     }
-  let Rol = sequelize.define(alias, cols, config);
+ const Rol = sequelize.define(alias, cols, config);
   Rol.associate = (models) => {
     Rol.hasMany(models.User, {
       as: "users",

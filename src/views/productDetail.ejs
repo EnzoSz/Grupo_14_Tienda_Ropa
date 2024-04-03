@@ -48,15 +48,17 @@
                         </div> 
                         <button class="btn-primary" type="submit">Agregar al carrito</button>
                     </form>
-
-                    <div class="container-btn-edit-product">
-                        <a class="btn-edit" href="/products/edit/<%= product.id %>">Editar</a>
-
-                       <!--  <form action="/products/delete/?_method=DELETE" method="post"> -->
-                        <a class="btn-delete"  href="/products/delete/<%= product.id %>">Eliminar</a>
-                            <!-- <button type="submit" class="btn-delete">Eliminar</button> -->
-                       
-                    </div>
+                    <% if (locals.userAdmin) { %>
+                        
+                        <div class="container-btn-edit-product">
+                            <a class="btn-edit" href="/products/edit/<%= product.id %>">Editar</a>
+    
+                           <!--  <form action="/products/delete/?_method=DELETE" method="post"> -->
+                            <a class="btn-delete"  href="/products/delete/<%= product.id %>">Eliminar</a>
+                                <!-- <button type="submit" class="btn-delete">Eliminar</button> -->
+                           
+                        </div>
+                    <% } %>
                 </div>
             </div>
     </main>

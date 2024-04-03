@@ -37,15 +37,17 @@
       <ul class="top-bars-right">
         <li class="container-btn-user">
           <button class="btn-bars">
-            <% if (locals.isLogged) { %>
-
-            <p class="user-name"><%= locals.userLogged.nombre %> <%= locals.userLogged.apellido %></p>
-            <% } else { %>
-            <i class="fas fa-user"></i>
-            <% } %>
+            <% if (locals.isLogged || locals.isAdmin) { %>
+              <p class="user-name">
+                <%= locals.userLogged.email + " " + locals.userAdmin.email %> 
+              </p>
+              <% } else { %>
+              <i class="fas fa-user"></i>
+              <% } %>
           </button>
           <div class="dropdown-user">
-            <% if (locals.isLogged) { %>
+            <% if (locals.isLogged && locals.isAdmin) { %>
+            <a href="/">Inicio</a>
             <a href="/user/profile/<%= locals.userLogged.id %>">Mi perfil</a>
             <a href="/user/logout">Cerrar Sesión</a>
 
@@ -53,7 +55,10 @@
             <a href="/user/login">Iniciar Sesión</a>
             <a href="/user/register">Registrarse</a>
             <% } %>
-            <a href="/products/create">Crear Producto</a>
+            <% if (locals.userAdmin) { %>
+              <a href="/products/create">Crear Producto</a>
+            <% } %>
+            
           </div>
         </li>
         <li>

@@ -1,7 +1,8 @@
-const path = require("path");
 const {body} = require("express-validator");
+const path = require("path");
 
-module.exports = [
+
+ const validateRegisterMiddleware = [
   body("name").notEmpty()
     .withMessage("El nombre es obligatorio"),
   body("lastName")
@@ -54,3 +55,5 @@ module.exports = [
     return true;
   }),
 ]
+
+module.exports = validateRegisterMiddleware
