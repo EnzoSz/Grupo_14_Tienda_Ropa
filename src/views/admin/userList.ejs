@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs', {homeCss: 'home', productListCss: 'productList'}) %>
+  <body>
+    <%- include('../partials/header.ejs') %>
+    <main>
+        <div class="container_table">
+        <table class="product-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Imagen</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Acciones</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach(user => { %>
+
+                <tr>
+                  <td><%= user.id %></td> 
+                  <td><%= user.first_name %></td>
+                  <td><%= user.last_name %></td>
+                  <td>
+                    <img src="/assets/images/users/<%= user.image_profile %>" alt="<%= user.first_name %> <%= user.last_name %>" class="product-icon">
+                  </td>
+                  <td><%= user.phone %></td>
+                  <td><%= user.email %></td>
+
+                  <td>
+                    <a href="users/profile/<%= user.id %>" class="btn btn-primary">Ver Detalle</a>
+              
+                  <td>
+                    <a href="/users/delete/<%= user.id %>" ><i class="fa-solid fa-trash"></i></a>
+
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

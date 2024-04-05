@@ -5,22 +5,25 @@
   <body>
     <%- include('./partials/header.ejs') %>
     <main>
-      <form class="form-login" id="form-login"action="/user/login" method="POST">
+
+      <form class="form-login" action="/user/login" method="POST">
+        <div class="login-text">
+          <h2>Iniciar Sesión</h2>
+        </div>
         <div class="input-group">
-          <input
-            type="text"
-            id="email"
-            name="email"
-            placeholder="Email"
+          <input type="text" id="email" name="email" placeholder="Email"
             value="<%= locals.old && locals.old.email ? locals.old.email : '' %>"
             class="<%= locals.errors && locals.errors.email ? 'is-invalid' : '' %>"
           />
-          <% if (locals.errors && locals.errors.email) { %>
-          <div id="emailError" class="error"><%= locals.errors.email.msg %></div>
+          <% if (locals.error && error.email) { %>
+          <p class="text-danger">
+            <%= error.email.msg %>
+          </p>
           <% } %>
           <div id="errorEmail"></div>
         </div>
         <div class="input-group">
+
           <input
             type="password"
             id="password"
@@ -32,16 +35,22 @@
           <div id="passwordError" class="error"><%= locals.errors.password.msg %></div>
           <% } %>
           <div id="errorPassword"></div>
+
         </div>
         <div class="rememberMe">
           <label for="rememberMe">Recordarme</label>
           <input type="checkbox" id="rememberMe" name="rememberMe" />
+        </div>
+        <div class="option">
+          <a href="/user/register">  No tienes cuenta? Registrate </a>
         </div>
 
         <button type="submit" id="submit">Iniciar Sesión</button>
         <div id="loginError" class="error"></div>
       </form>
     </main>
+
     <script src="/js/validateLogin.js"></script>
+    <%- include('./partials/footer.ejs') %>
   </body>
 </html>

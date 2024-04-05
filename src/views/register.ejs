@@ -30,17 +30,17 @@
             <div id="nameError"></div>
           </div>
           <div class="container-input">
-            <label for="lastname">Apellido</label>
+            <label for="lastName">Apellido</label>
             <input
               type="text"
               name="lastName"
-              id="lastname"
+              id="lastName"
               placeholder="Ingrese su Apellido"
-              value="<%- locals.old && locals.old.lastname ? locals.old.lastname : '' %>"
-              class="<%- locals.errors && errors.lastname ? 'is-invalid' : '' %>"
+              value="<%- locals.old && locals.old.lastName ? locals.old.lastName : '' %>"
+              class="<%- locals.errors && errors.lastName ? 'is-invalid' : '' %>"
             />
-            <% if (locals.errors && errors.lastname) { %>
-            <div class="text-danger"><%= errors.lastname.msg %></div>
+            <% if (locals.errors && errors.lastName) { %>
+            <div class="text-danger"><%= errors.lastName.msg %></div>
             <% } %>
             <div id="lastnameError"></div>
           </div>
@@ -98,11 +98,11 @@
               name="address"
               id="address"
               placeholder="Ingrese su domicilio"
-              value="<%- locals.old && locals.old.domicilio ? locals.old.domicilio : '' %>"
-              class="<%- locals.errors && errors.domicilio ? 'is-invalid' : '' %>"
+              value="<%- locals.old && locals.old.address ? locals.old.address : '' %>"
+              class="<%- locals.errors && errors.address ? 'is-invalid' : '' %>"
             />
-            <% if (locals.errors && errors.domicilio) { %>
-            <div class="text-danger"><%= errors.domicilio.msg %></div>
+            <% if (locals.errors && errors.address) { %>
+            <div class="text-danger"><%= errors.address.msg %></div>
             <% } %>
             <div id="domicilioError"></div>
           </div>
