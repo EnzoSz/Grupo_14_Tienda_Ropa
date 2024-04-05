@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs', {homeCss: 'home', productListCss: 'productList'}) %>
+  <body>
+    <%- include('../partials/header.ejs') %>
+    <main>
+        <div class="container_table">
+        <table class="product-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Imagen</th>
+                <th>Precio</th>
+                <th>Categoria</th>
+                <th>Acciones</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% products.forEach(product => { %>
+
+                <tr>
+                  <td><%= product.id %></td> 
+                  <td><%= product.name %></td>
+                  <td>
+                    <img src="/assets/images/products/<%= product.images ? product.images[0]?.image : 'default-image.png' %>" alt="<%= product.name %>" class="product-icon">
+                  </td>
+                  <td>$<%= product.price %></td>
+                  <td><%= product.category.name %></td>
+
+                  <td>
+                    <a href="products/detail/<%= product.id %>" class="btn btn-primary">Ver Detalle</a>
+                  </td>
+                  <td>
+                    <a href="/products/delete/<%= product.id %>" ><i class="fa-solid fa-trash"></i></a>
+
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

@@ -37,25 +37,37 @@
       <ul class="top-bars-right">
         <li class="container-btn-user">
           <button class="btn-bars">
-            <% if (locals.isLogged && locals.userLogged && locals.userLogged.dataValues) { %>
-            <p class="user-name">
-              <%= locals.userLogged.dataValues.first_name %> <%=
-              locals.userLogged.dataValues.last_name %>
-            </p>
-            <% } else { %>
-            <i class="fas fa-user"></i>
+            <% if (locals.isLogged) { %>
+              <p class="user-name">
+                <%= locals.userLogged.email %> 
+              </p>
+            <% } %>
+            <% if (locals.isAdmin) { %>
+              <p class="user-name">
+                <%= locals.userAdmin.email %> 
+              </p>
+            <% } %>
+            <% if (!locals.isLogged && !locals.isAdmin) { %>
+              <i class="fas fa-user"></i>
             <% } %>
           </button>
           <div class="dropdown-user">
             <% if (locals.isLogged) { %>
+            <a href="/">Inicio</a>
             <a href="/user/profile/<%= locals.userLogged.id %>">Mi perfil</a>
             <a href="/user/logout">Cerrar Sesión</a>
-
-            <% } else { %>
+            <% } %>
+            <% if (!locals.isLogged && !locals.isAdmin) { %>
             <a href="/user/login">Iniciar Sesión</a>
             <a href="/user/register">Registrarse</a>
             <% } %>
-            <a href="/products/create">Crear Producto</a>
+            <% if (locals.isAdmin) { %>
+              <a href="/">Inicio</a>
+              <a href="/user/profile/<%= locals.userAdmin.id %>">Mi perfil</a>
+              <a href="/products/create">Crear Producto</a>
+              <a href="/user/logout">Cerrar Sesión</a>
+            <% } %>
+            
           </div>
         </li>
         <li>

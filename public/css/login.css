@@ -1,3 +1,8 @@
+main{
+    min-height: 100vh;
+}
+
+
 .form-login {
     width: 100%;
     max-width: 50rem;
@@ -56,6 +61,10 @@
     background-color: crimson;
 }
 
+.login-text{
+    padding: 1rem;
+}
+
 .is-invalid {
     border-color: crimson !important;
 }
@@ -82,4 +91,22 @@
 .rememberMe input {
     display: inline-block;
     margin-right: 0.5rem;
+}
+
+.option {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    gap: 0.5rem;
+}
+.option a {
+    text-decoration: none;
+    transition: color 0.5s;
+}
+.option a:visited{
+    color: black;
+}
+.option a:hover {
+    color: red;
 }
