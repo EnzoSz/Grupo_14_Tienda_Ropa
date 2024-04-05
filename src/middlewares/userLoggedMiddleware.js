@@ -81,7 +81,7 @@ async function userLoggedMiddleware(req, res, next) {
   //verificamos que el email de la cookie exista en el json
   /*let userWithEmail = users.find((user) => user.email === emailInCookie);
   */
-  if (userWithEmail) {
+/*   if (userWithEmail) {
     req.session.userLogged = userWithEmail;
   }
   if (req.session && req.session.userLogged) {
@@ -89,6 +89,6 @@ async function userLoggedMiddleware(req, res, next) {
     //pasamos el usuario que viene de la sesion a una variable local
     res.locals.userLogged = req.session.userLogged;
   } 
-  next();
-} */
+  next(); */
+ 
 
