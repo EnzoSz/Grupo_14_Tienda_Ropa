@@ -9,7 +9,9 @@ async function userLoggedMiddleware(req,res,next) {
   
       if (emailInCookie) {
         let userCookie = await db.User.findOne({ where: { email: emailInCookie } });
-          if (userCookie) {
+          if (userCookie.rol_id == 2) {
+            req.session.userAdmin = userCookie;
+          }else{
             req.session.userLogged = userCookie;
           }
       }
