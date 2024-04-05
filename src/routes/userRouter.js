@@ -35,7 +35,7 @@ router.get("/", userController.index); */
 
 //rutas de login
 router.get("/login", guestMiddleware, userController.login);
-router.post("/login",/*  validationsLoginMiddleware , */ userController.processLogin);
+router.post("/login", validationsLoginMiddleware , userController.processLogin);
 
 //rutas de logout
 router.get("/logout", userController.logout);
