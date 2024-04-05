@@ -1,8 +1,35 @@
 main {
     margin: auto;
-    max-width: 1024px;
+    max-width: 1280px;
     /* margin-top: 12.5rem; */
 }
+
+/* Seccion de componentes de pago */
+.container-components{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 10px;
+    font-family: Interstate, sans-serif;
+}
+.container-components h3{
+    padding: 10px;
+    font-weight: 600;
+}
+
+.container-components p{
+    font-weight: 500;
+
+}
+.fa-solid{
+    font-size: 4.5rem;
+    padding: 15px;
+}
+
+
+/* Seccion de componentes de pago */
+
 .container-carrousel {
     /* acomodar los articles de manera horizontal con scroll */
     position: relative;
@@ -63,11 +90,19 @@ main {
     gap: 2rem;
 }
 
+.container-banner img{
+    display: none;
+}
+
+
+
 ::-webkit-scrollbar {
     display: none;
 }
 
 /* para que se deslicen automaticamente  */
+
+
 @keyframes scroll {
     0%, 25% {
         transform: translateX(0);
@@ -83,7 +118,31 @@ main {
     }
 }
 
+
 /* media query */
+@media (min-width: 768px){
+    .container-components{
+        flex-direction: row;
+        gap: 5rem;
+
+    }
+    .component-pickup{
+        width: 50%;
+    }
+    .component-return{
+        width: 50%;
+    }
+    .component-payment{
+        width: 50%;
+    }
+    .container-banner img{
+        display: block;
+        width: 100%;
+        padding-bottom: 25px;
+    }
+
+}
+
 @media (min-width: 1024px) {
     main {
         margin-top: 8.4rem;
@@ -95,4 +154,6 @@ main {
         justify-content: space-around;
         padding: 2rem;
     }
+    
+    
 }

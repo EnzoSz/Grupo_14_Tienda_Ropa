@@ -4,32 +4,26 @@
 
   <body>
     <%- include('./partials/header.ejs') %>
-    <!-- <div class="input-box">
-      <span class="details">Nombre</span>
-      <input type="text" placeholder="Ingrese nombre" name="nombre" id="nombre"
-        value="<% locals.oldBody && oldBody.nombre? oldBody.nombre: '' %>">
-        <div id="errorNombre"></div>
-        <% if (locals.error && error.nombre) { %>
-        <p><%= error.nombre.msg %></p>
-        <% } %>
-    </div> -->
     <main>
+
       <form class="form-login" action="/user/login" method="POST">
+        <div class="login-text">
+          <h2>Iniciar Sesión</h2>
+        </div>
         <div class="input-group">
-          <input
-            type="text"
-            id="email"
-            name="email"
-            placeholder="Email"
+          <input type="text" id="email" name="email" placeholder="Email"
             value="<%= locals.old && locals.old.email ? locals.old.email : '' %>"
             class="<%= locals.errors && locals.errors.email ? 'is-invalid' : '' %>"
           />
-          <% if (locals.errors && locals.errors.email) { %>
-          <div class="text-danger"><%= locals.errors.email.msg %></div>
+          <% if (locals.error && error.email) { %>
+          <p class="text-danger">
+            <%= error.email.msg %>
+          </p>
           <% } %>
+          <div id="errorEmail"></div>
         </div>
-
         <div class="input-group">
+
           <input
             type="password"
             id="password"
@@ -38,16 +32,25 @@
             class="<%= locals.errors && locals.errors.password ? 'is-invalid' : '' %>"
           />
           <% if (locals.errors && locals.errors.password) { %>
-          <div class="text-danger"><%= locals.errors.password.msg %></div>
+          <div id="passwordError" class="error"><%= locals.errors.password.msg %></div>
           <% } %>
+          <div id="errorPassword"></div>
+
         </div>
         <div class="rememberMe">
           <label for="rememberMe">Recordarme</label>
           <input type="checkbox" id="rememberMe" name="rememberMe" />
         </div>
+        <div class="option">
+          <a href="/user/register">  No tienes cuenta? Registrate </a>
+        </div>
 
-        <button type="submit">Iniciar Sesión</button>
+        <button type="submit" id="submit">Iniciar Sesión</button>
+        <div id="loginError" class="error"></div>
       </form>
     </main>
+
+    <script src="/js/validateLogin.js"></script>
+    <%- include('./partials/footer.ejs') %>
   </body>
 </html>
