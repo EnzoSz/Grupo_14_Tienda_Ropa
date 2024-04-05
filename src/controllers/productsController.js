@@ -78,13 +78,11 @@ const productsController = {
   /* traemos la vista para crear un nuevo producto y traemos los atributos del form de la DB para el formulario */
   create: async (req, res) => {
     try {
-      const allColors = await db.Color.findAll();
-      const allSizes = await db.Size.findAll();
+      // const allColors = await db.Color.findAll();
+      // const allSizes = await db.Size.findAll();
       const allCategories = await db.Category.findAll();
       const allBrands = await db.Brand.findAll();
       return res.render("uploadProduct.ejs", {
-        allColors,
-        allSizes,
         allCategories,
         allBrands,
       });
@@ -94,48 +92,102 @@ const productsController = {
   },
   /* Creamos el producto nuevo asociando todos los atributos a la BD */
   processCreate: async (req, res) => {
-    let error = validationResult(req);
-    /* if(!error.isEmpty()){
-          const allColors = await db.Color.findAll()
-          const allSizes = await db.Size.findAll()
-          const allCategories = await db.Category.findAll()
-            return res.render("uploadProduct", {
-                oldBody: req.body,
-                error: error.mapped(),
-                allColors, 
-                allSizes, 
-                allCategories   
-            })
-        };  */
     try {
-      if (!error.isEmpty()) {
+      let error = validationResult(req);
+      
+      if (error.isEmpty()) {
+        const productDB = await db.Product.findOne({ where: { name: req.body.name } });
+        if (productDB) {
+          return res.status(400).send("El producto ya existe");
+        }
         const newProduct = await db.Product.create({
           name: req.body.name,
-          price: req.body.price,
           description: req.body.description,
-          amount: req.body.amount,
-          category_id: req.body.category_id,
-          color_id: req.body.color_id,
-          size_id: req.body.size_id,
-          brand_id: req.body.brand_id,
+          price: parseInt(req.body.price),
+          category_id: parseInt(req.body.category_id),
+          brand_id: parseInt(req.body.brand_id),
         });
-        const newImage = await db.Image.create({
-          image: req.file.filename,
-          product_id: newProduct.id,
-        });
-
-        res.redirect("/detail/" + newProduct.id);
+        //establecer la asociacion con la marca
+        if (req.body.brand_id) {
+          const brand = await db.Brand.findByPk(req.body.brand_id);
+          if (brand) {
+            await newProduct.setBrand(parseInt(req.body.brand_id));
+          }
+        }
+        //establecer la asociacion con la categoria
+        if (req.body.category_id) {
+          const category = await db.Category.findByPk(req.body.category_id);
+          if (category) {
+            await newProduct.setCategory(req.body.category_id);
+          }
+        }
+        //establecer la asociacion con el color
+        if (req.body.color && req.body.color.length > 0) {
+          for (let i = 0; i < req.body.color.length; i++) {
+            const color = await db.Color.findOne({ where: { name: req.body.color[i] } });
+            if (color) {
+              //crear una nueva entrada en la tabla intermedia product_color
+              await db.Product_color.create({
+                product_id: newProduct.id,
+                color_id: color.id,
+              });
+            }
+          } 
+        }
+        //establecer la asociacion con el talle y cantidades
+        if (req.body.size && req.body.amount && req.body.size.length === req.body.amount.length) {
+          for (let i = 0; i < req.body.size.length; i++) {
+            const size = await db.Size.findOne({ where: { name: req.body.size[i] } });
+            if (size) {
+              //crear una nueva entrada en la tabla intermedia produc_size
+              await db.Product_size.create({
+                product_id: newProduct.id,
+                size_id: size.id,
+                amount: req.body.amount[i],
+              })
+            }
+          }
+        }
+        //establecer la asociacion con la imagen
+        if (req.file) {
+          const image = await db.Image.create({
+            image: req.file.filename,
+            product_id: newProduct.id,
+          });
+          
+        } 
+        // return res.json({ body:  req.body, file: req.file });
+        return res.redirect("/products/detail/" + newProduct.id);
       } else {
+        const allCategories = await db.Category.findAll();
+        const allBrands = await db.Brand.findAll();
+        
         return res.render("uploadProduct.ejs", {
           oldBody: req.body,
           error: error.mapped(),
-          allColors,
-          allSizes,
           allCategories,
           allBrands,
-        });
+        },
+        console.log(error.mapped(), {body: req.body})
+        );
+        // return res.send(error);
       }
     } catch (error) {
+      /* if (error.name === 'TypeError' && error.message.includes('findAll')) {
+        // Manejar el error específico de findAll
+        console.error('Error: No se pudo encontrar el método findAll. Detalles:', error);
+        res.status(500).send('Error interno del servidor');
+      } else {
+        // Manejar otros errores
+        console.error('Error al crear el producto:', error);
+        res.status(500).send(error.message);
+      }
+      /* if (error.name === "SequelizeValidationError") {
+        const errors = error.errors.map((err) => err.message);
+        console.log(errors);
+      } else {
+        console.log(error);
+      } */ 
       res.status(500).send(error.message);
     }
   },

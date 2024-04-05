@@ -1,0 +1,99 @@
+
+.container_table{
+  text-align: center;
+  margin-top: 15rem;
+}
+
+.container_table .product-table{
+  margin: 0 auto;
+  text-align: left; /* Asegura que el texto dentro de la tabla esté alineado a la izquierda */
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10rem;
+}
+
+.product-table th,
+.product-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.product-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.product-table tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+.product-icon {
+  width: 30px; 
+  height: auto; 
+ }
+
+
+.product-table a.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 4px;
+}
+
+.product-table a.btn:hover {
+  background-color: #0056b3;
+}
+
+.product-table a .fa-solid {
+  color: black;
+  font-size: 1.5rem;
+  padding: 15px;
+}
+
+@media (min-width: 768px) {
+  .product-icon {
+     width: 40px;
+  }
+  .product-table a.btn {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+ }
+}
+@media (min-width: 1024px){
+
+    main{
+        height: 100vh;
+    }
+
+    .product-icon {
+      width: 50px; 
+    }
+    .product-table th,
+    .product-table td {
+    padding: 15px; 
+    }
+
+    .product-table th {
+    font-size: 1.1rem; 
+    }
+
+    .product-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; 
+    }
+
+    .product-table tbody tr:hover {
+    background-color: #e6e6e6; 
+    }
+
+
+}
