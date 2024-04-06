@@ -22,7 +22,8 @@ const productsRouter = require('./routes/productsRouter');
 const carritoRouter = require('./routes/carritoRouter');
 const userController = require("./routes/userRouter");
 const adminRouter = require("./routes/adminRouter");
-
+const productApiRouter = require("./api/routes/routeProductApi");
+const userApiRouter =  require("./api/routes/routeUserApi");
 
 // declaramos el motor de plantillas ejs
 app.set("view engine", "ejs");
@@ -58,6 +59,8 @@ app.use('/user', userController);
 app.use('/products', productsRouter);
 app.use('/carrito', carritoRouter);
 app.use('/admin', adminRouter);
+app.use('/api-user', userApiRouter);
+app.use('/api-products', productApiRouter);
 
 
 
