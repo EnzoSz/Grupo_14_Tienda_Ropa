@@ -28,6 +28,7 @@ const userController = require("./routes/userRouter");
 const adminRouter = require("./routes/adminRouter");
 const productApiRouter = require("./api/routes/routeProductApi");
 const userApiRouter =  require("./api/routes/routeUserApi");
+const imageApiRouter =  require("./api/routes/routeImagesApi");
 
 // declaramos el motor de plantillas ejs
 app.set("view engine", "ejs");
@@ -67,7 +68,7 @@ app.use('/carrito', carritoRouter);
 app.use('/admin', adminRouter);
 app.use('/api-user', userApiRouter);
 app.use('/api-products', productApiRouter);
-
+app.use('/api-images', imageApiRouter);
 
 
 
