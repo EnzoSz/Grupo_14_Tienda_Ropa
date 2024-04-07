@@ -4,6 +4,9 @@ const express = require("express");
 const session = require("express-session");
 //requerimos cookies
 const cookies = require("cookie-parser");
+//requerimos cors
+const cors = require("cors");
+
 const bodyParser = require('body-parser');
 // Importamos path
 const path = require("path");
@@ -15,6 +18,7 @@ const methodOverride = require("method-override");
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 // Obtenemos la ruta absoluta del directorio public
 const publicPath = path.resolve(__dirname, "../public");
+
 
 // Importamos el módulo rutas
 const homeRouter = require('./routes/homeRouter');
@@ -42,6 +46,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+// Configuramos cors para aceptar conexiones desde el puerto 3000
+app.use(cors({ origin: "http://localhost:3001" }));
 // Configuración del middleware body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -64,7 +70,8 @@ app.use('/api-products', productApiRouter);
 
 
 
+
 // Levantamos el servidor en el puerto 3050
-app.listen(3050, () =>
-  console.log("Servidor corriendo en http://localhost:3050")
+app.listen(3000, () =>
+  console.log("Servidor corriendo en http://localhost:3000")
 );
