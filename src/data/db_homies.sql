@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS db_homies /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */;
+USE db_homies;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: db_homies
@@ -105,14 +107,14 @@ DROP TABLE IF EXISTS `images`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(255) NOT NULL,
   `product_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   CONSTRAINT `images_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,6 +123,7 @@ CREATE TABLE `images` (
 
 LOCK TABLES `images` WRITE;
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
+INSERT INTO `images` VALUES (1,'product-1705525912189.jpg',1,'2024-02-28 21:48:41','2024-02-28 21:48:41');
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +169,7 @@ CREATE TABLE `product_color` (
   KEY `color_id` (`color_id`),
   CONSTRAINT `product_color_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_color_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `colors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,6 +178,7 @@ CREATE TABLE `product_color` (
 
 LOCK TABLES `product_color` WRITE;
 /*!40000 ALTER TABLE `product_color` DISABLE KEYS */;
+INSERT INTO `product_color` VALUES (1,1,2,'2024-02-26 21:02:04','2024-02-26 21:02:04'),(2,1,3,'2024-02-26 21:02:09','2024-02-26 21:02:09');
 /*!40000 ALTER TABLE `product_color` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +201,7 @@ CREATE TABLE `product_size` (
   KEY `size_id` (`size_id`),
   CONSTRAINT `product_size_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_size_ibfk_2` FOREIGN KEY (`size_id`) REFERENCES `sizes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,6 +210,7 @@ CREATE TABLE `product_size` (
 
 LOCK TABLES `product_size` WRITE;
 /*!40000 ALTER TABLE `product_size` DISABLE KEYS */;
+INSERT INTO `product_size` VALUES (1,1,1,50,'2024-02-26 20:50:12','2024-02-26 20:50:12'),(2,1,2,70,'2024-02-26 20:50:34','2024-02-26 20:50:34'),(3,1,4,15,'2024-02-26 20:50:58','2024-02-26 20:50:58'),(4,2,3,8,'2024-02-26 20:51:13','2024-02-26 20:51:13'),(5,2,2,80,'2024-02-26 20:51:24','2024-02-26 20:51:24');
 /*!40000 ALTER TABLE `product_size` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,16 +227,17 @@ CREATE TABLE `products` (
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `price` decimal(10,0) DEFAULT NULL,
   `category_id` int(11) NOT NULL,
-  `brand_id` int(11) NOT NULL,
+  `brand_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `category_id` (`category_id`),
   KEY `brand_id` (`brand_id`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `products_ibfk_2` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +246,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Remera The Original Teen','Remera de hombre',30,1,4,'2024-02-24 23:17:11','2024-02-24 23:17:11');
+INSERT INTO `products` VALUES (1,'Remera The Original Teen ','Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, dicta!',50,2,4,'2024-02-24 23:17:11','2024-03-02 01:13:51','2024-03-06 23:26:47'),(2,'Perfect Tee Stripe','camisa azul mujer',30,2,4,'2024-02-26 20:48:24','2024-02-26 20:48:24',NULL),(4,'Hi Rise Skinny','Pantalon de mujer',60,2,4,'2024-02-28 17:11:37','2024-02-28 17:11:37','2024-02-28 17:12:19'),(5,'Camisa roja','ROJA',20,2,NULL,'2024-02-29 22:04:17','2024-02-29 22:04:17',NULL),(6,'Camisa Negra nueva','Negra',90,5,NULL,'2024-02-29 22:51:32','2024-03-02 00:58:11',NULL),(7,'Camisa azul','azul',10,3,NULL,'2024-02-29 22:53:18','2024-02-29 22:53:18',NULL),(8,'Camisa verde','verde',80,2,NULL,'2024-02-29 22:54:39','2024-02-29 22:54:39','2024-02-29 22:59:43'),(9,'Camisa amarilla','amarilla',50,5,NULL,'2024-02-29 22:56:38','2024-02-29 22:56:38',NULL),(11,'Camisa blanca','blanca',234,3,NULL,'2024-02-29 22:58:33','2024-02-29 22:58:33',NULL),(12,'Camisa roja nueva','asdasda',20,1,NULL,'2024-03-01 02:00:27','2024-03-01 02:00:27','2024-03-01 02:00:43');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -343,5 +349,7 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2024-02-24 20:39:41
+CREATE USER 'homies'@'localhost' IDENTIFIED BY 'homies2024';
+GRANT ALL PRIVILEGES ON * . * TO 'homies'@'localhost';
+FLUSH PRIVILEGES;
+-- Dump completed on 2024-03-11 19:22:52
