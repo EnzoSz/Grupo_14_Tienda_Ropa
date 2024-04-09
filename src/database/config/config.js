@@ -2,8 +2,8 @@
 require('dotenv').config();
 module.exports = {
   "development": {
-    "username": "homies",
-    "password": "homies2024",
+    "username": "root",
+    "password": null,
     "database": "db_homies",
     "host": "127.0.0.1",
     "dialect": "mysql",
@@ -11,15 +11,15 @@ module.exports = {
     "migrationStorageTableName": "migrations"
   },
   "test": {
-    "username": "homies",
-    "password": "homies2024",
+    "username": "root",
+    "password": null,
     "database": "db_homies",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "homies",
-    "password": "homies2024",
+    "username": "root",
+    "password": null,
     "database": "db_homies",
     "host": "127.0.0.1",
     "dialect": "mysql"

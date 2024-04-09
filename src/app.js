@@ -66,6 +66,8 @@ app.use('/user', userController);
 app.use('/products', productsRouter);
 app.use('/carrito', carritoRouter);
 app.use('/admin', adminRouter);
+
+// API Routes
 app.use('/api-user', userApiRouter);
 app.use('/api-products', productApiRouter);
 app.use('/api-images', imageApiRouter);
