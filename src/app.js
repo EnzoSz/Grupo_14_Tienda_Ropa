@@ -66,11 +66,16 @@ app.use('/user', userController);
 app.use('/products', productsRouter);
 app.use('/carrito', carritoRouter);
 app.use('/admin', adminRouter);
+
+// API Routes
 app.use('/api-user', userApiRouter);
 app.use('/api-products', productApiRouter);
 app.use('/api-images', imageApiRouter);
 
 
+app.use((req, res, next) => {
+  res.status(404).render('error');
+});
 
 // Levantamos el servidor en el puerto 3050
 app.listen(3000, () =>

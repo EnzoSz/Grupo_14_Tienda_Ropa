@@ -15,12 +15,12 @@
             value="<%= locals.old && locals.old.email ? locals.old.email : '' %>"
             class="<%= locals.errors && locals.errors.email ? 'is-invalid' : '' %>"
           />
-          <% if (locals.error && error.email) { %>
+          <% if (locals.errors && errors.email) { %>
           <p class="text-danger">
-            <%= error.email.msg %>
+            <%= errors.email.msg %>
           </p>
           <% } %>
-          <div id="errorEmail"></div>
+          <p id="errorEmail"></p>
         </div>
         <div class="input-group">
 
@@ -31,10 +31,12 @@
             placeholder="Contraseña"
             class="<%= locals.errors && locals.errors.password ? 'is-invalid' : '' %>"
           />
-          <% if (locals.errors && locals.errors.password) { %>
-          <div id="passwordError" class="error"><%= locals.errors.password.msg %></div>
-          <% } %>
-          <div id="errorPassword"></div>
+          <% if (locals.errors && errors.password) { %>
+            <p class="text-danger">
+              <%= errors.password.msg %>
+            </p>
+            <% } %>
+          <p id="errorPassword"></p>
 
         </div>
         <div class="rememberMe">
@@ -49,8 +51,7 @@
         <div id="loginError" class="error"></div>
       </form>
     </main>
-
-   <!--  <script src="/js/validateLogin.js"></script> -->
     <%- include('./partials/footer.ejs') %>
+    <script src="/js/validateLogin.js"></script>
   </body>
 </html>

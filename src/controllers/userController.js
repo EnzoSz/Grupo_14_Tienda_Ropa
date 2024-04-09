@@ -11,7 +11,6 @@ const { validationResult } = require("express-validator");
 //requerimos los modelos
 const db = require("../database/models");
 const User = require("../database/models/User.js");
-const { log } = require("console");
 //creamos el objeto controller
 const userController = {
   /*  index: (req, res) => {
@@ -61,45 +60,42 @@ const userController = {
 
 
   processLogin: async (req, res) => {
-    const { email, password } = req.body;
-
     try {
-      let user = await db.User.findOne({ where: { email } });
-      if (user) {
-        let validPassword = await bcrypt.compare(password, user.password);
-        if (validPassword) {
-          delete user.password;
-          if(user.rol_id == 2){
-            req.session.userAdmin = user;
-          }else{
-            req.session.userLogged = user;
-          }
-
-          if (req.body.rememberMe) {
-            res.cookie("userEmail", email, { maxAge: 1000 * 60 * 30 });
-          }
-
-          return res.redirect("/user/profile/" + user.id);
-        }else {
-          return res.render("login", {
-            error: {
-              password: {
-                msg: "La contraseña no es valida",
-              },
-            },
-            oldBody: req.body,
-          });
-        }
-      }
+      //creamos la variable error
+    const error = validationResult(req);
+    //verificamos si hay errores
+    if (!error.isEmpty()) {
       return res.render("login", {
-        error: {
-          email: {
-            msg: "El mail no esta registrado",
-          },
-        },
-        oldBody: {email},
+        errors: error.mapped(),
+        old: req.body
       });
-      
+    }
+    //guardamos los datos del usuario que viene en el form en la variable user
+    const userToLogin = await db.User.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+    //borramos la propiedad password
+    if (userToLogin) {
+      delete userToLogin.dataValues.password;
+    }
+    //preguntamos que rol tiene el usuario
+    
+    if (userToLogin.rol_id === 2) {
+      //guardamos el usuario en la sesion como admin
+      req.session.userAdmin = userToLogin
+    } else if (userToLogin.rol_id === 1) {
+      //guardamos el usuario en la sesion como user
+      req.session.userLogged = userToLogin;
+    }
+    //verificamos si vino rememberMe en el form
+    if (req.body.rememberMe) {
+      // Remember me logic here
+      res.cookie("userEmail", req.body.email, { maxAge: 1000 * 60 * 5 }); // Cookie expira en 5 minutos
+    }
+    //si no hay errores
+    res.redirect("/user/profile/" + userToLogin.id);
     } catch (error) {
       // En caso de error, envía el error como respuesta.
       res.status(500).send(error.message);
@@ -211,3 +207,43 @@ module.exports = userController;
     res.render("login", { errors: errors.mapped(), old: req.body });
   }
 } */
+
+/* 
+const { email, password } = req.body;
+
+    try {
+      let user = await db.User.findOne({ where: { email } });
+      if (user) {
+        let validPassword = await bcrypt.compare(password, user.password);
+        if (validPassword) {
+          delete user.password;
+          if(user.rol_id == 2){
+            req.session.userAdmin = user;
+          }else{
+            req.session.userLogged = user;
+          }
+
+          if (req.body.rememberMe) {
+            res.cookie("userEmail", email, { maxAge: 1000 * 60 * 30 });
+          }
+
+          return res.redirect("/user/profile/" + user.id);
+        }else {
+          return res.render("login", {
+            error: {
+              password: {
+                msg: "La contraseña no es valida",
+              },
+            },
+            oldBody: req.body,
+          });
+        }
+      }
+      return res.render("login", {
+        error: {
+          email: {
+            msg: "El mail no esta registrado",
+          },
+        },
+        oldBody: {email},
+      }); */
