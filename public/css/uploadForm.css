@@ -1,7 +1,13 @@
+.title-form {
+  margin-top: 10rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
 .form-login {
   width: 100%;
   max-width: 50rem;
-  margin: 20rem auto;
+  margin: 2rem auto;
   background-color: #fff;
   padding: 2rem;
   border-radius: 8px;
@@ -109,7 +115,8 @@ textarea {
 #color,
 #category,
 #price,
-#size {
+#size,
+#brand {
   margin-top: 1rem;
 }
 
@@ -129,4 +136,15 @@ textarea {
   text-align: left;
   color: crimson;
   font-size: 1.2rem;
+}
+
+.image-product {
+  width: 20rem;
+  height: 20rem;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+.parrafo-img {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
