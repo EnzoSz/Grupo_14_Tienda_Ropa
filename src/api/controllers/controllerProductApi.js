@@ -20,6 +20,12 @@ module.exports = {
     getLast: async (req, res) => {
         try {
             const product = await Product.findOne({
+                include: [
+                    { association: "category" },
+                    { association: "colors" },
+                    { association: "sizes" },
+                    { association: "images" },
+                  ],
                 order: [["created_at", "DESC"]],
             });
 
