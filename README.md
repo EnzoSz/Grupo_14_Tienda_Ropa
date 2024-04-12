@@ -30,6 +30,8 @@ Dejo una frase que me identifica: El éxito es la suma de pequeños esfuerzos, r
 
 👨‍💻 Francisco Vargas: Tengo 19 años, soy un chileno que vive en la Provincia de Buenos Aires, desde hace años estoy interesado en las habilidades digitales, certificado en Community Manager & Publicidad. Me pague el curso con mi primer sueldo, estoy en busca de un trabajo dentro del mundo tech y seguir avanzando en mis estudios. Me gusta el cine, los videojuegos y la filosofia.
 
+👨‍💻Oswaldo Mejia Cueto: Vivo en Ciudad de México y tengo 28 años, estudie Ingenieria en Audio, elegí empezar este curso para comenzar con un nuevo camino laboral con el objetivo de alcanzar nuevas metas y una mejor calidad de vida,  tener nuevas herramientas y oportunidades de vida, me interesa todo lo relacionado con programación Backend pero me gusta muchisimo tambien el Front, quisiera ser capaz de participar en proyectos grandes y de buena calidad, estrechar nuevas amistades y aprender de todos los que elegimos la programacion o cualquier campo de las TI, ME ENCANTA el cine, los mangas, estar con mi esposa y mi hijo.
+
 ## Link tablero en jira
 https://grupo14.atlassian.net/jira/software/projects/G1/boards/1
 
