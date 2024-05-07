@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/head.ejs', {homeCss: 'home', productCardCss: 'productCard'}) %>
+  <%- include('./partials/head.ejs', {homeCss: 'home', productCardCss:
+  'productCard'}) %>
   <body>
     <%- include('./partials/header.ejs') %>
     <main>
       <!-- seccion carrousel con html y css que se deslicen las imagenes de manera horizontal -->
-      <section class="container-carrousel">
+      <!-- <section class="container-carrousel">
         <article class="card-carrousel">
           <img
             src="https://levisarg.vtexassets.com/assets/vtex.file-manager-graphql/images/9375e804-f8ac-4dfb-a471-a61d94482a28___993925b0798de2dcac386077877a593a.gif"
@@ -24,34 +25,62 @@
             alt="1"
           />
         </article>
+      </section> -->
+      <section class="container-slider">
+        <div class="slider" id="slider">
+          <div class="slider-section">
+            <img
+              class="slider-img"
+              src="https://levisarg.vtexassets.com/assets/vtex.file-manager-graphql/images/606da14b-d8c8-41f8-ba2f-86f41de3b455___5a50dfa0d96b2f24c21da3e25dd0d7d8.png"
+              alt="1"
+            />
+          </div>
+          <div class="slider-section">
+            <img
+              class="slider-img"
+              src="https://levisarg.vtexassets.com/assets/vtex.file-manager-graphql/images/881de1a5-c3c2-4318-9e02-38c355ff2b49___b10d91473fe1b5f930ffde1ebd4cd749.png" 
+              alt="2"
+            />
+          </div>
+          <div class="slider-section">
+            <img
+              class="slider-img"
+              src="https://levisarg.vtexassets.com/assets/vtex.file-manager-graphql/images/d7355aa5-6f32-42d7-8a7b-bd468ea01945___64321e8cd77fbe75020cb2928427a68e.png" 
+              alt="3"
+            />
+          </div>
+        </div>
+        <div class="slider-btn slider-btn-right" id="btn-right">></div>
+        <div class="slider-btn slider-btn-left" id="btn-left"> < </div>
       </section>
       <!-- seccion de productos destacados -->
       <section class="container-destacados">
         <h2>Productos Destacados</h2>
         <!-- traer 3 productos de products.jon y mostrarlos con tags ejs -->
         <section class="container-productCard">
-          <% products.forEach(product => { %>
-            <%- include('./partials/productCard.ejs',  {product: product}) %>
-          <% }) %>
+          <% products.forEach(product => { %> <%-
+          include('./partials/productCard.ejs', {product: product}) %> <% }) %>
         </section>
       </section>
-      <div class="container-banner">
-          <img src="/assets/images/bannerlevis.jpg" alt="bannerlevis">
-      </div>
 
       <section class="container-components">
-        <div class="component-box component-pickup">   
+        <div class="component-box component-pickup">
           <i class="fa-solid fa-house-flag"></i>
           <h3>PICK UP POINT</h3>
-          <p>Retirá tu compras sin costo en locales seleccionados. Podés ver los locales habilitados al momento de finalizar tu compra.</p>
+          <p>
+            Retirá tu compras sin costo en locales seleccionados. Podés ver los
+            locales habilitados al momento de finalizar tu compra.
+          </p>
         </div>
-        <div class="component-box component-return">   
+        <div class="component-box component-return">
           <i class="fa-solid fa-shirt"></i>
           <h3>DEVOLUCIONES GRATUITAS</h3>
-          <p>Puedes cambiar tus compras en un plazo de 30 días.
-            No se aceptan cambios de ropa interior.</p>
+          <p>
+            Puedes cambiar tus compras en un plazo de 30 días. No se aceptan
+            cambios de ropa interior.
+          </p>
         </div>
-        <div class="component-box component-payment">   
+        <div class="component-box component-payment">
           <i class="fa-solid fa-unlock-keyhole"></i>
           <h3>PAGOS FLEXIBLES Y SEGUROS</h3>
           <p>Paga con tranquilidad en nuestros servicios online seguros.</p>
@@ -62,13 +91,12 @@
         <h2>Ofertas</h2>
         <!-- traer 3 productos de products.jon y mostrarlos con tags ejs -->
         <section class="container-productCard">
-          <% products.forEach(product => { %>
-            <%- include('./partials/productCard.ejs',  {product: product}) %>
-          <% }) %>
+          <% products.forEach(product => { %> <%-
+          include('./partials/productCard.ejs', {product: product}) %> <% }) %>
         </section>
       </section>
-      
     </main>
-      <%- include('./partials/footer.ejs') %>
+    <%- include('./partials/footer.ejs') %>
+    <script src="/js/home.js"></script>
   </body>
 </html>

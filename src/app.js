@@ -6,7 +6,7 @@ const session = require("express-session");
 const cookies = require("cookie-parser");
 //requerimos cors
 const cors = require("cors");
-
+// Importamos body-parser
 const bodyParser = require('body-parser');
 // Importamos path
 const path = require("path");
