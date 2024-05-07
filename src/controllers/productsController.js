@@ -69,8 +69,8 @@ const productsController = {
           { association: "images" },
         ],
       });
-      /* res.send(product); */
-      res.render("./productDetail", { product: product });
+      // return res.send(product);
+      res.render("./productDetail", { product: product});
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -138,13 +138,20 @@ const productsController = {
         if (req.body.size && req.body.amount && req.body.size.length === req.body.amount.length) {
           for (let i = 0; i < req.body.size.length; i++) {
             const size = await db.Size.findOne({ where: { name: req.body.size[i] } });
-            if (size) {
+            if (size) { 
               //crear una nueva entrada en la tabla intermedia produc_size
               await db.Product_size.create({
                 product_id: newProduct.id,
-                size_id: size.id,
+                size_id: size.id || newSize.id,
                 amount: req.body.amount[i],
               })
+            } else {
+              const newSize = await db.Size.create({ name: req.body.size[i] });
+              await db.Product_size.create({
+                product_id: newProduct.id,
+                size_id: newSize.id,
+                amount: req.body.amount[i],
+              });
             }
           }
         }
@@ -193,17 +200,28 @@ const productsController = {
   },
   editProduct: async (req, res) => {
     try {
-      const product = await db.Product.findByPk(req.params.id);
-      const allColors = await db.Color.findAll();
-      const allSizes = await db.Size.findAll();
+      const product = await db.Product.findOne({
+        where: { id: req.params.id },
+        include: [
+          { association: "brand" },
+          { association: "category" },
+          { association: "colors" },
+          { association: "sizes" },
+          { association: "images" },
+        ],
+      });
+      const product_size = await db.Product_size.findAll({
+        where: { product_id: req.params.id }
+      })
+      // console.log(product);
+      // return res.json({ product, product_size });    
       const allCategories = await db.Category.findAll();
-      const allImages = await db.Image.findAll();
+      const allBrands = await db.Brand.findAll();
       res.render("./editProduct", {
         product,
-        allColors,
-        allSizes,
         allCategories,
-        allImages,
+        allBrands,
+        product_size
       });
     } catch (error) {
       res.status(500).send(error.message);
@@ -212,15 +230,15 @@ const productsController = {
   processEdit: async (req, res) => {
     let error = validationResult(req);
     if (!error.isEmpty()) {
+      const allBrands = await db.Brand.findAll();
       const allColors = await db.Color.findAll();
-      const allSizes = await db.Size.findAll();
       const allCategories = await db.Category.findAll();
       return res.render("./uploadProduct.ejs", {
         oldBody: req.body,
         error: error.mapped(),
         allColors,
-        allSizes,
         allCategories,
+        allBrands
       });
     }
 
@@ -233,13 +251,63 @@ const productsController = {
         name: req.body.name,
         price: req.body.price,
         description: req.body.description,
-        amount: req.body.amount,
         category_id: req.body.category_id || product.category_id,
-        color_id: req.body.color_id || product.color_id,
-        size_id: req.body.size_id || product.size_id,
-        image_product: req.file ? req.file.filename : product.images,
+        brand_id: req.body.brand_id || product.brand_id,
       };
+       //establecer la asociacion con el talle y cantidades
+       if (req.body.size && req.body.amount && req.body.size.length === req.body.amount.length) {
+        for (let i = 0; i < req.body.size.length; i++) {
+          const size = await db.Size.findOne({ where: { name: req.body.size[i] } });
+          if (size) { 
+            //crear una nueva entrada en la tabla intermedia produc_size
+            newProduct_size = {
+              product_id: req.params.id,
+              size_id: size.id || newSize.id,
+              amount: req.body.amount[i],
+            }
+            await db.Product_size.update(newProduct_size, { where: { product_id: req.params.id } });
+          } else {
+            const newSize = await db.Size.create({ name: req.body.size[i] });
+            await db.Product_size.create({
+              product_id: req.params.id,
+              size_id: newSize.id,
+              amount: req.body.amount[i],
+            });
+          }
+        }
+      }
+       //establecer la asociacion con el color
+       if (req.body.color && req.body.color.length > 0) {
+        for (let i = 0; i < req.body.color.length; i++) {
+          const color = await db.Color.findOne({ where: { name: req.body.color[i] } });
+          if (color) {
+            //crear una nueva entrada en la tabla intermedia product_color
+            await db.Product_color.create({
+              product_id: req.params.id,
+              color_id: color.id,
+            });
+          }
+        } 
+      }
 
+      //actualizar la imagen del producto que viene del form
+      if (req.file) {
+        await db.Image.update({
+          image: req.file.filename
+        }, {
+          where: {
+            product_id: req.params.id
+          }
+        })
+      } else {
+        if (req.file == undefined) {
+          const newImage = await db.Image.create({
+            image: req.file.filename,
+            product_id: req.params.id
+          })
+        }
+      }
+      // Actualizamos el producto
       await db.Product.update(updateProducto, {
         where: {
           id: req.params.id,

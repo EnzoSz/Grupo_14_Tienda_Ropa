@@ -4,127 +4,184 @@
   <body>
     <%- include('./partials/header.ejs') %>
     <main>
+      <h1 class="title-form">Editar Producto <%= locals.product && product.name ? product.id: "" %></h1>
       <form class="form-login" action="/products/edit/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+          <!-- NOMBRE -->
         <div class="input-group">
-          <label for="nombre">Nombre</label>
-          <input type="text" id="name"name="name" value="<%= product.name %>" />
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" 
+          value="<%= locals.product && product.name ? product.name: "" %>" 
+          class="<%= locals.error && error.name ? 'is-invalid' : '' %>" 
+          /> 
           <% if (locals.error && error.name) { %>
-            <p>
-              <%= error.name.msg %>
-            </p>
+          <p class="text-danger"><%= error.name.msg %></p>
           <% } %>
           <div id="errorName"></div>
         </div>
+        <!-- Descripcion -->
         <div class="input-group">
           <label for="description">Descripcion</label>
-          <textarea name="description" id="description" rows="5"><%= product.description %></textarea>
+          <textarea
+            name="description"
+            id="description"
+            rows="5"
+            class="<%= locals.error && error.description ? 'is-invalid' : '' %>"
+          ><%= locals.product && product.description ? product.description: "" %></textarea>
           <% if (locals.error && error.description) { %>
-            <p>
-              <%= error.description.msg %>
-            </p>
+          <p class="text-danger"><%= error.description.msg %></p>
           <% } %>
           <div id="errorDescription"></div>
         </div>
-        <div class="input-group">
-          <label for="category">Categoria</label>
-          <select name="category_id" id="category">
-            <option value="" disabled selected> Selecciona Categoria</option>
-            <% allCategories.forEach(categories => { %>
-              <option value="<%= categories.id %>"><%= categories.name %></option>
-            <% }) %>
-          </select>
-          <% if (locals.error && error.categories) { %>
-            <p>
-              <%= error.categories.msg %>
-            </p>
-          <% } %>
-          <div id="errorCategory"></div>
-        </div>
-        <div class="input-group">
-          <label for="amount">Cantidad</label>
-          <input type="number" id="amount" name="amount" />
-          <% if (locals.error && error.amount) { %>
-            <p>
-              <%= error.amount.msg %>
-            </p>
-          <% } %>
-          <div id="errorAmount"></div>
-        </div>
+        <!-- Precio -->
         <div class="input-group">
           <label for="price">Precio</label>
-          <input type="number" id="price" name="price" required  value="<%= product.price %>"/>
+          <input type="number" id="price" name="price" 
+          value="<%= locals.product && product.price ? product.price: "" %>"
+          class="<%= locals.error && error.price ? 'is-invalid' : '' %>" 
+          /> 
           <% if (locals.error && error.price) { %>
-            <p>
-              <%= error.price.msg %>
-            </p>
+          <p class="text-danger"><%= error.price.msg %></p>
           <% } %>
           <div id="errorPrice"></div>
         </div>
-        
-        
-        <% for( const propiedad in product.size) { %>
-
+        <!-- MARCA -->
         <div class="input-group">
-          <label for="cantidad_<%= propiedad %>">Cantidad talle <%= propiedad %> :</label>
-          <input type="number" id="amount_<%= propiedad %>" name="amount"  value="<%= product.size[propiedad] %>"/>
-          <div id="errorAmount"></div>
-        </div>
-        <% } %>
-        <div class="input-container">
-          <div class="input-group">
-            <label for="color">Color</label>
-            <select name="color_id" id="color">
-              <option value="" disabled selected> Selecciona color</option
-                <% allColors.forEach(color => { %>
-                  <option value="<%= color.id %>"><%= color.name %></option>
-                <% }) %>
-            </select>
-            <% if (locals.error && error.color) { %>
-              <p>
-                <%= error.color.msg %>
-              </p>
-            <% } %>
-            <div id="errorColor"></div>
-            <!-- <label for="color">Color</label>
-            <select name="color" id="color">
-              <option value="Negro">Negro</option>
-              <option value="Blanco">Blanco</option>
-              <option value="Azul">Azul</option>
-              <option value="Rojo">Rojo</option>
-            </select> -->
-          </div> 
-          <div class="input-group">
-            <label for="size">Size</label>
-            <select name="size_id" id="size">
-              <option value="" disabled selected> Selecciona Talle</option>
-                <% allSizes.forEach(size => { %>
-                  <option value="<%= size.id %>"><%= size.name %></option>
-                <% }) %>
-            </select>
-            <% if (locals.error && error.size) { %>
-              <p>
-                <%= error.size.msg %>
-              </p>
-            <% } %>
-            <div id="errorSize"></div>
-          </div>
-        </div>
-        <div class="input-group">
-          <label for="">Seleccioná una imagen</label>
-          <input type="file" name="image_product" id="image_product" accept=".jpg" />
-          <% if (locals.error && error.image_product) { %>
-            <p>
-              <%= error.image_product.msg %>
-            </p>
+          <label for="brand">Marca</label>
+          <select name="brand_id" id="brand">
+            <option value="" disabled selected>Selecciona Marca</option>
+            <% allBrands.forEach(brand => { %>
+            <option value="<%= brand.id %>"><%= brand.name %></option>
+            <% }) %>
+          </select>
+          <% if (locals.error && error.brand_id) { %>
+          <p class="text-danger"><%= error.brand_id.msg %></p>
           <% } %>
-          <div id="errorImage"></div>
+          <div id="errorBrands"></div>
         </div>
-        <div>
+        <!-- CATEGORIA -->
+        <div class="input-group">
+          <label for="category">Categoria</label>
+          <select name="category_id" id="category"
+            value="<%= locals.product && product.category ? product.category.name: "" %>" 
+            class="<%= locals.error && error.categories ? 'is-invalid' : '' %>"
+            >
+            <option  disabled selected>Selecciona Categoria</option>
+            <% allCategories.forEach(categories => { %>
+            <option value="<%= categories.id %>"><%= categories.name %></option>
+            <% }) %>
+          </select>
+          <% if (locals.error && error.category_id) { %>
+          <p class="text-danger"><%= error.category_id.msg %></p>
+          <% } %>
+          <div id="errorCategory"></div>
+        </div>
+
+        <fieldset class="input-container">
+          <!-- Talle -->
+          <div class="input-group inputs-container">
+            <% if (locals.product && product.sizes && product.sizes.length > 0) {%>
+              <% product.sizes.forEach((size, index) => { %>
+                <label for="size"> Talle </label>
+                <input
+                type="text"
+                id="size"
+                name="size[]"
+                value="<%= size.name %>"
+                class="<%= locals.error && error.size && error.size[index] ? 'is-invalid' : '' %>"
+              />
+                <% if (locals.error && error.size) { %>
+                <p><%= error.size.msg %></p>
+                <% } %>  
+              <% }) %>  
+            <% } else { %>
+              <label for="size"> Talle </label>
+              <input
+                type="text"
+                id="size"
+                name="size[]"
+                class="<%= locals.error && error.size ? 'is-invalid' : '' %>"
+              />
+            <% } %>
+            <div class="errorSize"></div>
+          </div>
+          <!-- CANTIDAD -->
+          <div class="input-group">
+            <% if (locals.product_size && product_size && product_size.length >0) { %> 
+              <% product_size.forEach((size, index) => { %>
+                <label for="amount">Cantidad</label>
+                <input
+                  class="input-cantidad"
+                  type="number"
+                  id="amount"
+                  name="amount[<%= index %>]"
+                  value="<%= size.amount %>"
+                />
+                
+                  
+                
+              <% }) %>  
+            <% } else { %> 
+              <label for="amount">Cantidad</label> 
+              <input
+                class="input-cantidad"
+                type="number"
+                id="amount"
+                name="amount[]"
+                value="<%= locals.oldBody && oldBody.amount ? oldBody.amount: "" %>"
+              />
+            <% } %>
+            <div class="errorAmount"></div>
+          </div>
+          <!-- COLOR -->
+          <div class="input-group">
+            <% if (locals.product && product.colors && product.colors.length > 0) { %> 
+              <% product.colors.forEach((color, index) => { %>
+                <label for="color"> Color </label>
+                <input
+                  type="text"
+                  id="color"
+                  name="color[<%= index %>]"
+                  value="<%= color.name %>"
+                  class="<%= locals.error && error.color && error.color[index] ? 'is-invalid' : '' %>"
+                />
+                 
+              <% }) %>
+            <% } else { %>
+              <label for="color"> Color </label>
+              <input
+                type="text"
+                id="color"
+                name="color[]"
+                value="<%= locals.oldBody && oldBody.color ? oldBody.color: "" %>"
+              />
+            <% } %>
+             
+            <div class="errorColor"></div>
+          </div>
+        </fieldset>
+        <button type="button" class="add show">Agregar</button>
+        <!-- IMAGEN -->
+        <div class="input-group">
+          <!-- etiqueta imagen para mostrar la imagen que esta en la base de datos -->
+          <% if (locals.product && product.images) { %>
+          <p class="parrafo-img">Imagen Actual</p>
+          <img class="image-product" src="/assets/images/products/<%= product.images[0]?.image %>" alt="<%= product.name %>">
+          <% } %>
+          <p class="parrafo-img">Agregar imagen</p>
+          <input type="file" name="image_product" id="image_product" 
+          class="<%= locals.error && error.image_product ? 'is-invalid' : '' %>"
+          value="<%= locals.product && product.images ? product.images.image: "" %>"/>
+          <% if (locals.error && error.image_product) { %>
+            <p class="text-danger"><%= error.image_product.msg %></p>
+            <% } %>
+            <div id="errorImage"></div>
+        </div>
           <button type="submit" class="cargar">Guardar</button>
         </div>
       </form>
     </main>
     <%- include('./partials/footer.ejs') %>
     <script src="/js/createValidation.js"></script>
+    <script src="/js/uploadProduct.js"></script>
   </body>
 </html>
