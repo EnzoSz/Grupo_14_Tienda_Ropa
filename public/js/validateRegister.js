@@ -19,11 +19,6 @@ window.addEventListener('load', () => {
         password.style.color = 'red';
     }
 
-    function checkErrorImage(error) {
-        image.innerHTML = `<p class='imageError>${error.toUpperCase()}</p>`;
-        image.style.color = 'red';
-    }
-
 	function checkErrorName(error) {
         name.innerHTML = `<p class='nameError'>${error.toUpperCase()}</p>`;
         name.style.color = 'red';
@@ -59,8 +54,5 @@ window.addEventListener('load', () => {
 			checkErrorPassword('Por favor ingrese una contraseña que tenga al menos 8 caracteres.');
 			event.preventDefault();
 		}
-
-		//Validar la imagen de perfil.
-		
 	})
 })

@@ -48,7 +48,7 @@
 .bars-categories li {
   list-style: none;
   margin: 0.5rem;
-  border-bottom: solid 1px #d7d3d3;
+  border-bottom: solid 1px crimson;
   padding: 1rem;
 }
 .bars-categories li a {
@@ -56,7 +56,18 @@
   color: var(--secondaryColor);
   font-size: 1.6rem;
   font-weight: 700;
+  transition: all 0.3s ease;
 }
+
+/* Cambio de color y escalamiento al pasar el cursor sobre los enlaces */
+.bars-categories li:hover a {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: black;
+  color: white;
+  transform: scale(1.1);
+}
+
 .top-bars-left input {
   display: none;
 }
@@ -221,13 +232,6 @@
   .bars-categories li {
     border-bottom: none;
     padding: 0;
-  }
-
-  .bars-categories li {
-    transition: all 0.8s ease-in-out;
-  }
-  .bars-categories li:hover {
-    border-bottom: solid 1px #d7d3d3;
   }
 
   .bars-categories li a {
