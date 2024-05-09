@@ -1,67 +1,108 @@
 .title-register {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 600;
-    margin-top: 14rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 14rem;
 }
 .form-register {
-    width: 100%;
-    max-width: 50rem;
-    margin: 2rem auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100rem;
+  margin: 2rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
-.personal-info {
-    border: none;
+.datos-personales,
+.datos-contacto,
+.datos-adicionales,
+.botones {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: none;
 }
 .container-input {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 1rem;
-    text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 1rem;
+  text-align: left;
 }
 .container-input label {
-    font-size: 1.4rem;
-    width: 100%;
-    margin-bottom: 1rem;
-    font-weight: 600;
+  font-size: 1.4rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 .container-input input {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 0.1rem solid #ccc;
-    border-radius: 0.4rem;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
 }
 .is-invalid {
-    border:0.1rem solid rgb(192, 18, 53) !important; 
+  border: 0.1rem solid rgb(192, 18, 53) !important;
 }
 .text-danger {
-    color: rgb(192, 18, 53);
-    font-size: 1.2rem;
+  color: rgb(192, 18, 53);
+  font-size: 1.2rem;
 }
 .container-input input:focus {
-    outline: none;
-    border-color: #000;
+  outline: none;
+  border-color: #000;
 }
-.form-register button {
-    background-color: #000;
-    color: #fff;
-    margin: 1rem;
-    padding: 1rem 6.5rem;
-    border: none;
-    border-radius: 0.4rem;
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
+.botones button {
+  width: 90%;
+
+  background-color: #000;
+  color: #fff;
+  margin: 1rem auto;
+  max-width: 40rem;
+  padding: 1rem 6.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
 }
 .form-register button:hover {
-    background-color: crimson;
+  background-color: crimson;
+}
+
+@media (min-width: 525px) {
+  .form-register {
+    width: 90%;
+    margin: 1rem auto;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .datos-personales,
+  .datos-contacto,
+  .datos-adicionales,
+  .botones {
+    flex-direction: row;
+    width: 100%;
+    border: none;
+
+  }
+  .datos-contacto {
+      justify-content: flex-start;
+  }
+  .datos-contacto .container-input {
+      width: 33.3%;
+  }
+  .botones {
+      justify-content: space-around;
+      gap: 1rem;
+  }
 }
 
 /* .form-register label {

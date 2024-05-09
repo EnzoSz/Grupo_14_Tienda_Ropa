@@ -1,82 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('./partials/head.ejs', { homeCss: 'home', productCardCss: 'productCard', registerCss: 'register', userProfileCss: 'userProfile'}) %>
+<%- include('./partials/head.ejs', { userProfileCss: 'userProfile'}) %>
 <body>
     <%- include('./partials/header') %>
     <main>
-        <h1 class="title-register">Bienvenido: <%= idUserToEdit.first_name + " " + idUserToEdit.last_name  %></h1>
-        <% if (locals.isAdmin) { %>
-          <h2 class="text-admin">ADMIN</h2>
-        <% } %>
-      <form
-        class="form-register"
-        action="/user/delete/<%=idUserToEdit.id%>?_method=DELETE"
-        method="POST"
-        enctype="multipart/form-data"
-      >
-        <fieldset class="personal-info">
-          <div class="container-input">
-            <label for="name">Nombre:</label>
-                <div class="color-information-user">
-                    <%=  idUserToEdit.first_name  %>
-                </div>
+      <section class="section-title">
+        <a class="btn-back" href="/">
+          <i class="fa-solid fa-arrow-left"></i>
+          ATRÁS
+        </a>
+        <h1 class="title-profile">PERFIL</h1>
+      </section>
+      <section class="container-sections">
+        <section class="section-image">
+          <img src="/assets/images/users/<%= idUserToEdit.image_profile %>.png" alt="<%= idUserToEdit.first_name %>"/>
+          <h2 class="title-image">FOTO DE PERFIL</h2>
+        </section>
+        <section class="section-profile">
+          <!-- mostrar en  esta seccion los datos del usuario -->
+          <div  class="container-data" >
+              <h3>Nombre:</h3>
+              <p><%=  idUserToEdit.first_name  %></p>
           </div>
-          <div class="container-input">
-            <label for="name">Apellidos:</label>
-                <div class="color-information-user">
-                    <%=  idUserToEdit.last_name  %>
-                </div>
+          <div  class="container-data" >
+              <h3>Apellido:</h3>
+              <p><%=  idUserToEdit.last_name  %></p>
           </div>
-          <div class="container-input">
-            <label for="phone">Nombre de usuario:</label>
-                <div class="color-information-user">
-                    <%=  idUserToEdit.nick_name  %>
-                </div>
+          <div  class="container-data" >
+              <h3>Teléfono:</h3>
+              <p><%=  idUserToEdit.phone  %></p>
           </div>
-          <div class="container-input">
-            <label for="phone">Telefono:</label>
-                <div class="color-information-user">
-                    <%=  idUserToEdit.phone  %>
-                </div>
+          <div  class="container-data" >
+              <h3>Email:</h3>
+              <p><%=  idUserToEdit.email  %></p>
           </div>
-          <div class="container-input">
-            <label for="name">Email:</label>
-                <div class="color-information-user">
-                    <%=  idUserToEdit.email  %>
-                </div>
+          <div  class="container-data" >
+              <h3>Fecha de nacimiento:</h3>
+              <% 
+                const fechaDB = new Date(idUserToEdit.birth_date) 
+                const fecha = new Date(fechaDB.getTime() + fechaDB.getTimezoneOffset() * 60000);
+              %>
+                <p><%=  fecha.toLocaleDateString()  %></p>
           </div>
-          <% const fechaDesdeMySQL = idUserToEdit.birth_date;
-
-          // Crear un objeto Date en base a la fecha de MySQL
-          const fecha = new Date(fechaDesdeMySQL);
-          
-          // Obtener componentes de la fecha
-          const dia = fecha.getDate();
-          const mes = fecha.getMonth() + 1; // Los meses en JavaScript son indexados desde 0
-          const año = fecha.getFullYear();
-          
-          // Formatear la fecha según tus necesidades
-          const fechaFormateada = `${dia < 10 ? '0' : ''}${dia}-${mes < 10 ? '0' : ''}${mes}-${año}`; %>
-
-          <div class="container-input">
-            <label for="name">Fecha de nacimiento:</label>
-                <div class="color-information-user">
-                    <%=  fechaFormateada  %>
-                </div>
-          </div>
-          <div class="container-input">
-            <label for="name">Domicilio:</label>
-                <div class="color-information-user">
-                    <%=  idUserToEdit.address  %>
-                </div>
-          </div>
-        </fieldset>
-        <!-- <button onclick="" type="submit" value="edit">Editar</button> -->
-        <a class="form-edition-a" href="/user/profile/edit/<%= idUserToEdit.id %>">Editar</a>
-          <button type="submit">Eliminar Cuenta</button>
-        
-      </form>
-      
+          <% if (idUserToEdit.rols.id == 1) { %>
+            <div  class="container-data" >
+              <h3>Rol:</h3>
+              <p><%=  idUserToEdit.rols.name  %></p>
+            </div>
+          <% } %>
+          <a class="btn-edit" href="/user/profile/edit/<%= idUserToEdit.id %>">EDITAR PERFIL</a>
+        </section>
+        <section class="section-compras">
+          <h2>Historial de compras</h2>
+          <div class="container-compras">
+            <% idUserToEdit.orders.forEach(order => { %>
+              <div class="card-compra">
+                <h3>Fecha de compra:</h3>
+                <p><%=  order.created_at  %></p>
+                <h3>Total:</h3>
+                <p><%=  order.total  %></p>
+              </div> 
+            <% }) %> 
+        </section>
+      </section>
     </main>
     <%- include("./partials/footer") %>
 </body>

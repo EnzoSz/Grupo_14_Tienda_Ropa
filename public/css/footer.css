@@ -59,6 +59,11 @@
 /* media query */
 
 @media (min-width: 430px) {
+    .main-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
     .main-footer-links ul {
         flex-direction: row;
         flex-wrap: wrap;

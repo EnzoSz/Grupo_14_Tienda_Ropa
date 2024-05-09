@@ -6,6 +6,9 @@ main {
 .container-sections {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+
 }
 /* Seccion Titulo */
 .section-title {
@@ -40,6 +43,7 @@ main {
 .section-image {
     display: flex;
     flex-direction: column;
+    margin: 1rem;
     padding: 1rem;
     align-items: center;
 }
@@ -57,72 +61,83 @@ main {
     margin-top: 1rem;
     text-align: center;
 }
+/* Seccion de formulario */
 
-/* Seccion Perfil */
-
-.section-profile {
-    display: flex;
+.form-edition {
     width: 90%;
-    flex-direction: column;
-    margin: 1rem auto;
-    padding: 1rem;
-    border: 0.2rem solid #e3e4e6;
-    max-width: 50rem;
-}
-
-.container-data {
     display: flex;
     flex-direction: column;
     margin: 1rem;
-}
-.container-data h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: .5rem;
-}
-.container-data p {
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-bottom: .5rem;
-    color: #9c9da0;
-}
-.botones {
-    margin: 2rem 1rem; 
-}
-.btn-edit {
-    width: 40%;
-    margin: auto;
-    text-decoration: none;
-    text-align: center;
-    color: white;
-    font-size: 1.4rem;
-    font-weight: 700;
-    background-color: var(--secondaryColor);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease-in-out;
-    margin-top: 1rem;
-}
-.btn-edit:hover {
-    background-color: crimson;
-}
-
-/* Seccion Compras  */
-.section-compras {
-    display: flex;
-    width: 90%;
-    flex-direction: column;
-    margin: 1rem auto;
-    padding: 1rem;
+    padding: 1rem; 
     border: 0.2rem solid #e3e4e6;
-    max-width: 50rem;
+}
+.datos-personales,
+.datos-contacto,
+.datos-adicionales,
+.credenciales,
+.botones {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: none;
+}
+.container-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.container-input label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.container-input input {
+    width: 100%;
+    padding: 1rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+}
+.container-input select {
+    width: 100%;
+    padding: 1rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
 }
 
-@media (min-width: 1024px) {
-    .container-sections {
+.botones button {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.4rem;
+    color: #fff;
+    background-color: #000;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 480px) {
+    .datos-personales,
+    .datos-contacto,
+    .datos-adicionales,
+    .credenciales,
+    .botones {
         flex-direction: row;
         gap: 1rem;
     }
+
+    .container-input {
+        width: 33.3%;
+    }
 }
-
-
+@media (min-width: 1024px) {
+    .container-sections {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+}

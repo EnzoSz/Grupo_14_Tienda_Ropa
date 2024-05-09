@@ -6,7 +6,6 @@ const path = require("path");
 const { validationResult } = require("express-validator");
 //requerimos los modelos
 const db = require("../database/models");
-const { editProduct } = require("./productsController");
 //creamos el objeto controller
 const userController = {
   //vista de registro
@@ -15,17 +14,15 @@ const userController = {
   },
   //creacion de usuario
   processCreate: async (req, res) => {
-
     let errors = validationResult(req);
 
     try {
       if (!errors.isEmpty()) {
         return res.render("register", {
           errors: errors.mapped(),
-          old: req.body
+          old: req.body,
         });
-        
-      } 
+      }
       const idUserToEdit = await db.User.create({
         first_name: req.body.name,
         last_name: req.body.lastName,
@@ -35,14 +32,12 @@ const userController = {
         address: req.body.address,
         password: bcrypt.hashSync(req.body.password, 10),
         image_profile: path.parse(req.file.filename).name,
-        rol_id: 2
-     })
-    res.redirect("./profile/" + idUserToEdit.id);
-
-   } catch (error) {
-     res.status(400).send(error.message);
-   }
-
+        rol_id: 2,
+      });
+      res.redirect("./profile/" + idUserToEdit.id);
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
   },
   //vista de login
   login: (req, res) => {
@@ -53,51 +48,55 @@ const userController = {
   processLogin: async (req, res) => {
     try {
       //creamos la variable error
-    const error = validationResult(req);
-    //verificamos si hay errores
-    if (!error.isEmpty()) {
-      return res.render("login", {
-        errors: error.mapped(),
-        old: req.body
-      });
-    }
-    //guardamos los datos del usuario que viene en el form en la variable user
-    const userToLogin = await db.User.findOne({
-      where: {
-        email: req.body.email
+      const error = validationResult(req);
+      //verificamos si hay errores
+      if (!error.isEmpty()) {
+        return res.render("login", {
+          errors: error.mapped(),
+          old: req.body,
+        });
       }
-    })
-    //borramos la propiedad password
-    if (userToLogin) {
-      delete userToLogin.dataValues.password;
-    }
-    //preguntamos que rol tiene el usuario
-    
-    if (userToLogin.rol_id === 1) {
-      //guardamos el usuario en la sesion como admin
-      req.session.userAdmin = userToLogin
-    } else if (userToLogin.rol_id === 2) {
-      //guardamos el usuario en la sesion como user
-      req.session.userLogged = userToLogin;
-    }
-    //verificamos si vino rememberMe en el form
-    if (req.body.rememberMe) {
-      // Remember me logic here
-      res.cookie("userEmail", req.body.email, { maxAge: 1000 * 60 * 5 }); // Cookie expira en 5 minutos
-    }
-    //si no hay errores
-    res.redirect("/user/profile/" + userToLogin.id);
+      //guardamos los datos del usuario que viene en el form en la variable userToLogin
+      const userToLogin = await db.User.findOne({
+        where: {
+          email: req.body.email,
+        },
+      });
+      //borramos la propiedad password
+      if (userToLogin) {
+        delete userToLogin.dataValues.password;
+      }
+      //preguntamos que rol tiene el usuario
+      // console.log(userToLogin);
+
+      if (userToLogin.rol_id === 1) {
+        //guardamos el usuario en la sesion como admin
+        req.session.userAdmin = userToLogin.dataValues;
+      } else if (userToLogin.rol_id === 2) {
+        //guardamos el usuario en la sesion como user
+        req.session.userLogged = userToLogin.dataValues;
+      }
+      //verificamos si vino rememberMe en el form
+      if (req.body.rememberMe) {
+        // Remember me logic here
+        res.cookie("userEmail", req.body.email, { maxAge: 1000 * 60 * 60 }); // Cookie expira en una hora
+      }
+      console.log(req.cookies.userEmail);
+      //si no hay errores
+      res.redirect("/user/profile/" + userToLogin.id);
     } catch (error) {
       // En caso de error, envía el error como respuesta.
       res.status(500).send(error.message);
     }
-  }, 
-  
+  },
+
   //vista de perfil
   profile: async (req, res) => {
     try {
       const idUserToEdit = await db.User.findByPk(req.params.id, {
-        include: [{ association: "rols" }],
+        include: [{ association: "rols" },
+        { association: "orders" },
+        ],
       });
 
       res.render("profileUser", { idUserToEdit });
@@ -117,12 +116,18 @@ const userController = {
     }
   },
 
+  //proceso de editar perfil
   processEdit: async (req, res) => {
+    const errors = validationResult(req);
     try {
-      const user = await db.User.findByPk(req.params.id);
-      if (!user) {
-        return res.status(404).send("Producto no encontrado");
+      if (!errors.isEmpty()) {
+        return res.render("profileUserEdit", {
+          errors: errors.mapped(),
+          old: req.body,
+        });
       }
+      const user = await db.User.findByPk(req.params.id);
+      
       const userUpload = {
         first_name: req.body.name,
         last_name: req.body.lastName,
@@ -144,7 +149,8 @@ const userController = {
       res.status(500).send(error.message);
     }
   },
-
+  
+  //borrar usuario
   deleteUser: async (req, res) => {
     try {
       const user = await db.User.findByPk(req.params.id);
@@ -158,7 +164,8 @@ const userController = {
       res.status(500).send(error.message);
     }
   },
-
+ 
+  //cerrar sesion
   logout: (req, res) => {
     res.clearCookie("userEmail");
     req.session.destroy();

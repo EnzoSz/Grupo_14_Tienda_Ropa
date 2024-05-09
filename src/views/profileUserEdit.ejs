@@ -1,94 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('./partials/head.ejs', {homeCss: 'home', productCardCss: 'productCard', registerCss: 'register', userProfileCss: 'userProfile'}) %>
-<body>
+  <%- include('./partials/head.ejs', { UserEditCss: 'userEdit'}) %>
+  <body>
     <%- include('./partials/header') %>
     <main>
-        <h1 class="title-edition">MI CUENTA</h1>
-
-      <form
-        class="form-edition"
-        action="/user/profile/edit/<%= idUserToEdit.id %>?_method=PUT"
-        method="POST"
-        enctype="multipart/form-data" 
-      >
-        <fieldset class="personal-info">
-          <div class="container-input">
-            <label for="name">Nombre</label>
-              <input 
-              type="text" 
-              name="name"
-              id="name"
-              value="<%= idUserToEdit.first_name %>">
-          </div>
-          <div class="container-input">
-            <label for="lastName">Apellidos</label>
-              <input 
-              type="text"
-              name="lastName"
-              id="lastName"
-              value="<%= idUserToEdit.last_name %>">
-          </div>
-          <div class="container-input">
-            <label for="phone">Telefono</label>
-              <input 
-              type="number"
-              name="phone"
-              id="phone"
-              value="<%= idUserToEdit.phone %>">
-          </div>
-          <div class="container-input">
-            <label for="nickName">Nombre de usuario</label>
-              <input 
-              type="text"
-              name="nickname"
-              id="nickname"
-              value="<%= idUserToEdit.nick_name %>">
-          </div>
-          <div class="container-input">
-            <label for="email">Email</label>
-              <input 
-              type="email"
-              name="email"
-              id="email"
-              required
-              value=" <%= idUserToEdit.email %>">
-
-          </div>
-          <div class="container-input">
-            <label for="birthdate">Fecha de nacimiento</label>
-              <input 
-              type="date" 
-              min="1960-01-01" 
-              max= "2024-12-12"
-              name="birthdate"
-              id="birthdate"
-              value="<%= idUserToEdit.birth_date %>">            
-          </div>
-          <div class="container-input">
-            <label for="domicilio">Domicilio</label>
-              <input 
-              type="text"
-              name="domicilio"
-              id="domicilio"
-              value="<%= idUserToEdit.address %>">            
-          </div>
-          <div class="container-input">
-            <label for="imageProfile">Imagen de perfil <%=idUserToEdit.image_profile%></label>
-              <input 
-              type="file"
-              name="imageProfile"
-              id="imageProfile"
-              value="">            
-          </div>
-        
-        
-        </fieldset>
-      <button type="submit" value="edit">Guardar</button>
-      </form>
-
-        
+      <section class="section-title">
+        <a class="btn-back" href="/user/profile/<%= idUserToEdit.id %>">
+          <i class="fa-solid fa-arrow-left"></i>
+          PERFIL
+        </a>
+        <h1 class="title-profile">EDITAR PERFIL</h1>
+      </section>
+      <section class="container-sections">
+        <section class="section-image">
+          <img
+            src="/assets/images/users/<%= idUserToEdit.image_profile %>.png"
+            alt="<%= idUserToEdit.first_name %>"
+          />
+          <h2 class="title-image">FOTO DE PERFIL</h2>
+        </section>
+        <form
+          class="form-edition"
+          action="/user/profile/edit/<%= idUserToEdit.id %>?_method=PUT"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <fieldset class="datos-personales">
+            <div class="container-input">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value="<%= idUserToEdit.first_name %>"
+              />
+            </div>
+            <div class="container-input">
+              <label for="lastName">Apellidos</label>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                value="<%= idUserToEdit.last_name %>"
+              />
+            </div>
+            <div class="container-input">
+              <label for="birthdate">Fecha de nacimiento</label>
+              <input
+                type="date"
+                min="1960-01-01"
+                max="2024-12-12"
+                name="birthdate"
+                id="birthdate"
+                value="<%= idUserToEdit.birth_date.toISOString().slice(0, 10) %>"
+              />
+            </div>
+          </fieldset>
+          <fieldset class="datos-contacto">
+            <div class="container-input">
+              <label for="phone">Telefono</label>
+              <input
+                type="number"
+                name="phone"
+                id="phone"
+                value="<%= idUserToEdit.phone %>"
+              />
+            </div>
+            <div class="container-input">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                value=" <%= idUserToEdit.email %>"
+              />
+            </div>
+          </fieldset>
+          <fieldset class="datos-adicionales">
+            <div class="container-input">
+              <label for="domicilio">Domicilio</label>
+              <input
+                type="text"
+                name="domicilio"
+                id="domicilio"
+                value="<%= idUserToEdit.address %>"
+              />
+            </div>
+            <div class="container-input">
+              <label for="imageProfile"
+                >Imagen de perfil <%=idUserToEdit.image_profile%></label
+              >
+              <input
+                type="file"
+                name="imageProfile"
+                id="imageProfile"
+                value=""
+              />
+            </div>
+          </fieldset>
+          <fieldset class="credenciales">
+            <div class="container-input">
+              <label for="password_actual">Contraseña actual</label>
+              <input
+                type="password"
+                text="password"
+                name="password_actual"
+                id="password_actual"
+                placeholder="Ingrese su contraseña"
+                value="<%= locals.old && locals.old.password_actual ? locals.old.password_actual : '' %>"
+                class="<%- locals.errors && errors.password_actual ? 'is-invalid' : '' %>"
+              />
+              <% if (locals.errors && errors.password_actual) { %>
+              <div class="text-danger"><%= errors.password_actual.msg %></div>
+              <% } %>
+              <div class="errorPassword"></div>
+            </div>
+            <div class="container-input">
+              <label for="password_new">Nueva contraseña</label>
+              <input
+                type="password"
+                text="password"
+                name="password_new"
+                id="password_new"
+                placeholder="Ingrese su contraseña"
+                value="<%= locals.old && locals.old.password_new ? locals.old.password_new : '' %>"
+                class="<%- locals.errors && errors.password_new ? 'is-invalid' : '' %>"
+              />
+              <% if (locals.errors && errors.password_new) { %>
+              <div class="text-danger"><%= errors.password_new.msg %></div>
+              <% } %>
+              <div class="errorPassword"></div>
+            </div>
+            <div class="container-input">
+              <label for="password_confirm">Confirmar nueva contraseña</label>
+              <input
+                type="password"
+                text="password"
+                name="password_confirm"
+                id="password_confirm"
+                placeholder="Confirme su contraseña"
+                value="<%= locals.old && locals.old.password_confirm ? locals.old.password_confirm : '' %>"
+                class="<%- locals.errors && errors.password_confirm ? 'is-invalid' : '' %>"
+              />
+              <% if (locals.errors && errors.password_confirm) { %>
+              <div class="text-danger"><%= errors.password_confirm.msg %></div>
+              <% } %>
+              <div class="errorPassword"></div>
+            </div>
+          </fieldset>
+          <fieldset class="botones">
+            <button type="submit" value="edit">GUARDAR CAMBIOS</button>
+          </fieldset>
+        </form>
+      </section>
     </main>
     <%- include("./partials/footer") %>
-</body>
+  </body>
 </html>

@@ -13,7 +13,7 @@
         method="POST"
         enctype="multipart/form-data"
       >
-        <fieldset class="personal-info">
+        <fieldset class="datos-personales">
           <div class="container-input">
             <label for="name">Nombre</label>
             <input
@@ -44,7 +44,23 @@
             <% } %>
             <div id="lastnameError"></div>
           </div>
-         
+          <div class="container-input">
+            <label for="birthdate">Fecha de nacimiento</label>
+            <input
+              type="date"
+              min="1960-01-01"
+              name="birthdate"
+              id="birthdate"
+              value="<%- locals.old && locals.old.birthdate ? locals.old.birthdate : '' %>"
+              class="<%- locals.errors && errors.birthdate ? 'is-invalid' : '' %>"
+            />
+            <% if (locals.errors && errors.birthdate) { %>
+            <div class="text-danger"><%= errors.birthdate.msg %></div>
+            <% } %>
+            <div id="birthdateError"></div>
+          </div>
+        </fieldset>
+        <fieldset class="datos-contacto">
           <div class="container-input">
             <label for="phone">Telefono</label>
             <input
@@ -55,7 +71,7 @@
               value="<%- locals.old && locals.old.phone ? locals.old.phone : '' %>"
               class="<%- locals.errors && errors.phone ? 'is-invalid' : '' %>"
             />
-          
+
             <% if (locals.errors && errors.phone) { %>
             <div class="text-danger"><%= errors.phone.msg %></div>
             <% } %>
@@ -76,21 +92,8 @@
             <% } %>
             <div id="emailError"></div>
           </div>
-          <div class="container-input">
-            <label for="birthdate">Fecha de nacimiento</label>
-            <input
-              type="date"
-              min="1960-01-01"
-              name="birthdate"
-              id="birthdate"
-              value="<%- locals.old && locals.old.birthdate ? locals.old.birthdate : '' %>"
-              class="<%- locals.errors && errors.birthdate ? 'is-invalid' : '' %>"
-            />
-            <% if (locals.errors && errors.birthdate) { %>
-            <div class="text-danger"><%= errors.birthdate.msg %></div>
-            <% } %>
-            <div id="birthdateError"></div>
-          </div>
+        </fieldset>
+        <fieldset class="datos-adicionales">
           <div class="container-input">
             <label for="address">Domicilio</label>
             <input
@@ -119,8 +122,6 @@
             <% } %>
             <div id="imageError"></div>
           </div>
-        </fieldset>
-        <fieldset class="personal-info">
           <div class="container-input">
             <label for="password">Contraseña</label>
             <input
@@ -137,8 +138,11 @@
             <div id="errorPassword"></div>
           </div>
         </fieldset>
-        <button type="submit" value="enviar">Enviar</button>
-        <button type="reset" value="borrar">Borrar</button>
+
+        <fieldset class="botones">
+          <button type="submit" value="enviar">Enviar</button>
+          <button type="reset" value="borrar">Borrar</button>
+        </fieldset>
       </form>
     </main>
     <%- include('./partials/footer.ejs') %>
