@@ -14,17 +14,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   let config = {
     tableName: "sizes",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    deletedAt: "deleted_at",
     timestamps: false,
-
+    paranoid: true
   }
   const Size = sequelize.define(alias, cols, config);
   Size.associate = (models) => {
     Size.belongsToMany(models.Product, {
       as: "products",
-      through: "product_size",
+      through: "features",
       foreignKey: "size_id",
       otherKey: "product_id"
     })

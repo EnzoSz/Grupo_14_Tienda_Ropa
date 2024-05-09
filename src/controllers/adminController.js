@@ -1,9 +1,3 @@
-//requerimos el fs
-const fs = require("fs");
-//requerimos path para poder enviar archivos
-const path = require("path");
-//obtenemos el archivo JSON
-const usersFilePath = path.join(__dirname, "../data/users.json");
 //requerimos express-validator
 const { validationResult } = require("express-validator");
 //requerimos los modelos
@@ -36,7 +30,6 @@ const adminController = {
       const users = await db.User.findAll({
         where: { rol_id: 1 }
       });
-      console.log(users);
       res.render("./admin/userList", { users: users });
     }catch (error) {
       res.status(500).send(error.message);

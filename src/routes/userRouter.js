@@ -43,9 +43,9 @@ router.get("/logout", userController.logout);
 
 //rutas de profile
 router.get("/profile/:id", authMiddleware, userController.profile);
-//rutas de edit 
-router.get("/profile/edit/:id", authMiddleware, userController.upload);
-router.put("/profile/edit/:id",upload.single("imageProfile"),userController.processUpload);
+//rutas de edicion de perfil
+router.get("/profile/edit/:id", authMiddleware, userController.edit);
+router.put("/profile/edit/:id",upload.single("imageProfile"),userController.processEdit);
 //rutas de delete
 router.delete("/delete/:id", adminMiddleware, userController.deleteUser);
 

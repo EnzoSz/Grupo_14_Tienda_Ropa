@@ -68,9 +68,9 @@ app.use('/carrito', carritoRouter);
 app.use('/admin', adminRouter);
 
 // API Routes
-app.use('/api-user', userApiRouter);
-app.use('/api-products', productApiRouter);
-app.use('/api-images', imageApiRouter);
+// app.use('/api-user', userApiRouter);
+// app.use('/api-products', productApiRouter);
+// app.use('/api-images', imageApiRouter);
 
 
 app.use((req, res, next) => {

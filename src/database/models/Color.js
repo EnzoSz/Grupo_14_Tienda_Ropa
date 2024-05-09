@@ -1,7 +1,3 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   let alias = "Color";
   let cols = {
@@ -18,17 +14,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   let config = {
     tableName: "colors",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    deletedAt: "deleted_at",
-    timestamps: false,
+    timestamps: true,
     paranoid: true
   }
   const Color = sequelize.define(alias, cols, config);
   Color.associate = (models) => {
     Color.belongsToMany(models.Product, {
       as: "products",
-      through: "product_color",
+      through: "features",
       foreignKey: "color_id",
       otherKey: "product_id"
     })

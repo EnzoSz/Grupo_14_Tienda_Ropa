@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      "products",
+      "orders",
       {
         id: {
           allowNull: false,
@@ -11,52 +11,40 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
-        name: {
-          type: Sequelize.STRING(100),
+        user_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+            model: "users",
+            key: "id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
-        description: {
-          type: Sequelize.TEXT,
-          allowNull: true,
-        },
-        price: {
+        total: {
           type: Sequelize.DECIMAL(10, 2),
           allowNull: false,
-          defaultValue: 0,
         },
-        stock: {
-          type: Sequelize.INTEGER(11),
+        status: {
+          type: Sequelize.ENUM(
+            "pending",
+            "processing",
+            "shipped",
+            "delivered",
+            "cancelled"
+          ),
           allowNull: false,
-          defaultValue: 0,
+          defaultValue: "pending",
         },
-        discount: {
-          type: Sequelize.DECIMAL(5, 2),
-          allowNull: true,
-          defaultValue: 0,
-        },
-        market: {
-          type: Sequelize.BOOLEAN,
-          allowNull: true,
-          defaultValue: false,
-        },
-        category_id: {
-          type: Sequelize.INTEGER,
+        payment_method: {
+          type: Sequelize.ENUM("cash", "card", "paypal", "stripe"),
           allowNull: false,
-          references: {
-            model: "categories",
-            key: "id",
-          },
-          onUpdate: "CASCADE",
-          onDelete: "NO ACTION",
+          defaultValue: "cash",
         },
-        brand_id: {
-          type: Sequelize.INTEGER,
+        shipping_method: {
+          type: Sequelize.ENUM("standard", "express", "overnight"),
           allowNull: false,
-          references: {
-            model: "brands",
-            key: "id",
-          },
-          onUpdate: "CASCADE",
-          onDelete: "NO ACTION",
+          defaultValue: "standard",
         },
         createdAt: {
           allowNull: false,
@@ -81,6 +69,6 @@ module.exports = {
     );
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("products");
+    await queryInterface.dropTable("orders");
   },
 };

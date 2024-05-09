@@ -11,15 +11,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       allowNull: false
     }
   }
   let  config = {
       tableName: "rols",
-      createdAt: "created_At",
-      updatedAt: "updated_At",
-      deletedAt: "deleted_At",
+      timestamps: true,
+      paranoid: true
     }
  const Rol = sequelize.define(alias, cols, config);
   Rol.associate = (models) => {

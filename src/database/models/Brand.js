@@ -15,10 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   let config = {
     tableName: "brands",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    deletedAt: "deleted_at",
-    timestamps: true
+    timestamps: true,
+    paranoid: true
   }
   const Brand = sequelize.define(alias, cols, config);
   Brand.associate = (models) => {

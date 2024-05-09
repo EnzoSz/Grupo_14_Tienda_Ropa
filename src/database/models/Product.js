@@ -13,26 +13,35 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.TEXT,
+      allowNull: true,
     },
-    brand_id: {
-      type: DataTypes.INTEGER,
+    price:{
+      type: DataTypes.DECIMAL(10,2),
+      allowNull: false,
+    },
+    stock: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+    },
+    discount: {
+      type: DataTypes.DECIMAL(5,2),
+      allowNull: true,
+    },
+    market: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
     category_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    price:{
-      type: DataTypes.DECIMAL,
+    brand_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    /* created_at: DataTypes.TIMESTAMP,
-    updated_at: DataTypes.TIMESTAMP */
   };
   let config = {
     tableName: "products",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    deletedAt: "deleted_at",
     timestamps: true,
     paranoid: true,
   }
@@ -52,15 +61,19 @@ module.exports = (sequelize, DataTypes) => {
     });
     Product.belongsToMany(models.Color, {
       as: "colors",
-      through: "product_color",
+      through: "features",
       foreignKey: "product_id",
       otherKey: "color_id"
     });
     Product.belongsToMany(models.Size, {
       as: "sizes",
-      through: "product_size",
+      through: "features",
       foreignKey: "product_id",
       otherKey: "size_id"
+    })
+    Product.hasMany(models.OrderItem, {
+      as: "order_items",
+      foreignKey: "product_id",
     })
   }
   return Product;

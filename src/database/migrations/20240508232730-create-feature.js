@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      "products",
+      "features",
       {
         id: {
           allowNull: false,
@@ -11,66 +11,47 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
-        name: {
-          type: Sequelize.STRING(100),
-        },
-        description: {
-          type: Sequelize.TEXT,
-          allowNull: true,
-        },
-        price: {
-          type: Sequelize.DECIMAL(10, 2),
-          allowNull: false,
-          defaultValue: 0,
-        },
-        stock: {
+        quantity: {
           type: Sequelize.INTEGER(11),
           allowNull: false,
-          defaultValue: 0,
         },
-        discount: {
-          type: Sequelize.DECIMAL(5, 2),
-          allowNull: true,
-          defaultValue: 0,
-        },
-        market: {
-          type: Sequelize.BOOLEAN,
-          allowNull: true,
-          defaultValue: false,
-        },
-        category_id: {
+        product_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
           references: {
-            model: "categories",
+            model: "products",
             key: "id",
           },
           onUpdate: "CASCADE",
-          onDelete: "NO ACTION",
+          onDelete: "CASCADE",
         },
-        brand_id: {
+        size_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
           references: {
-            model: "brands",
+            model: "sizes",
             key: "id",
           },
           onUpdate: "CASCADE",
-          onDelete: "NO ACTION",
+          onDelete: "CASCADE",
+        },
+        color_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+            model: "colors",
+            key: "id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
-          defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
         },
         updatedAt: {
           allowNull: false,
           type: Sequelize.DATE,
-          defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-        },
-        deletedAt: {
-          type: Sequelize.DATE,
-          allowNull: true,
         },
       },
       {
@@ -81,6 +62,6 @@ module.exports = {
     );
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("products");
+    await queryInterface.dropTable("features");
   },
 };

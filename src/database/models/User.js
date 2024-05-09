@@ -10,19 +10,19 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     first_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false
     },
     last_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: true
     },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(20),
       allowNull: true  
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(150),
       allowNull: false,
       unique: true
     },
@@ -31,15 +31,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     address: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(150),
       allowNull: true,
     },
     password: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
     image_profile: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     rol_id: {
@@ -49,10 +49,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   let config = {
     tableName: "users",
-    createdAt: "createdAt",
-    updatedAt: "updatedAt",
-    deletedAt: "deletedAt",
-    timestamps: false,
+    timestamps: true,
     paranoid: true,
 
   }

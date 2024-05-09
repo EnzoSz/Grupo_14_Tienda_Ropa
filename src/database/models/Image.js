@@ -18,10 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   let config = {
     tableName: "images",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    deletedAt: "deleted_at",
     timestamps: true,
+    paranoid: true
   
   }
   const Image = sequelize.define(alias, cols, config);

@@ -1,26 +1,19 @@
 //requerimos el bcrypt
 const bcrypt = require("bcryptjs");
-//requerimos el fs
-const fs = require("fs");
 //requerimos path para poder enviar archivos
 const path = require("path");
-//obtenemos el archivo JSON
-const usersFilePath = path.join(__dirname, "../data/users.json");
 //requerimos express-validator
 const { validationResult } = require("express-validator");
 //requerimos los modelos
 const db = require("../database/models");
-const User = require("../database/models/User.js");
+const { editProduct } = require("./productsController");
 //creamos el objeto controller
 const userController = {
-  /*  index: (req, res) => {
-    return res.render('')
-  },
- */
+  //vista de registro
   createView: (req, res) => {
     res.render("register");
   },
-
+  //creacion de usuario
   processCreate: async (req, res) => {
 
     let errors = validationResult(req);
@@ -42,9 +35,8 @@ const userController = {
         address: req.body.address,
         password: bcrypt.hashSync(req.body.password, 10),
         image_profile: path.parse(req.file.filename).name,
-        rol_id: 1
+        rol_id: 2
      })
-    //  console.log(req.file)
     res.redirect("./profile/" + idUserToEdit.id);
 
    } catch (error) {
@@ -52,13 +44,12 @@ const userController = {
    }
 
   },
-
+  //vista de login
   login: (req, res) => {
-    /* console.log(req.session); */
     res.render("login");
   },
 
-
+  //proceso de login
   processLogin: async (req, res) => {
     try {
       //creamos la variable error
@@ -82,10 +73,10 @@ const userController = {
     }
     //preguntamos que rol tiene el usuario
     
-    if (userToLogin.rol_id === 2) {
+    if (userToLogin.rol_id === 1) {
       //guardamos el usuario en la sesion como admin
       req.session.userAdmin = userToLogin
-    } else if (userToLogin.rol_id === 1) {
+    } else if (userToLogin.rol_id === 2) {
       //guardamos el usuario en la sesion como user
       req.session.userLogged = userToLogin;
     }
@@ -102,6 +93,7 @@ const userController = {
     }
   }, 
   
+  //vista de perfil
   profile: async (req, res) => {
     try {
       const idUserToEdit = await db.User.findByPk(req.params.id, {
@@ -114,7 +106,8 @@ const userController = {
     }
   },
 
-  upload: async (req, res) => {
+  //vista de editar perfil
+  edit: async (req, res) => {
     try {
       const idUserToEdit = await db.User.findByPk(req.params.id);
 
@@ -124,7 +117,7 @@ const userController = {
     }
   },
 
-  processUpload: async (req, res) => {
+  processEdit: async (req, res) => {
     try {
       const user = await db.User.findByPk(req.params.id);
       if (!user) {
