@@ -94,9 +94,7 @@ const userController = {
   profile: async (req, res) => {
     try {
       const idUserToEdit = await db.User.findByPk(req.params.id, {
-        include: [{ association: "rols" },
-        { association: "orders" },
-        ],
+        include: [{ association: "rols" }, { association: "orders" }],
       });
 
       res.render("profileUser", { idUserToEdit });
@@ -108,9 +106,9 @@ const userController = {
   //vista de editar perfil
   edit: async (req, res) => {
     try {
-      const idUserToEdit = await db.User.findByPk(req.params.id);
+      const userDB = await db.User.findByPk(req.params.id);
 
-      res.render("profileUserEdit", { idUserToEdit });
+      res.render("profileUserEdit", { userDB });
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -118,16 +116,60 @@ const userController = {
 
   //proceso de editar perfil
   processEdit: async (req, res) => {
+    // return res.json(req.body);
     const errors = validationResult(req);
     try {
+      const userDB = await db.User.findByPk(req.params.id);
+      // return res.json userDB);
       if (!errors.isEmpty()) {
         return res.render("profileUserEdit", {
+          userDB,
           errors: errors.mapped(),
           old: req.body,
         });
       }
-      const user = await db.User.findByPk(req.params.id);
-      
+      const { password_new, password_confirm, password_actual } = req.body;
+      // Validar contraseña actual
+      if (password_actual !== "" && !bcrypt.compareSync(password_actual, userDB.password)) {
+        return res.render("profileUserEdit", {
+          userDB,
+          errors: {
+            password_actual: {
+              msg: "La contraseña actual es incorrecta",
+            },
+          },
+          old: req.body,
+        });
+      }
+      // Comparar contraseñas nuevas
+      if (password_new !== "" && password_confirm !== "" && password_new !== password_confirm) {
+        return res.render("profileUserEdit", {
+          userDB,
+          errors: {
+            password_new: {
+              msg: "Las contraseñas no coinciden",
+            },
+          },
+          old: req.body,
+        });
+      }
+      // Si la contraseña nueva es la que tenemos en la base de datos requerimos que no se repita
+      if (password_new && bcrypt.compareSync(password_new, userDB.password)) {
+        return res.render("profileUserEdit", {
+          userDB,
+          errors: {
+            password_new: {
+              msg: "La contraseña ya fue utilizada anteriormente",
+            },
+          },
+          old: req.body,
+        });
+      }
+      //si las contraseñas coinciden la guardamos en el user que tenemos en la base de datos
+      if (password_new !== "") {
+       userDB.password = bcrypt.hashSync(password_new, 10);
+      }
+
       const userUpload = {
         first_name: req.body.name,
         last_name: req.body.lastName,
@@ -135,8 +177,10 @@ const userController = {
         email: req.body.email,
         birth_date: req.body.birthdate,
         address: req.body.address,
-        image_profile: req.file ? req.file.filename : User.image_profile,
+        image_profile: req.file ? req.file.filename : userDB.image_profile,
       };
+      // console.log(userUpload);
+      // return res.send({userUpload})
 
       await db.User.update(userUpload, {
         where: {
@@ -149,7 +193,7 @@ const userController = {
       res.status(500).send(error.message);
     }
   },
-  
+
   //borrar usuario
   deleteUser: async (req, res) => {
     try {
@@ -164,7 +208,7 @@ const userController = {
       res.status(500).send(error.message);
     }
   },
- 
+
   //cerrar sesion
   logout: (req, res) => {
     res.clearCookie("userEmail");

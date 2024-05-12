@@ -9,6 +9,7 @@ const router = express.Router();
 
 //Middlewares
 const validationsRegisterMiddleware = require("../middlewares/validateRegisterMiddleware");
+const validationsUserEditMiddleware = require("../middlewares/validateUserEditMiddleware");
 const validationsLoginMiddleware = require("../middlewares/validateLoginMiddleware");
 const guestMiddleware = require("../middlewares/guestMiddleware");
 const authMiddleware = require("../middlewares/authMiddleware");
@@ -45,7 +46,7 @@ router.get("/logout", userController.logout);
 router.get("/profile/:id", authMiddleware, userController.profile);
 //rutas de edicion de perfil
 router.get("/profile/edit/:id", authMiddleware, userController.edit);
-router.put("/profile/edit/:id",upload.single("imageProfile"),userController.processEdit);
+router.put("/profile/edit/:id",upload.single("imageProfile"), validationsUserEditMiddleware,userController.processEdit);
 //rutas de delete
 router.delete("/delete/:id", adminMiddleware, userController.deleteUser);
 

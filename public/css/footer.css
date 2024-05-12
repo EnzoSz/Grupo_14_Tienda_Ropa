@@ -58,7 +58,7 @@
 
 /* media query */
 
-@media (min-width: 430px) {
+@media (min-width: 1024px) {
     .main-footer {
         position: absolute;
         bottom: 0;

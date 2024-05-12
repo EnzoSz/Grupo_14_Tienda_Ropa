@@ -1,143 +1,156 @@
 main {
-    max-width: 1024px;
-    margin: auto;
+  max-width: 1280px;
+  margin: auto;
 }
 /* Contenedor General */
 .container-sections {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 /* Seccion Titulo */
 .section-title {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
-    padding: 1rem;
-    max-width: 50rem; ;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  max-width: 50rem;
 }
 .section-title .title-profile {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 1rem;
 }
 .section-title .btn-back {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
-    flex-direction: row;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  flex-direction: row;
 
-    text-decoration: none;
-    color: #000;
-    font-size: 1.2rem;
-    font-weight: 700;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 .btn-back .fa-arrow-left {
-    margin-right: 0.5rem;
-    font-size: 1.5rem;
-
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
 }
 /* Seccion imagen */
 .section-image {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
-    padding: 1rem;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  align-items: center;
 }
 .section-image img {
-    width: 20rem;
-    max-width: 50rem;
-    height: 20rem;
-    object-fit: cover;
-    border: 0.2rem solid #e3e4e6;
-    border-radius: 50%;
+  width: 20rem;
+  max-width: 50rem;
+  height: 20rem;
+  object-fit: cover;
+  border: 0.2rem solid #e3e4e6;
+  border-radius: 50%;
 }
 .section-image .title-image {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 1rem;
-    text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-align: center;
 }
 /* Seccion de formulario */
 
 .form-edition {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
-    padding: 1rem; 
-    border: 0.2rem solid #e3e4e6;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  border: 0.2rem solid #e3e4e6;
 }
 .datos-personales,
 .datos-contacto,
 .datos-adicionales,
 .credenciales,
 .botones {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: none;
 }
 .container-input {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 .container-input label {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 .container-input input {
-    width: 100%;
-    padding: 1rem;
-    border: 0.1rem solid #ccc;
-    border-radius: 0.4rem;
+  width: 100%;
+  padding: 1rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
 }
 .container-input select {
-    width: 100%;
-    padding: 1rem;
-    border: 0.1rem solid #ccc;
-    border-radius: 0.4rem;
+  width: 100%;
+  padding: 1rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
 }
 
 .botones button {
-    margin-top: 1rem;
-    width: 100%;
-    padding: 1rem;
-    border: none;
-    border-radius: 0.4rem;
-    color: #fff;
-    background-color: #000;
-    font-size: 1.4rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  margin-top: 1rem;
+  width: 30rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.4rem;
+  color: #fff;
+  background-color: #000;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
+
+.botones button:hover {
+  background-color: crimson;
+}
+/* Clases de manejos de errores */
+.is-invalid {
+  border: 0.1rem solid rgb(192, 18, 53) !important;
+}
+.text-danger {
+  color: rgb(192, 18, 53);
+  font-size: 1.2rem;
+}
+
+/* Media Queries */
 
 @media (min-width: 480px) {
-    .datos-personales,
-    .datos-contacto,
-    .datos-adicionales,
-    .credenciales,
-    .botones {
-        flex-direction: row;
-        gap: 1rem;
-    }
+  .datos-personales,
+  .datos-contacto,
+  .datos-adicionales,
+  .credenciales,
+  .botones {
+    flex-direction: row;
+    gap: 1rem;
+  }
 
-    .container-input {
-        width: 33.3%;
-    }
+  .container-input {
+    width: 32.3%;
+  }
 }
 @media (min-width: 1024px) {
-    .container-sections {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        align-items: flex-start;
-    }
+  .container-sections {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+  }
 }
