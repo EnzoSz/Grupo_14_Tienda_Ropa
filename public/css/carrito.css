@@ -5,10 +5,9 @@
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: auto;
-  position: sticky !important;
+  position: sticky;
   top: 0;
   transition: .3s;
-  /* Estilos para ocultar */
   margin-right: -100%;
   opacity: 0;
 }
@@ -21,7 +20,7 @@
 .carrito .carrito-item{
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   position: relative;
   border-bottom: 1px solid #666;
   padding: 20px;
