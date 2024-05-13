@@ -179,10 +179,25 @@
           </fieldset>
           <fieldset class="botones">
             <button type="submit" value="edit">GUARDAR CAMBIOS</button>
+            <a  class="delete" href="#">ELIMINAR CUENTA </a>
           </fieldset>
         </form>
+        <section class="modal-delete">
+          <div class="modal-delete-container">
+            <h2>¿Está seguro que quiere eliminar esta cuenta?</h2>
+            <p>
+              Una vez eliminada la cuenta no podra recuperar los datos. Por favor
+              confirme la eliminación.
+            </p>
+            <div class="modal-delete-buttons">
+              <button class="delete-confirm"  type="submit" value="delete">ELIMINAR</button>
+              <button class="cancel" type="submit" value="cancel">CANCELAR</button>
+            </div>
+          </div>
+        </section>
       </section>
     </main>
     <%- include("./partials/footer") %>
+    <script src="/js/profileUserEdit.js"></script>
   </body>
 </html>

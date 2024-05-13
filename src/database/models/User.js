@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     image_profile: {
       type: DataTypes.STRING(100),
-      allowNull: false,
+      allowNull: true,
     },
     rol_id: {
       type: DataTypes.INTEGER,

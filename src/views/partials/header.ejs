@@ -38,14 +38,16 @@
         <li class="container-btn-user">
           <button class="btn-bars">
             <% if (locals.isLogged) { %>
-              <p class="user-name">
-                <%= locals.userLogged.email %> 
-              </p>
+              <!-- <p class="user-name">
+                <%= locals.userLogged.image_profile %> 
+              </p> -->
+              <img class="img-user" src="/assets/images/users/<%= locals.userLogged.image_profile %>" alt="imagen de perfil">
             <% } %>
             <% if (locals.isAdmin) { %>
-              <p class="user-name">
-                <%= locals.userAdmin.email %> 
-              </p>
+              <!-- <p class="user-name">
+                <%= locals.userAdmin.image_profile %> 
+              </p> -->
+              <img class="img-user" src="/assets/images/users/<%= locals.userAdmin.image_profile %>" alt="imagen de perfil">
             <% } %>
             <% if (!locals.isLogged && !locals.isAdmin) { %>
               <i class="fas fa-user"></i>

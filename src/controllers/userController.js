@@ -31,10 +31,14 @@ const userController = {
         birth_date: req.body.birthdate,
         address: req.body.address,
         password: bcrypt.hashSync(req.body.password, 10),
-        image_profile: path.parse(req.file.filename).name,
         rol_id: 2,
       });
-      res.redirect("./profile/" + idUserToEdit.id);
+      //nos traemos el usuario que se acaba de registrar
+      const user = await db.User.findByPk(idUserToEdit.id);
+      // si viene imagen, la guardamos
+      user.image_profile = req.file ? req.file.filename : 'default-image.jpg';
+
+      res.redirect("./profile/" + user.id);
     } catch (error) {
       res.status(400).send(error.message);
     }
@@ -71,10 +75,10 @@ const userController = {
 
       if (userToLogin.rol_id === 1) {
         //guardamos el usuario en la sesion como admin
-        req.session.userAdmin = userToLogin.dataValues;
+        req.session.userAdmin = userToLogin;
       } else if (userToLogin.rol_id === 2) {
         //guardamos el usuario en la sesion como user
-        req.session.userLogged = userToLogin.dataValues;
+        req.session.userLogged = userToLogin;
       }
       //verificamos si vino rememberMe en el form
       if (req.body.rememberMe) {

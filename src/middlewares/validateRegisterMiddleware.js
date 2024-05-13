@@ -42,7 +42,9 @@ const validateRegisterMiddleware = [
     .matches(/^(?=.*[A-Z])/)
     .withMessage("La contraseña debe tener al menos una mayúscula")
     .bail(),
-  body("imageProfile").custom((value, { req }) => {
+  body("imageProfile")
+  .optional({ checkFalsy: true })
+  .custom((value, { req }) => {
     let file = req.file;
     let acceptedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
     if (!file) {

@@ -103,6 +103,15 @@ main {
   border-radius: 0.4rem;
 }
 
+.botones {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: none;
+  gap: 1rem;
+
+}
+
 .botones button {
   margin-top: 1rem;
   width: 30rem;
@@ -117,9 +126,27 @@ main {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .botones button:hover {
   background-color: crimson;
+}
+
+.botones a {
+  width: 30rem;
+  margin: 0 auto;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background-color: crimson;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.botones a:hover {
+  background-color: white;
+  border: 0.1rem solid crimson;
+  color: crimson;
 }
 /* Clases de manejos de errores */
 .is-invalid {
@@ -130,6 +157,65 @@ main {
   font-size: 1.2rem;
 }
 
+/* Seccion modal */
+.modal-delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  transition: all 0.5s ease;
+}
+
+.modal-delete.active { 
+  display: flex;
+} 
+
+.modal-delete-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 33rem;
+  background-color: #fff;
+  margin: auto;
+  padding: 2rem;
+}
+.modal-delete-container h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.modal-delete-container p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.modal-delete-buttons {
+  display: flex;
+  gap: 1rem;
+
+}
+.modal-delete-buttons button {
+  margin-top: 1rem;
+  width: 10rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.4rem;
+  color: #fff;
+  background-color: #000;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.modal-delete-container button:hover {
+  background-color: crimson;
+}
 /* Media Queries */
 
 @media (min-width: 480px) {
@@ -152,5 +238,16 @@ main {
     flex-direction: row;
     gap: 1rem;
     align-items: flex-start;
+  }
+  .botones {
+    justify-content: center;
+  }
+  .botones button {
+    margin: 0;
+    width: 17rem;
+  }
+  .botones a {
+    margin: 0;
+    width: 17rem;
   }
 }
