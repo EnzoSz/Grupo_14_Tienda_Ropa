@@ -148,6 +148,9 @@
   padding: 1.2rem 1.6rem;
   text-decoration: none;
   display: block;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
 }
 .dropdown-user a:hover {
   background-color: black;
