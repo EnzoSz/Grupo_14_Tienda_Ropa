@@ -189,10 +189,10 @@
               Una vez eliminada la cuenta no podra recuperar los datos. Por favor
               confirme la eliminación.
             </p>
-            <div class="modal-delete-buttons">
-              <a href="/user/delete/<%= userDB.id %>">ELIMINAR</a>
-              <button class="cancel" type="submit" value="cancel">CANCELAR</button>
-            </div>
+            <form action="/user/delete/<%= userDB.id %>?_method=DELETE" method="POST" class="modal-delete-buttons">
+              <button class="delete" type="submit" value="delete">ELIMINAR</button>
+              <a class="cancel" href="#">CANCELAR</a>
+            </form>
           </div>
         </section>
       </section>

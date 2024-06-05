@@ -1,19 +1,11 @@
 const { body } = require("express-validator");
 const path = require("path");
+const db = require("../database/models");
 
 const validateRegisterMiddleware = [
-  body("name")
-    .notEmpty()
-    .withMessage("El nombre es obligatorio")
-    .bail(),
-  body("lastName")
-    .notEmpty()
-    .withMessage("El apellido es obligatorio")
-    .bail(),
-  body("phone")
-    .notEmpty()
-    .withMessage("El telefono es obligatorio")
-    .bail(),
+  body("name").notEmpty().withMessage("El nombre es obligatorio").bail(),
+  body("lastName").notEmpty().withMessage("El apellido es obligatorio").bail(),
+  body("phone").notEmpty().withMessage("El telefono es obligatorio").bail(),
   body("email")
     .notEmpty()
     .withMessage("El email es obligatorio")
@@ -28,10 +20,7 @@ const validateRegisterMiddleware = [
     .isISO8601()
     .withMessage("La fecha de nacimiento debe ser una fecha válida")
     .bail(),
-  body("address")
-    .notEmpty()
-    .withMessage("El domicilio es obligatorio")
-    .bail(),
+  body("address").notEmpty().withMessage("El domicilio es obligatorio").bail(),
   body("password")
     .notEmpty()
     .withMessage("La contraseña es obligatoria")
@@ -43,23 +32,23 @@ const validateRegisterMiddleware = [
     .withMessage("La contraseña debe tener al menos una mayúscula")
     .bail(),
   body("imageProfile")
-  .optional({ checkFalsy: true })
-  .custom((value, { req }) => {
-    let file = req.file;
-    let acceptedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
-    if (!file) {
-      return true;
-    }
-    if (file !== null) {
-      const fileExtension = path.extname(file.originalname);
-      if (!acceptedExtensions.includes(fileExtension)) {
-        throw new Error(
-          "Las extensiones permitidas son .jpg, .jpeg, .png, .gif"
-        );
+    .custom((value, { req }) => {
+      let file = req.file;
+      let acceptedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+      if (!file) {
+        return true;
       }
-    }
-    return true;
-  }).bail()
+      if (file !== null) {
+        const fileExtension = path.extname(file.originalname);
+        if (!acceptedExtensions.includes(fileExtension)) {
+          throw new Error(
+            "Las extensiones permitidas son .jpg, .jpeg, .png, .gif"
+          );
+        }
+      }
+      return true;
+    })
+    .bail(),
 ];
 
 module.exports = validateRegisterMiddleware;

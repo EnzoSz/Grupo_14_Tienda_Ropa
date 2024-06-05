@@ -14,16 +14,30 @@ const userController = {
   },
   //creacion de usuario
   processCreate: async (req, res) => {
+    // return res.json({body:req.body, file: req.file});
     let errors = validationResult(req);
 
     try {
       if (!errors.isEmpty()) {
+        // return res.json(errors.mapped());
         return res.render("register", {
           errors: errors.mapped(),
           old: req.body,
         });
       }
-      const idUserToEdit = await db.User.create({
+      //comprobamos que el usuario no exista
+      const existingUser = await db.User.findOne({ where: { email: req.body.email } });
+      if (existingUser) {
+        return res.render("register", {
+          errors: {
+            email: {
+              msg: "El email ya está en uso."
+            }
+          },
+          old: req.body,
+        });
+      }
+      const user = await db.User.create({
         first_name: req.body.name,
         last_name: req.body.lastName,
         phone: req.body.phone,
@@ -31,15 +45,12 @@ const userController = {
         birth_date: req.body.birthdate,
         address: req.body.address,
         password: bcrypt.hashSync(req.body.password, 10),
+        image_profile: req.file ? req.file.filename : null,
         rol_id: 2,
       });
-      //nos traemos el usuario que se acaba de registrar
-      const user = await db.User.findByPk(idUserToEdit.id);
-      // si viene imagen, la guardamos
-      user.image_profile = req.file ? req.file.filename : 'default-image.jpg';
-
-      res.redirect("./profile/" + user.id);
+      res.redirect("/profile/" + user.id);
     } catch (error) {
+      console.log(error);
       res.status(400).send(error.message);
     }
   },
@@ -134,7 +145,10 @@ const userController = {
       }
       const { password_new, password_confirm, password_actual } = req.body;
       // Validar contraseña actual
-      if (password_actual !== "" && !bcrypt.compareSync(password_actual, userDB.password)) {
+      if (
+        password_actual !== "" &&
+        !bcrypt.compareSync(password_actual, userDB.password)
+      ) {
         return res.render("profileUserEdit", {
           userDB,
           errors: {
@@ -146,7 +160,11 @@ const userController = {
         });
       }
       // Comparar contraseñas nuevas
-      if (password_new !== "" && password_confirm !== "" && password_new !== password_confirm) {
+      if (
+        password_new !== "" &&
+        password_confirm !== "" &&
+        password_new !== password_confirm
+      ) {
         return res.render("profileUserEdit", {
           userDB,
           errors: {
@@ -171,7 +189,7 @@ const userController = {
       }
       //si las contraseñas coinciden la guardamos en el user que tenemos en la base de datos
       if (password_new !== "") {
-       userDB.password = bcrypt.hashSync(password_new, 10);
+        userDB.password = bcrypt.hashSync(password_new, 10);
       }
 
       const userUpload = {

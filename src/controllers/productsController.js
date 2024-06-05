@@ -111,7 +111,7 @@ const productsController = {
         if (req.body.brand_id) {
           const brand = await db.Brand.findByPk(req.body.brand_id);
           if (brand) {
-            await newProduct.setBrand(parseInt(req.body.brand_id));
+            await newProduct.setBrand(req.body.brand_id);
           }
         }
         //establecer la asociacion con la categoria

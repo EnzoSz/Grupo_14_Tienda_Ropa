@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING(150),
       allowNull: false,
-      unique: true
     },
     birth_date: {
       type: DataTypes.DATE,
@@ -41,6 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     image_profile: {
       type: DataTypes.STRING(100),
       allowNull: true,
+      defaultValue: "default-image.png"
     },
     rol_id: {
       type: DataTypes.INTEGER,
