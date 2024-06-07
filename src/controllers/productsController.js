@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 // const productsFilePath = path.join(__dirname, "../data/products.json");
-const { validationResult } = require("express-validator");
+const { validationResult, body } = require("express-validator");
 const db = require("../database/models");
 
 const productsController = {
@@ -92,6 +92,10 @@ const productsController = {
   },
   /* Creamos el producto nuevo asociando todos los atributos a la BD */
   processCreate: async (req, res) => {
+    const product = req.body.productData;
+    const images = req.file;
+    return res.send({ product, images });
+
     try {
       let error = validationResult(req);
       

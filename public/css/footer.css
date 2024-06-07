@@ -60,7 +60,7 @@
 
 @media (min-width: 1024px) {
     .main-footer {
-        position: absolute;
+        /* position: absolute; */
         bottom: 0;
         width: 100%;
     }

@@ -18,8 +18,7 @@ router.get('/mujer', productsController.mujer);
 router.get('/kids', productsController.kids);
 */
 //Cargar un producto
-
-router.get("/create",adminMiddleware, productsController.create);
+router.get("/create", productsController.create);
 router.post("/create", upload.single('image_product'),createMiddleware, productsController.processCreate);
 
 //Mostramos todos los productos
